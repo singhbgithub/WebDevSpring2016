@@ -103,3 +103,12 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+/*
+ * Bootstrap overrides.
+ */
+@media (min-width: 768px) {
+    .form-horizontal .control-label.control-label-left {
+        text-align: left;
+    }
+}
