@@ -6,3 +6,12 @@
         text-align: left;
     }
 }
+
+.table > tbody > tr > td.td-middle {
+    vertical-align: middle;
+}
+
+/* Allows for width of inputs in tables to be appropriately responsive. */
+.table input.form-control {
+    width: auto;
+}
