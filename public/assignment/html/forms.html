@@ -50,35 +50,30 @@
             <ul class="nav nav-sidebar">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li class="active"><a href="#">Admin</a></li>
-                <li><a href="forms.html">Forms</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li class="active"><a href="#">Forms</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <header><h3>Admin</h3></header>
-            <header><h4>Users</h4></header>
+            <header><h3>Forms</h3></header>
             <div class="table-responsive">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#">Forms</a></li>
+                    <li role="presentation"><a href="#">Fields</a></li>
+                </ul>
                 <form>
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                                    Username</th>
-                                <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                                    Password</th>
-                                <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                                    Role</th>
+                                    Form Name</th>
                                 <th><span class="pull-right">
                                     <span class="glyphicon glyphicon-triangle-bottom"></span>
                                     Action</span></th>
                             </tr>
                             <tr>
-                                <th><input type="text" class="form-control" id="inputUser"
-                                           placeholder="username"></th>
-                                <th><input type="text" class="form-control" id="inputPassword"
-                                           placeholder="password"></th>
-                                <th><input type="text" class="form-control" id="inputRole"
-                                           placeholder="role 1, role 2"></th>
+                                <th><input type="text" class="form-control" id="inputFormName"
+                                           placeholder="name"></th>
                                 <th><span class="pull-right">
                                     <button type="submit" name="add"
                                             class="btn btn-default glyphicon glyphicon-plus">
@@ -90,9 +85,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="td-middle">alice</td>
-                                <td class="td-middle"><!-- Password not shown! --></td>
-                                <td class="td-middle">student</td>
+                                <td class="td-middle"><a href="form-fields.html">
+                                    Registration Form</a></td>
                                 <td><span class="pull-right">
                                     <button type="submit" name="remove"
                                             class="btn btn-default glyphicon glyphicon-remove">
@@ -103,9 +97,8 @@
                                 </span></td>
                             </tr>
                             <tr>
-                                <td class="td-middle">bob</td>
-                                <td class="td-middle"><!-- Password not shown! --></td>
-                                <td class="td-middle">faculty | admin</td>
+                                <td class="td-middle"><a href="form-fields.html">
+                                    Contact List</a></td>
                                 <td><span class="pull-right">
                                     <button type="submit" name="remove"
                                             class="btn btn-default glyphicon glyphicon-remove">
@@ -116,9 +109,8 @@
                                 </span></td>
                             </tr>
                             <tr>
-                                <td class="td-middle">charlie</td>
-                                <td class="td-middle"><!-- Password not shown! --></td>
-                                <td class="td-middle"><!-- Has no roles. --></td>
+                                <td class="td-middle"><a href="form-fields.html">
+                                    To Do List</a></td>
                                 <td><span class="pull-right">
                                     <button type="submit" name="remove"
                                             class="btn btn-default glyphicon glyphicon-remove">
