@@ -22,22 +22,24 @@
 </head>
 
 <body ng-controller="MainController">
-<div ng-include="header/header.view.html"></div>
+    <div ng-include="header/header.view.html"></div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div ng-include="sidebar/sidebar.view.html"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-include="sidebar/sidebar.view.html"></div>
+        </div>
     </div>
-</div>
 
-<div ng-view></div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+    <div ng-view></div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
 </body>
 
 </html>
