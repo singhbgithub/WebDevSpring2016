@@ -1,250 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come
-    *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Form Maker Tool</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <header class="page-header"><h3>Forms : Registration Form</h3></header>
-            <div class="table-responsive">
-                <ul class="nav nav-tabs">
-                    <li role="presentation"><a href="forms.html">Forms</a></li>
-                    <li role="presentation" class="active"><a>Fields</a></li>
-                </ul>
-                <form>
-                    <table class="table">
-                        <tbody>
-                            <tr><td class="td-no-border">
-                                <label for="inputLastName"
-                                       class="control-label control-label-left">
-                                First Name:</label>
-                            </td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <input type="text" class="form-control" id="inputFirstName"
-                                           placeholder="First Name"></td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="edit"
-                                            class="btn btn-default glyphicon glyphicon-pencil">
-                                    </button>
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                    <button type="submit" name="remove"
-                                            class="btn btn-default glyphicon glyphicon-remove">
-                                    </button>
-                                    <button type="submit" name="arrange"
-                                            class="btn btn-default glyphicon glyphicon-align-justify">
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr><td class="td-no-border">
-                                <label for="inputLastName"
-                                       class="control-label control-label-left">
-                                Last Name:</label>
-                            </td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <input type="text" class="form-control" id="inputLastName"
-                                           placeholder="Last Name"></td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="edit"
-                                            class="btn btn-default glyphicon glyphicon-pencil">
-                                    </button>
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                    <button type="submit" name="remove"
-                                            class="btn btn-default glyphicon glyphicon-remove">
-                                    </button>
-                                    <button type="submit" name="arrange"
-                                            class="btn btn-default glyphicon glyphicon-align-justify">
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr><td class="td-no-border">
-                                <label for="inputDOB"
-                                       class="control-label control-label-left">
-                                Date of Birth:</label>
-                            </td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <input type="date" class="form-control" id="inputDOB">
-                                </td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="edit"
-                                            class="btn btn-default glyphicon glyphicon-pencil">
-                                    </button>
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                    <button type="submit" name="remove"
-                                            class="btn btn-default glyphicon glyphicon-remove">
-                                    </button>
-                                    <button type="submit" name="arrange"
-                                            class="btn btn-default glyphicon glyphicon-align-justify">
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr><td class="td-no-border">
-                                <label for="inputGender"
-                                       class="control-label control-label-left">
-                                Gender:</label>
-                            </td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <select class="form-control" id="inputGender">
-                                        <option selected>Male</option>
-                                        <option>Female</option>
-                                    </select>
-                                </td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="edit"
-                                            class="btn btn-default glyphicon glyphicon-pencil">
-                                    </button>
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                    <button type="submit" name="remove"
-                                            class="btn btn-default glyphicon glyphicon-remove">
-                                    </button>
-                                    <button type="submit" name="arrange"
-                                            class="btn btn-default glyphicon glyphicon-align-justify">
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr><td class="td-no-border">
-                                <label class="control-label control-label-left">
-                                Roles:</label>
-                            </td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <div class="checkbox">
-                                        <label for="inputRoleAdmin">
-                                            <input type="checkbox" id="inputRoleAdmin"> Admin
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="inputRoleStudent">
-                                            <input type="checkbox" id="inputRoleStudent"> Student
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="inputRoleUser">
-                                            <input type="checkbox" id="inputRoleUser"> User
-                                        </label>
-                                    </div>
-                                </td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="edit"
-                                            class="btn btn-default glyphicon glyphicon-pencil">
-                                    </button>
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                    <button type="submit" name="remove"
-                                            class="btn btn-default glyphicon glyphicon-remove">
-                                    </button>
-                                    <button type="submit" name="arrange"
-                                            class="btn btn-default glyphicon glyphicon-align-justify">
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr><td class="td-no-border">
-                                <label class="control-label control-label-left">
-                                License Agreement:</label>
-                            </td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <div class="radio">
-                                        <label for="inputLicenseYes">
-                                            <input type="radio" name="license" id="inputLicenseYes">
-                                            Yes
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="inputLicenseNo">
-                                            <input type="radio" name="license" id="inputLicenseNo">
-                                            No
-                                        </label>
-                                    </div>
-                                </td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="edit"
-                                            class="btn btn-default glyphicon glyphicon-pencil">
-                                    </button>
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                    <button type="submit" name="remove"
-                                            class="btn btn-default glyphicon glyphicon-remove">
-                                    </button>
-                                    <button type="submit" name="arrange"
-                                            class="btn btn-default glyphicon glyphicon-align-justify">
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr><td colspan="2" class="td-no-border">
-                                <hr class="thick-border">
-                            </td></tr>
-                            <tr><td class="td-no-border">
-                                <label for="inputNewField"
-                                       class="control-label control-label-left">
-                                Add New Field:</label></td></tr>
-                            <tr>
-                                <td class="td-no-border">
-                                    <select class="form-control" id="inputNewField">
-                                        <option selected>Single Line Text</option>
-                                        <option>Date</option>
-                                        <option>Dropdown</option>
-                                        <option>Checkboxes</option>
-                                        <!-- buttons is lowercase in the assignment prompt, but that
-                                        seems like a typo so I chose to capitalize it -->
-                                        <option>Radio Buttons</option>
-                                        <option>Paragraph Text Fields</option>
-                                    </select>
-                                </td>
-                                <td class="td-no-border pull-right">
-                                    <button type="submit" name="add"
-                                            class="btn btn-default glyphicon glyphicon-plus">
-                                    </button>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </form>
-            </div>
-        </div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header class="page-header"><h3>Forms : Registration Form</h3></header>
+    <div class="table-responsive">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="#/forms">Forms</a></li>
+            <li role="presentation" class="active"><a>Fields</a></li>
+        </ul>
+        <form>
+            <table class="table">
+                <tbody>
+                    <tr><td class="td-no-border">
+                        <label for="inputLastName"
+                               class="control-label control-label-left">
+                        First Name:</label>
+                    </td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <input type="text" class="form-control" id="inputFirstName"
+                                   placeholder="First Name"></td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="edit"
+                                    class="btn btn-default glyphicon glyphicon-pencil">
+                            </button>
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                            <button type="submit" name="remove"
+                                    class="btn btn-default glyphicon glyphicon-remove">
+                            </button>
+                            <button type="submit" name="arrange"
+                                    class="btn btn-default glyphicon glyphicon-align-justify">
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><td class="td-no-border">
+                        <label for="inputLastName"
+                               class="control-label control-label-left">
+                        Last Name:</label>
+                    </td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <input type="text" class="form-control" id="inputLastName"
+                                   placeholder="Last Name"></td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="edit"
+                                    class="btn btn-default glyphicon glyphicon-pencil">
+                            </button>
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                            <button type="submit" name="remove"
+                                    class="btn btn-default glyphicon glyphicon-remove">
+                            </button>
+                            <button type="submit" name="arrange"
+                                    class="btn btn-default glyphicon glyphicon-align-justify">
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><td class="td-no-border">
+                        <label for="inputDOB"
+                               class="control-label control-label-left">
+                        Date of Birth:</label>
+                    </td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <input type="date" class="form-control" id="inputDOB">
+                        </td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="edit"
+                                    class="btn btn-default glyphicon glyphicon-pencil">
+                            </button>
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                            <button type="submit" name="remove"
+                                    class="btn btn-default glyphicon glyphicon-remove">
+                            </button>
+                            <button type="submit" name="arrange"
+                                    class="btn btn-default glyphicon glyphicon-align-justify">
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><td class="td-no-border">
+                        <label for="inputGender"
+                               class="control-label control-label-left">
+                        Gender:</label>
+                    </td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <select class="form-control" id="inputGender">
+                                <option selected>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="edit"
+                                    class="btn btn-default glyphicon glyphicon-pencil">
+                            </button>
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                            <button type="submit" name="remove"
+                                    class="btn btn-default glyphicon glyphicon-remove">
+                            </button>
+                            <button type="submit" name="arrange"
+                                    class="btn btn-default glyphicon glyphicon-align-justify">
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><td class="td-no-border">
+                        <label class="control-label control-label-left">
+                        Roles:</label>
+                    </td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <div class="checkbox">
+                                <label for="inputRoleAdmin">
+                                    <input type="checkbox" id="inputRoleAdmin"> Admin
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="inputRoleStudent">
+                                    <input type="checkbox" id="inputRoleStudent"> Student
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="inputRoleUser">
+                                    <input type="checkbox" id="inputRoleUser"> User
+                                </label>
+                            </div>
+                        </td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="edit"
+                                    class="btn btn-default glyphicon glyphicon-pencil">
+                            </button>
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                            <button type="submit" name="remove"
+                                    class="btn btn-default glyphicon glyphicon-remove">
+                            </button>
+                            <button type="submit" name="arrange"
+                                    class="btn btn-default glyphicon glyphicon-align-justify">
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><td class="td-no-border">
+                        <label class="control-label control-label-left">
+                        License Agreement:</label>
+                    </td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <div class="radio">
+                                <label for="inputLicenseYes">
+                                    <input type="radio" name="license" id="inputLicenseYes">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="inputLicenseNo">
+                                    <input type="radio" name="license" id="inputLicenseNo">
+                                    No
+                                </label>
+                            </div>
+                        </td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="edit"
+                                    class="btn btn-default glyphicon glyphicon-pencil">
+                            </button>
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                            <button type="submit" name="remove"
+                                    class="btn btn-default glyphicon glyphicon-remove">
+                            </button>
+                            <button type="submit" name="arrange"
+                                    class="btn btn-default glyphicon glyphicon-align-justify">
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr><td colspan="2" class="td-no-border">
+                        <hr class="thick-border">
+                    </td></tr>
+                    <tr><td class="td-no-border">
+                        <label for="inputNewField"
+                               class="control-label control-label-left">
+                        Add New Field:</label></td></tr>
+                    <tr>
+                        <td class="td-no-border">
+                            <select class="form-control" id="inputNewField">
+                                <option selected>Single Line Text</option>
+                                <option>Date</option>
+                                <option>Dropdown</option>
+                                <option>Checkboxes</option>
+                                <!-- buttons is lowercase in the assignment prompt, but that
+                                seems like a typo so I chose to capitalize it -->
+                                <option>Radio Buttons</option>
+                                <option>Paragraph Text Fields</option>
+                            </select>
+                        </td>
+                        <td class="td-no-border pull-right">
+                            <button type="submit" name="add"
+                                    class="btn btn-default glyphicon glyphicon-plus">
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</body>
-</html>
