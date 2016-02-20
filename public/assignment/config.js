@@ -23,7 +23,9 @@
                 templateUrl: 'views/sidebar/sidebar.view.html'
             })
             .when('/profile', {
-                templateUrl: 'views/users/profile.view.html'
+                templateUrl: 'views/users/profile.view.html',
+                controller: 'ProfileController'
+
             })
             .when('/login', {
                 templateUrl: 'views/users/login.view.html'

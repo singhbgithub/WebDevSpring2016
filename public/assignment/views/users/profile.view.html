@@ -1,20 +1,13 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="ProfileController">
     <header class="page-header"><h3>Profile</h3></header>
+    Username: {{ user.username }}
     <form class="form-horizontal">
-        <div class="form-group">
-            <label for="inputUser" class="col-sm-2 control-label control-label-left">
-                Username:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputUser"
-                       placeholder="Username">
-            </div>
-        </div>
         <div class="form-group">
             <label for="inputPassword" class="col-sm-2 control-label control-label-left">
                 Password:</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputPassword"
-                       placeholder="Password">
+                       placeholder="Password" ng-model="user.password">
             </div>
         </div>
         <div class="form-group">
@@ -22,7 +15,7 @@
                 First Name:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputFirstName"
-                       placeholder="First Name">
+                       placeholder="{{user.firstName}}" ng-model="user.firstName">
             </div>
         </div>
         <div class="form-group">
@@ -30,7 +23,7 @@
                 Last Name:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputLastName"
-                       placeholder="Last Name">
+                       placeholder="{{user.lastName}}" ng-model="user.lastName">
             </div>
         </div>
         <div class="form-group">
@@ -38,12 +31,12 @@
                 Email:</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control" id="inputEmail"
-                       placeholder="Email">
+                       placeholder="{{user.email}}" ng-model="user.email">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Update</button>
+                <button class="btn btn-default" ng-click="update(user)">Update</button>
             </div>
         </div>
     </form>
