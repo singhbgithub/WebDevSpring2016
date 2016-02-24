@@ -2,7 +2,7 @@
     angular.module('FormBuilderApp').controller('ProfileController', ProfileController);
 
     function ProfileController($scope, $location, $rootScope, UserService) {
-        if ($rootScope.user) {
+        if ($rootScope.user !== null) {
             $scope.user = $rootScope.user;
             $scope.update = function (user) {
                 if (user) {

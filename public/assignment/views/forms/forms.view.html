@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="FormController">
     <header class="page-header"><h3>Forms</h3></header>
     <div class="table-responsive">
         <ul class="nav nav-tabs">
@@ -17,49 +17,25 @@
                     </tr>
                     <tr>
                         <th><input type="text" class="form-control" id="inputFormName"
-                                   placeholder="name"></th>
+                                   placeholder="name" ng-model="form.title"></th>
                         <th><span class="pull-right">
-                            <button type="submit" name="add"
+                            <button type="submit" name="add" ng-click="addForm(form.title)"
                                     class="btn btn-default glyphicon glyphicon-plus">
                             </button>
-                            <button type="submit" name="update"
+                            <button type="submit" name="update" ng-click="updateForm(form.title)"
                                     class="btn btn-default glyphicon glyphicon-ok"></button>
                         </span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="form in forms">
                         <td class="td-middle"><a href="#/fields">
-                            Registration Form</a></td>
+                            {{ form.title }} </a></td>
                         <td><span class="pull-right">
-                            <button type="submit" name="remove"
+                            <button type="submit" name="remove" ng-click="deleteForm($index)"
                                     class="btn btn-default glyphicon glyphicon-remove">
                             </button>
-                            <button type="submit" name="edit"
-                                    class="btn btn-default glyphicon glyphicon-pencil">
-                            </button>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-middle"><a href="#/fields">
-                            Contact List</a></td>
-                        <td><span class="pull-right">
-                            <button type="submit" name="remove"
-                                    class="btn btn-default glyphicon glyphicon-remove">
-                            </button>
-                            <button type="submit" name="edit"
-                                    class="btn btn-default glyphicon glyphicon-pencil">
-                            </button>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-middle"><a href="#/fields">
-                            To Do List</a></td>
-                        <td><span class="pull-right">
-                            <button type="submit" name="remove"
-                                    class="btn btn-default glyphicon glyphicon-remove">
-                            </button>
-                            <button type="submit" name="edit"
+                            <button type="submit" name="edit" ng-click="selectForm($index)"
                                     class="btn btn-default glyphicon glyphicon-pencil">
                             </button>
                         </span></td>

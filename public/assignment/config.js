@@ -8,10 +8,12 @@
                 templateUrl: 'views/admin/admin.view.html'
             })
             .when('/forms', {
-                templateUrl: 'views/forms/forms.view.html'
+                templateUrl: 'views/forms/forms.view.html',
+                controller: 'FormController'
             })
             .when('/fields', {
-                templateUrl: 'views/forms/form-fields.view.html'
+                templateUrl: 'views/forms/form-fields.view.html',
+                // Will implement later TODO(bobby)
             })
             .when('/home', {
                 templateUrl: 'views/home/home.view.html'
