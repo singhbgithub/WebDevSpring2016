@@ -2,9 +2,8 @@
     angular.module('FormBuilderApp').controller('FormController', FormController);
 
     function FormController($scope, $location, $rootScope, FormService) {
-        if ($rootScope.user !== null && $rootScope.user !== undefined) {
-            $scope.user = $rootScope.user;
-
+        // We have a logged-in user.
+        if ($rootScope.user.loggedIn) {
             // Populate the forms
             var callbackForms = function(forms) {
                 $scope.forms = forms;

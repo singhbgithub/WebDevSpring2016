@@ -2,8 +2,8 @@
     angular.module('FormBuilderApp').controller('ProfileController', ProfileController);
 
     function ProfileController($scope, $location, $rootScope, UserService) {
-        if ($rootScope.user !== null) {
-            $scope.user = $rootScope.user;
+        // Must be logged in to view this page.
+        if ($rootScope.user.loggedIn) {
             $scope.update = function (user) {
                 if (user) {
                     var callback = function (user) {

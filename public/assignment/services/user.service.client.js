@@ -75,7 +75,7 @@
             service.findUserByCredentials(user.username, user.password, set_user_found);
             if (!user_found) {
                 user._id = (new Date).getTime();
-                _users.push(user);
+                _users.push(user); // Issue with same ref - need to copy obj TODO(bobby)
                 callback(user);
             };
         }
@@ -95,7 +95,7 @@
             for (var i = 0; i < _users.length; i++) {
                 var currentUser = _users[i];
                 if (currentUser._id === userId) { // can abstract this loop w/ a callback for diff actions. TODO(bobby)
-                    _users[i] = user;
+                    _users[i] = user; // Issue here with same ref - need to copy obj TODO(bobby)
                     _users[i]._id = currentUser._id;
                     callback(currentUser);
                     break; // keeps the stack frame since the break hasn't happened TODO(bobby)
