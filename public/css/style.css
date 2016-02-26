@@ -25,3 +25,7 @@
 .table .form-control {
     width: auto;
 }
+
+.no-link {
+    cursor: pointer;
+}
