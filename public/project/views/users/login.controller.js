@@ -17,9 +17,7 @@
                     //UserService.findUserByCredentials(username, password, callback);
                     if (accountDoesNotExist) {
                         window.alert('No associated account. Please sign up.');
-                        // TODO(bobby): update when register page made
-                        //$scope.$location = $location.path('/register');
-                        $scope.$location = $location.path('/');
+                        $scope.$location = $location.path('/register');
                     }
                 }
                 else {

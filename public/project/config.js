@@ -9,6 +9,10 @@
                 templateUrl: 'views/users/login.view.html',
                 controller: 'LoginController'
             })
+            .when('/register', {
+                templateUrl: 'views/users/register.view.html',
+                controller: 'RegisterController'
+            })
             .otherwise({
                 redirectTo: '/'
             });
