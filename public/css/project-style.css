@@ -36,8 +36,6 @@ h6 {
 }
 
 .intro-header {
-    padding-top: 50px;
-    padding-bottom: 50px;
     text-align: center;
     color: #fff;
     background: url(../img/thot-intro-bg.jpg) no-repeat center center;
@@ -62,14 +60,24 @@ h6 {
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
+.input-text {
+    width: 100%;
+    display: inline-block;
+}
+
 @media(min-width:480px) {
-    .intro-divider {
+    .intro-divider,
+    .input-text {
         width: 400px;
     }
 }
 
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+ul.intro-social-buttons {
+    padding-left: 0;
 }
 
 ul.intro-social-buttons > li {

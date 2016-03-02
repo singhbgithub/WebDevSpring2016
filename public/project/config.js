@@ -4,7 +4,10 @@
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home/home.view.html'
-                //controller: ''
+            })
+            .when('/login', {
+                templateUrl: 'views/users/login.view.html',
+                controller: 'LoginController'
             })
             .otherwise({
                 redirectTo: '/'
