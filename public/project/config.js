@@ -3,8 +3,7 @@
     angular.module('ThotApp').config(function($routeProvider){
         $routeProvider
             .when('/', {
-                // TODO(bobby): fix it
-                templateUrl: 'index.html',
+                templateUrl: 'views/home/home.view.html'
                 //controller: ''
             })
             .otherwise({
