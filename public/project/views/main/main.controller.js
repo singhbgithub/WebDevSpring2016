@@ -7,19 +7,18 @@
         $rootScope.user = {'loggedIn': false};
         // Listen for a user login event.
         $scope.$on('userLoggedIn', function(event, args) {
-            console.log('User logged in.');
             // Read from our user service - this does not include current state
-            // i.e. login & admin status so we have to add that
+            // i.e. login & admin status so we have to add that.
             if (args && args.hasOwnProperty('user')) {
                 $rootScope.user = args.user;
             }
             $rootScope.user.loggedIn = true;
-            // Is the user an admin?
+            console.log('User logged in: ', $rootScope.user);
             $scope.$location = $location.path('/profile');
         });
         // Listen for a user logout event.
         $scope.$on('userLoggedOut', function() {
-            console.log('user logged out');
+            console.log('User logged out.');
             $rootScope.user = {'loggedIn': false};
             $scope.$location = $location.path('/');
         });

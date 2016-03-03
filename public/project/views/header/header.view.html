@@ -11,10 +11,12 @@
             <a class="navbar-brand topnav" href="#">Thots</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse" ng-controller="HeaderController">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#/register" ng-hide="user.loggedIn">Register</a></li>
+                <li><a href="#/login" ng-hide="user.loggedIn">Login</a></li>
+                <li><a href="#/profile" ng-show="user.loggedIn">{{ user.username }}</a></li>
+                <li><a class="no-link" ng-click="logout()" ng-show="user.loggedIn">Logout</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
