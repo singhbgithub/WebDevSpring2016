@@ -2,7 +2,7 @@
     'use strict';
     angular.module('ThotApp').controller('LoginController', LoginController);
 
-    function LoginController($scope, $location, $rootScope/*, UserService TODO(bobby)*/) {
+    function LoginController($scope, $location, $rootScope, UserService) {
         // Must not be logged-in to view this page.
         if (!$rootScope.user.loggedIn) {
             $scope.login = function (username, password) {
@@ -13,8 +13,7 @@
                         $rootScope.$broadcast('userLoggedIn', {'user': user});
                         accountDoesNotExist = false;
                     };
-                    // TODO(bobby): update when user service made made
-                    //UserService.findUserByCredentials(username, password, callback);
+                    UserService.findUserByCredentials(username, password, callback);
                     if (accountDoesNotExist) {
                         window.alert('No associated account. Please sign up.');
                         $scope.$location = $location.path('/register');
