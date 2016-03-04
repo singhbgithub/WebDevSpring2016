@@ -9,15 +9,16 @@
         // Listen for a user login event.
         $scope.$on('userLoggedIn', function(event, args) {
             console.log('user logged in');
-            // Read from our user service - this does not include current state i.e. login & admin status
+            // Read from our user service - this does not include current state
+            // i.e. login & admin status
             if (args && args.hasOwnProperty('user')) {
                 $rootScope.user = args.user;
-                $rootScope.isAdmin = false; //
+                $rootScope.isAdmin = false;
             }
             $rootScope.user.loggedIn = true;
             // Is the user an admin?
-            var roles = $rootScope.user.roles !== null && roles !== undefined;
-            if (roles) {  // Check if is array. TODO(bobby)
+            var roles = $rootScope.user.roles;
+            if (roles !== null && roles !== undefined && Array.isArray(roles)) {
                 for (var i = 0; i < roles.length; i++) {
                     if (roles[i].toLowerCase() === 'admin') {
                         $rootScope.user.isAdmin = true;
@@ -30,7 +31,8 @@
         // Listen for a user logout event.
         $scope.$on('userLoggedOut', function() {
             console.log('user logged out');
-            $rootScope.user = {'loggedIn': false, 'isAdmin': false}; // make separate var to hold transient state
+            // make separate var to hold transient state TODO(bobby)
+            $rootScope.user = {'loggedIn': false, 'isAdmin': false};
             $scope.$location = $location.path('/');
         });
     }
