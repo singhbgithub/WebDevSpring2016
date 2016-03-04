@@ -13,7 +13,7 @@
                 controller: 'FormController'
             })
             .when('/fields', {
-                templateUrl: 'views/forms/form-fields.view.html',
+                templateUrl: 'views/forms/fields.view.html',
                 // Will implement later TODO(bobby)
             })
             .when('/home', {
