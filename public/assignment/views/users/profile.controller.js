@@ -1,4 +1,5 @@
-(function(){
+(function() {
+    'use strict';
     angular.module('FormBuilderApp').controller('ProfileController', ProfileController);
 
     function ProfileController($scope, $location, $rootScope, UserService) {
@@ -8,7 +9,7 @@
                 if (user) {
                     var callback = function (user) {
                         $rootScope.user = user;
-                        alert('Account Updated');
+                        window.alert('Account Updated');
                     };
                     UserService.updateUser(user, callback);
                     UserService.findAllUsers(function (users) {
@@ -16,7 +17,7 @@
                     });
                 }
                 else {  // This code may not be hittable TODO(bobby)
-                    alert('Enter your information.');
+                    window.alert('Enter your information.');
                 }
             };
         }

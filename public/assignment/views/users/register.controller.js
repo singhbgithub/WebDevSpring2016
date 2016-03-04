@@ -1,4 +1,5 @@
-(function(){
+(function() {
+    'use strict';
     angular.module('FormBuilderApp').controller('RegisterController', RegisterController);
 
     function RegisterController($scope, $location, $rootScope, UserService) {
@@ -8,13 +9,13 @@
                 if (user) {
                     var callback = function (user) {
                         $rootScope.$broadcast('userLoggedIn');
-                        alert('Account Created');
+                        window.alert('Account Created');
                     };
                     UserService.createUser(user, callback);
                     $scope.$location = $location.path('/profile');
                 }
                 else {
-                    alert('Enter your information.');
+                    window.alert('Enter your information.');
                 }
             };
         }
