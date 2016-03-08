@@ -105,8 +105,13 @@ ul.intro-social-buttons > li:last-child {
     color: #000;
 }
 
-.account-link:hover {
+.account-link:hover,
+.no-link:hover {
     color: rgba(0, 0, 0, .7);
+}
+
+.no-link {
+    cursor: pointer;
 }
 
 /* Profile Page styles TODO(bobby) organize css styles better - use LESS */
