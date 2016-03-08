@@ -1,0 +1,39 @@
+<div class="profile-header" ng-controller="ProfileController">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="profile-message">
+                    <h2>Profile Settings</h2>
+                    <hr class="profile-divider">
+                    <form class="form-horizontal">
+                        <ul class="intro-social-buttons">
+                            <li>
+                                <input type="password" class="form-control input-text"
+                                       id="inputOldPassword" placeholder="Enter Old Password"
+                                       ng-model="updateInfo.oldPassword"> <!-- Not used yet -->
+                            </li>
+                            <li>
+                                <input type="password" class="form-control input-text"
+                                       id="inputNewPassword" placeholder="Enter New Password"
+                                       ng-model="updateInfo.newPassword">
+                            </li>
+                            <li>
+                                <input type="password" class="form-control input-text"
+                                       id="inputNewPassword2" placeholder="Verify New Password"
+                                       ng-model="updateInfo.newPassword2">
+                            </li>
+                            <li>
+                                <a class="btn btn-default btn-lg "
+                                   ng-click="update(updateInfo)">
+                                    <span class="account-name">Update Password</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->

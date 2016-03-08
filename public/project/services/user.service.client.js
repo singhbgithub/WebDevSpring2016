@@ -11,9 +11,19 @@
         };
         var _users = [
             {
-                '_id':123,
+                '_id':1,
                 'username':'alice',
                 'password':'alice',
+            },
+            {
+                '_id':2,
+                'username':'jenny',
+                'password':'jenny',
+            },
+            {
+                '_id':3,
+                'username':'nike',
+                'password':'nike',
             },
         ];
 
@@ -60,8 +70,7 @@
             for (var i = 0; i < _users.length; i++) {
                 var currentUser = _users[i];
                 if (currentUser._id === userId) { // can abstract this loop w/ a callback for diff actions. TODO(bobby)
-                    _users[i] = user; // Issue here with same ref - need to copy obj TODO(bobby)
-                    _users[i]._id = currentUser._id;
+                    _users[i] = user;
                     callback(currentUser);
                     break; // keeps the stack frame since the break hasn't happened TODO(bobby)
                 }
