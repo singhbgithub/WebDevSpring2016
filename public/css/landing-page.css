@@ -1,0 +1,285 @@
+/*!
+ * Note: Modified heavily from the given styles. At this point, the styles
+ * are practically custom, how the naming conventions and some styles are
+ * derived from grayscale.css from bootstrap. As such, the below is
+ * licensing info is included.
+ * Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+}
+
+a.ease-link {
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+a.icon-link {
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+}
+@media(min-width:768px) {
+    a.icon-link {
+        font-size: 64px;
+    }
+}
+
+a.ease-link:hover {
+    color: rgba(255, 255, 255, .8);
+}
+
+.navbar-custom {
+    font-size: 16px;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))
+}
+
+.navbar-custom .navbar-brand {
+    font-weight: 600;
+}
+/* up to here custom :) */
+
+/* Overrides a bootstrap class color */
+.navbar-custom a {
+    color: rgb(255, 255, 255);
+}
+
+.navbar-custom .nav li a {
+    -webkit-transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    transition: background .5s ease-in-out;
+}
+
+/* Overrides a bootstrap class background color */
+.navbar-custom .nav li a:active,
+.navbar-custom .nav li a:focus,
+.navbar-custom .nav li a:hover {
+    background-color: transparent;
+}
+
+.navbar-custom .nav li.active a {
+    background-color: rgba(255, 255, 255, .3);
+}
+
+/* Overrides a bootstrap class color */
+.navbar-custom .nav li.active a:hover {
+    color: rgb(255, 255, 255);
+}
+
+@media(min-width:768px) {
+    .navbar-custom {
+        padding: 20px 0;
+        border: 0;
+        letter-spacing: 1px;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .navbar-custom.top-nav-collapse {
+        padding: 0;
+    }
+}
+
+@media(min-width:768px) {
+    .about-container {
+        width: 100%;
+        text-align: left;
+    }
+    .about-row {
+        padding-bottom: 32px;
+    }
+}
+
+.intro-section {
+background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+}
+
+.about-section {
+background: url(../img/me-bg.jpg) no-repeat bottom center scroll;
+}
+
+
+.project-section {
+background: url(../img/project-bg.jpg) no-repeat center center scroll;
+}
+
+.assignment-section {
+background: url(../img/6-bg.jpg) no-repeat bottom center scroll;
+}
+
+.full {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 100px 0;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.full .full-body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.full .full-body.full-body-bottom {
+    vertical-align: bottom;
+}
+
+.full .full-body .full-text {
+    font-size: 18px;
+}
+
+@media(min-width:768px) {
+    .full {
+        height: 100%;
+        padding: 0;
+    }
+
+    .full .full-body .full-text {
+        font-size: 26px;
+    }
+}
+
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+    padding: 7px 16px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 100%!important;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    background: 0 0;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+a.ease-link.btn-circle:hover,
+a.ease-link.btn-circle:focus {
+    color: rgba(255, 255, 255, .7);
+    border: 1px solid rgba(255, 255, 255, .7);
+}
+
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+}
+
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes pulse {
+    0% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.btn {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+::-moz-selection {
+    text-shadow: none;
+    background: #fcfcfc;
+    background: rgba(255, 255, 255, .2);
+}
+
+::selection {
+    text-shadow: none;
+    background: #fcfcfc;
+    background: rgba(255, 255, 255, .2);
+}
+
+img::selection {
+    background: 0 0;
+}
+
+img::-moz-selection {
+    background: 0 0;
+}
+
+body {
+    webkit-tap-highlight-color: rgba(255, 255, 255, .2);
+}
+
+.section-header {
+    font-size: 32px;
+}
+
+.section-text {
+    font-size: 16px;
+}
+
+.dropshadow {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .3), rgba(0, 0, 0, .1));
+}
+
+@media(min-width:768px) {
+    .list-inline > li {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+
+    .project-header {
+        margin-bottom: 64px;
+    }
+}
