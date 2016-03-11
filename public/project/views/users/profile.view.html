@@ -41,8 +41,33 @@
                     </ul>
                 </form>
             </div>
-            <div class="col-lg-8 border-left">
-                <!-- TODO(bobby): add content data here -->
+            <div class="col-lg-8 border-left" ng-controller="ContentController">
+                <table>
+                    <tr><td>
+                        <form class="form-horizontal">
+                            <ul class="profile-input-list">
+                                <li>
+                                    <input type="text" class="form-control profile-text"
+                                           id="inputSrc" placeholder="Enter Src"
+                                           ng-model="newContent.src">
+                                </li>
+                                <li>
+                                    <input type="text" class="form-control profile-text"
+                                           id="inputTag" placeholder="Enter Tag"
+                                           ng-model="newContent.tag">
+                                </li>
+                                <li>
+                                    <a class="btn btn-default btn-lg btn-profile"
+                                       ng-click="createContent(newContent)">Post</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </td></tr>
+                    <tr ng-repeat="content in contentList track by $index">
+                        <td><a href="#/content" ng-click="selectContent($index)">
+                            <img class="content-src" src="{{content.src}}"></a></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

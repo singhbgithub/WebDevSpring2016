@@ -1,0 +1,40 @@
+<div class="content-message" ng-controller="ContentController">
+    <img class="content-src" src="{{currentContent.src}}">
+    <form class="form-horizontal">
+        <ul class="profile-input-list">
+            <li>
+                <!-- Need to manage 'like' state - this is supposed to be a rating -->
+                <a class="btn btn-default btn-lg btn-profile"
+                   ng-click="like()">{{currentContent.likes}}<i class="fa fa-heart"></i></a>
+            </li>
+            <li>
+                <!-- Need to handle permissions of Rater vs. Creator
+                    TODO(bobby) also handle dups better-->
+                <ul><li class="tag-list" ng-repeat="tag in currentContent.tags track by $index">
+                    {{tag}}</li></ul>
+                <input type="text" class="form-control profile-text"
+                       id="inputTag" placeholder="Enter New Tag"
+                       ng-model="newTag">
+                <a class="btn btn-default btn-lg btn-profile"
+                   ng-click="tag(newTag)">Tag</a>
+            </li>
+            <li><!-- Need to handle permissions of Rater vs. Creator -->
+                <ul><li class="comment-list"
+                        ng-repeat="comment in currentContent.comments track by $index">
+                    {{comment}}</li></ul>
+                <input type="text" class="form-control profile-text"
+                       id="inputComment" placeholder="Enter New Comment"
+                       ng-model="newComment">
+                <a class="btn btn-default btn-lg btn-profile"
+                   ng-click="comment(newComment)">Comment</a>
+            </li>
+            <li>
+                <a class="btn btn-default btn-lg btn-profile"
+                   ng-click="deleteContent()">
+                    <span class="account-name">Delete</span>
+                </a>
+            </li>
+        </ul>
+    </form>
+</div>
+
