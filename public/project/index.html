@@ -1,3 +1,42 @@
-<p>
-The project will be here.
-</p>
+<!DOCTYPE html>
+<html lang="en" ng-app="ThotApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Soul for your Thots">
+    <meta name="author" content="Bobby Singh">
+    <title>Landing Page - Start Bootstrap Theme</title>
+    <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600' rel='stylesheet'
+          type='text/css'>
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/project-style.css" rel="stylesheet">
+</head>
+<body ng-controller="MainController">
+<div ng-include src="'views/header/header.view.html'"></div>
+<div ng-view></div>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mootools/1.6.0/mootools-core.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+<!-- Load app -->
+<script src="app.js"></script>
+<script src="config.js"></script>
+<!-- Load controllers -->
+<script src="services/user.service.client.js"></script>
+<script src="services/content.service.client.js"></script>
+<script src="views/main/main.controller.js"></script>
+<script src="views/header/header.controller.js"></script>
+<script src="views/users/login.controller.js"></script>
+<script src="views/users/register.controller.js"></script>
+<script src="views/users/profile.controller.js"></script>
+<script src="views/content/content.controller.js"></script>
+
+</body>
+</html>

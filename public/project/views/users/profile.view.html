@@ -1,0 +1,76 @@
+<div class="profile-header" ng-controller="ProfileController">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="profile-message">
+                    <h2>Profile Settings</h2>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="profile-message">
+                    <h2>Your Content</h2>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <hr class="profile-divider">
+            </div>
+            <div class="col-lg-4">
+                <form class="form-horizontal">
+                    <ul class="profile-input-list">
+                        <li>
+                            <input type="password" class="form-control profile-text"
+                                   id="inputOldPassword" placeholder="Enter Old Password"
+                                   ng-model="updateInfo.oldPassword"> <!-- Not used yet -->
+                        </li>
+                        <li>
+                            <input type="password" class="form-control profile-text"
+                                   id="inputNewPassword" placeholder="Enter New Password"
+                                   ng-model="updateInfo.newPassword">
+                        </li>
+                        <li>
+                            <input type="password" class="form-control profile-text"
+                                   id="inputNewPassword2" placeholder="Verify New Password"
+                                   ng-model="updateInfo.newPassword2">
+                        </li>
+                        <li>
+                            <a class="btn btn-default btn-lg btn-profile"
+                               ng-click="update(updateInfo)">
+                                <span class="account-name">Update Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="col-lg-8 border-left" ng-controller="ContentController">
+                <table>
+                    <tr><td>
+                        <form class="form-horizontal">
+                            <ul class="profile-input-list">
+                                <li>
+                                    <input type="text" class="form-control profile-text"
+                                           id="inputSrc" placeholder="Enter Src"
+                                           ng-model="newContent.src">
+                                </li>
+                                <li>
+                                    <input type="text" class="form-control profile-text"
+                                           id="inputTag" placeholder="Enter Tag"
+                                           ng-model="newContent.tag">
+                                </li>
+                                <li>
+                                    <a class="btn btn-default btn-lg btn-profile"
+                                       ng-click="createContent(newContent)">Post</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </td></tr>
+                    <tr ng-repeat="content in contentList track by $index">
+                        <td><a href="#/content" ng-click="selectContent($index)">
+                            <img class="content-src" src="{{content.src}}"></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
