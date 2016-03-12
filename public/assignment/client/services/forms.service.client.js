@@ -3,14 +3,7 @@
     angular.module('FormBuilderApp').factory('FormService', FormService);
 
     function FormService() {
-        // Array Remove - By John Resig (MIT Licensed) - put in reusable module TODO(bobby)
-        var _remove = function(arr, from, to) {
-            var rest = arr.slice((to || from) + 1 || arr.length);
-            arr.length = from < 0 ? arr.length + from : from;
-            return arr.push.apply(arr, rest);
-        };
-        var _forms = []; // Declare empty array as required in assignment, though seems extraneous
-        _forms = [
+        var _forms = [
             {'_id': '000', 'title': 'Contacts', 'userId': 123},
             {'_id': '010', 'title': 'ToDo',     'userId': 123},
             {'_id': '020', 'title': 'CDs',      'userId': 234}
@@ -40,7 +33,7 @@
             for (var i = 0; i < _forms.length; i++) {
                 var form = _forms[i];
                 if (form._id === formId) {
-                    _remove(_forms, i);
+                    Array.remove(_forms, i);
                     callback(_forms);
                     break; // keeps the stack frame since the break hasn't happened TODO(bobby)
                 }
