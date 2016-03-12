@@ -20,16 +20,16 @@
                 templateUrl: 'views/home/home.view.html'
             })
             .when('/profile', {
-                templateUrl: 'views/users/profile.view.html',
+                templateUrl: 'views/profile/profile.view.html',
                 controller: 'ProfileController'
 
             })
             .when('/login', {
-                templateUrl: 'views/users/login.view.html',
+                templateUrl: 'views/login/login.view.html',
                 controller: 'LoginController'
             })
             .when('/register', {
-                templateUrl: 'views/users/register.view.html',
+                templateUrl: 'views/register/register.view.html',
                 controller: 'RegisterController'
             })
             .otherwise({
