@@ -2,99 +2,87 @@
     'use strict';
     angular.module('FormBuilderApp').factory('UserService', UserService);
 
-    function UserService() {
-        var _users = [
-            {
-                '_id':123,
-                'firstName':'Alice',
-                'lastName':'Wonderland',
-                'username':'alice',
-                'password':'alice',
-                'roles': ['student']
-            },
-            {
-                '_id':234,
-                'firstName':'Bob',
-                'lastName':'Hope',
-                'username':'bob',
-                'password':'bob',
-                'roles': ['admin']
-            },
-            {
-                '_id':345,
-                'firstName':'Charlie',
-                'lastName':'Brown',
-                'username':'charlie',
-                'password':'charlie',
-                'roles': ['faculty']
-            },
-            {
-                '_id':456,
-                'firstName':'Dan',
-                'lastName':'Craig',
-                'username':'dan',
-                'password':'dan',
-                'roles': ['faculty', 'admin']
-            },
-            {
-                '_id':567,
-                'firstName':'Edward',
-                'lastName':'Norton',
-                'username':'ed',
-                'password':'ed',
-                'roles': ['student']
-            }
-        ];
+    function UserService($q, $http) {
 
         var service = {};
-        service.findUserByCredentials = function(username, password, callback) {
-            for (var i = 0; i < _users.length; i++) {
-                var user = _users[i];
-                if (user.username === username && user.password === password) {
-                    callback(user);
-                    break; // keeps the stack frame since the break hasn't happened TODO(bobby)
-                }
-            }
+
+        service.createUser = function(user) {
+            var deferred = $q.defer();
+
+            $http.post('/api/assignment/user', user)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
         };
 
-        service.findAllUsers = function(callback) {
-            callback(_users);
+        service.findAllUsers = function() {
+            var deferred = $q.defer();
+
+            $http.get('/api/assignment/user')
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
         };
 
-        service.createUser = function(user, callback) {
-            var userFound = false;
-            var setUserFound = function () {
-                userFound = true;
-            };
-            service.findUserByCredentials(user.username, user.password, setUserFound);
-            if (!userFound) {
-                user._id = new Date().getTime();
-                _users.push(user); // Issue with same ref - need to copy obj TODO(bobby)
-                callback(user);
-            }
+        service.findUserById = function(id) {
+            var deferred = $q.defer();
+
+            $http.get('/api/assignment/user/' + id)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
         };
 
-        service.deleteUserById = function(userId, callback) {
-            for (var i = 0; i < _users.length; i++) {
-                var user = _users[i];
-                if (user._id === userId) {
-                    Array.remove(_users, i);
-                    callback(_users);
-                    break; // keeps the stack frame since the break hasn't happened TODO(bobby)
-                }
-            }
+        service.findUserByUsername = function(username) {
+            var deferred = $q.defer(),
+                config = {'params': {'username': username}};
+
+            $http.get('/api/assignment/user', config)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
         };
 
-        service.updateUser = function(userId, user, callback) {
-            for (var i = 0; i < _users.length; i++) {
-                var currentUser = _users[i];
-                if (currentUser._id === userId) { // can abstract this loop w/ a callback for diff actions. TODO(bobby)
-                    _users[i] = user; // Issue here with same ref - need to copy obj TODO(bobby)
-                    _users[i]._id = currentUser._id;
-                    callback(currentUser);
-                    break; // keeps the stack frame since the break hasn't happened TODO(bobby)
-                }
-            }
+        service.findUserByCredentials = function(username, password) {
+            var deferred = $q.defer(),
+                config = {'params': {'username': username, 'password': password}};
+
+            $http.get('/api/assignment/user/', config)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
+        };
+
+        service.updateUser = function(id, user) {
+            var deferred = $q.defer();
+
+            $http.put('/api/assignment/user/' + id, user)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
+        };
+
+        service.deleteUserById = function(id) {
+            var deferred = $q.defer();
+
+            $http.delete('/api/assignment/user/' + id)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+            return deferred.promise;
         };
 
         return service;
