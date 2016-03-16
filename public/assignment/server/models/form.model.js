@@ -2,6 +2,7 @@
     'use strict';
 
     var q = require('q'), /* Dependencies */
+        uuid = require('node-uuid'),
         util = require('../util.js')(),
         formMock = require('./form.mock.json'); /* Form data source. */
 
@@ -32,7 +33,7 @@
                                     'userId': util.isNumeric(createFormRequest.userId)
                                         ? parseInt(createFormRequest.userId)
                                         : createFormRequest.userId,
-                                    '_id': new Date().getTime(),
+                                    '_id': uuid.v1(),
                                     'fields': []
                                 };
                                 formMock.push(form);
