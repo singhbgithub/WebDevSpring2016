@@ -3,7 +3,7 @@
     <div class="table-responsive">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a>Forms</a></li>
-            <li role="presentation"><a href="#/fields">Fields</a></li>
+            <li role="presentation"><a>Fields</a></li>
         </ul>
         <form>
             <table class="table table-striped">
@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="form in forms">
-                        <td class="td-middle"><a href="#/fields">
+                        <td class="td-middle"><a href="#/form/{{form._id}}/fields">
                             {{ form.title }} </a></td>
                         <td><span class="pull-right">
                             <button type="submit" name="remove" ng-click="deleteForm($index)"
