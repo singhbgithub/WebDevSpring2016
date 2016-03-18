@@ -6,5 +6,6 @@
         require(__dirname + '/services/user.service.js')(app, userModel);
         var formModel = require(__dirname + '/models/form.model.js')();
         require(__dirname + '/services/form.service.js')(app, formModel);
+        require(__dirname + '/services/field.service.js')(app, formModel);
     };
 })();
