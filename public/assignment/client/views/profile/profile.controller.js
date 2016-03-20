@@ -5,15 +5,15 @@
     function ProfileController($scope, $location, $rootScope, UserService) {
         // Must be logged in to view this page.
         if ($rootScope.user.loggedIn) {
-            $scope.update = function (user) {
-                if (user) {
-                    var callback = function (user) {
-                        $rootScope.user = user;
-                        window.alert('Account Updated');
-                    };
-                    UserService.updateUser(user, callback);
-                    UserService.findAllUsers(function (users) {
-                        console.log(users);
+            $scope.update = function (updatedUser) {
+                if (updatedUser) {
+                    UserService.updateUser($rootScope.user._id, updatedUser)
+                        .then(function(response) {
+                            // FIXME(bobby): transient state fields again
+                            response.loggedIn = $rootScope.user.loggedIn;
+                            response.isAdmin = $rootScope.user.isAdmin;
+                            $rootScope.user = response;
+                            console.log('Account Updated. User: ', response);
                     });
                 }
                 else {  // This code may not be hittable TODO(bobby)

@@ -7,11 +7,12 @@
         if (!$rootScope.user.loggedIn) {
             $scope.create = function (user) {
                 if (user) {
-                    var callback = function (user) {
-                        $rootScope.$broadcast('userLoggedIn');
-                        window.alert('Account Created');
-                    };
-                    UserService.createUser(user, callback);
+                    UserService.createUser(user)
+                        .then(function(response) {
+                            var responseUser = response[response.length + - 1];
+                            console.log('Account Created. User:', responseUser);
+                            $rootScope.$broadcast('userLoggedIn', {'user': responseUser});
+                        });
                     $scope.$location = $location.path('/profile');
                 }
                 else {

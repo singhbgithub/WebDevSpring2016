@@ -1,0 +1,125 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+     ng-controller="FieldController">
+
+    <!-- Modal -->
+    <script type="text/ng-template" id="fieldModal.html">
+        <div class="modal-header">
+            <h5 class="modal-title" ng-switch on="fieldToEdit.type">
+                <span ng-switch-when="TEXT">Single Line Text Field</span>
+                <span ng-switch-when="TEXTAREA">Multi Line Text Field</span>
+                <span ng-switch-when="DATE">Date Field</span>
+                <span ng-switch-when="OPTIONS">Dropdown Field</span>
+                <span ng-switch-when="CHECKBOXES">Checkboxes Field</span>
+                <span ng-switch-when="RADIOS">Radio Buttons Field</span>
+                <span ng-switch-when="EMAIL">Email Field</span>
+            </h5>
+        </div>
+        <div class="modal-body">
+            <label for="fieldLabel">Label</label>
+            <input type="text" id="fieldLabel" ng-model="fieldToEdit.label">
+            <label for="fieldPlaceholder" ng-if="hasPlaceholder">Placeholder</label>
+            <input type="text" id="fieldPlaceholder" ng-model="fieldToEdit.placeholder"
+                   ng-if="hasPlaceholder">
+            <label for="fieldOptions" ng-if="hasOptions">Options</label>
+            <textarea id="fieldOptions" ng-if="hasOptions" ng-model="fieldToEdit.optionsText">
+            </textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="update()">Update</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <header class="page-header"><h3>Forms : Registration Form</h3></header>
+    <div class="table-responsive">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="#/forms">Forms</a></li>
+            <li role="presentation" class="active"><a>Fields</a></li>
+        </ul>
+        <form>
+            <table class="table" ui-sortable="sortableOptions" ng-model="fields">
+                <!-- TODO(bobby): Do not like the multiple tbody solution over ng-repeat-start and
+                ng-repeat-end on the 2 tr tags, but this does not play nicely with uiSortable. -->
+                <tbody ng-repeat="field in fields">
+                <tr><td class="td-no-border">
+                        <label class="control-label control-label-left">
+                            {{field.label}}
+                        </label>
+                </td></tr>
+                <tr>
+                    <td class="td-no-border" ng-switch on="field.type">
+                        <input type="text" class="form-control" ng-switch-when="TEXT"
+                               placeholder="{{field.placeholder}}">
+                        <textarea class="form-control" ng-switch-when="TEXTAREA"
+                                  placeholder="{{field.placeholder}}"></textarea>
+                        <input type="date" class="form-control" ng-switch-when="DATE">
+                        <select class="form-control" ng-switch-when="OPTIONS">
+                            <option ng-repeat="option in field.options"
+                                    value="{{option.value}}">
+                                {{option.label}}
+                            </option>
+                        </select>
+                        <div class="checkbox" ng-switch-when="CHECKBOXES">
+                            <label ng-repeat="option in field.options">
+                                <input type="checkbox" value="{{option.value}}">
+                                {{option.label}}
+                            </label>
+                        </div>
+                        <div class="radio" ng-switch-when="RADIOS">
+                            <label ng-repeat="option in field.options">
+                                <input type="radio" value="{{option.value}}"
+                                       name="{{field._id}}">
+                                {{option.label}}
+                            </label>
+                        </div>
+                        <input type="email" class="form-control" ng-switch-when="EMAIL"
+                               placeholder="{{field.placeholder}}">
+                    </td>
+                    <td class="td-no-border pull-right">
+                        <div ng-click="editField(field)"
+                                class="btn btn-default glyphicon glyphicon-pencil">
+                        </div>
+                        <div ng-click="cloneField(field)"
+                                class="btn btn-default glyphicon glyphicon-plus">
+                        </div>
+                        <div ng-click="removeField(field)"
+                                class="btn btn-default glyphicon glyphicon-remove">
+                        </div>
+                        <!-- FIXME(bobby): line-length; best policy for long attribute values? -->
+                        <div class="btn btn-default glyphicon glyphicon-align-justify sortableHandle">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr><td colspan="2" class="td-no-border">
+                    <hr class="thick-border">
+                </td></tr>
+                <tr><td class="td-no-border">
+                    <label for="inputNewField" class="control-label control-label-left">
+                        Add New Field:
+                    </label>
+                </td></tr>
+                <tr>
+                    <td class="td-no-border">
+                        <select class="form-control" id="inputNewField" ng-model="newFieldType">
+                            <option selected value="TEXT">Single Line Text Field</option>
+                            <option value="TEXTAREA">Multi Line Text Field</option>
+                            <option value="DATE">Date Field</option>
+                            <option value="OPTIONS">Dropdown Field</option>
+                            <option value="CHECKBOXES">Checkboxes Field</option>
+                            <option value="RADIOS">Radio Buttons Field</option>
+                            <option value="EMAIL">Email Field</option>
+                        </select>
+                    </td>
+                    <td class="td-no-border pull-right">
+                        <div ng-click="addField(newFieldType)"
+                                class="btn btn-default glyphicon glyphicon-plus">
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+</div>
