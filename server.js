@@ -3,7 +3,7 @@
     var express = require('express'),
         bodyParser = require('body-parser'),
         multer = require('multer'),
-        assignmentServerModule = require(__dirname + '/public/Assignment/server/app.js'),
+        assignmentServerModule = require(__dirname + '/public/assignment/server/app.js'),
         app = express(),
         ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
         port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
