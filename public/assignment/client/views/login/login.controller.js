@@ -2,10 +2,11 @@
     'use strict';
     angular.module('FormBuilderApp').controller('LoginController', LoginController);
 
-    function LoginController($scope, $location, $rootScope, UserService) {
+    function LoginController($location, $rootScope, UserService) {
+        var loginVm = this;
         // Must not be logged-in to view this page.
         if (!$rootScope.user.loggedIn) {
-            $scope.login = function (username, password) {
+            loginVm.login = function (username, password) {
                 if (username && password) {
                     UserService.findUserByCredentials(username, password)
                         .then(function(user) {
@@ -13,7 +14,7 @@
                                 $rootScope.$broadcast('userLoggedIn', {'user': user});
                             } else {
                                 window.alert('No associated account. Please sign up.');
-                                $scope.$location = $location.path('/register');
+                                loginVm.$location = $location.path('/register');
                             }
                         });
                 }
@@ -23,7 +24,7 @@
             };
         }
         else {
-            $scope.$location = $location.path('/profile');
+            loginVm.$location = $location.path('/profile');
         }
     }
 })();

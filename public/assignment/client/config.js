@@ -28,7 +28,8 @@
             })
             .when('/login', {
                 templateUrl: 'views/login/login.view.html',
-                controller: 'LoginController'
+                controller: 'LoginController',
+                controllerAs: 'loginVm'
             })
             .when('/register', {
                 templateUrl: 'views/register/register.view.html',
