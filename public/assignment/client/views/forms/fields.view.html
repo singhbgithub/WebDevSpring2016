@@ -1,5 +1,4 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
-     ng-controller="FieldController">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <!-- Modal -->
     <script type="text/ng-template" id="fieldModal.html">
@@ -37,10 +36,10 @@
             <li role="presentation" class="active"><a>Fields</a></li>
         </ul>
         <form>
-            <table class="table" ui-sortable="sortableOptions" ng-model="fields">
+            <table class="table" ui-sortable="fieldVm.sortableOptions" ng-model="fieldVm.fields">
                 <!-- TODO(bobby): Do not like the multiple tbody solution over ng-repeat-start and
                 ng-repeat-end on the 2 tr tags, but this does not play nicely with uiSortable. -->
-                <tbody ng-repeat="field in fields">
+                <tbody ng-repeat="field in fieldVm.fields">
                 <tr><td class="td-no-border">
                         <label class="control-label control-label-left">
                             {{field.label}}
@@ -76,13 +75,13 @@
                                placeholder="{{field.placeholder}}">
                     </td>
                     <td class="td-no-border pull-right">
-                        <div ng-click="editField(field)"
+                        <div ng-click="fieldVm.editField(field)"
                                 class="btn btn-default glyphicon glyphicon-pencil">
                         </div>
-                        <div ng-click="cloneField(field)"
+                        <div ng-click="fieldVm.cloneField(field)"
                                 class="btn btn-default glyphicon glyphicon-plus">
                         </div>
-                        <div ng-click="removeField(field)"
+                        <div ng-click="fieldVm.removeField(field)"
                                 class="btn btn-default glyphicon glyphicon-remove">
                         </div>
                         <!-- FIXME(bobby): line-length; best policy for long attribute values? -->
@@ -102,7 +101,7 @@
                 </td></tr>
                 <tr>
                     <td class="td-no-border">
-                        <select class="form-control" id="inputNewField" ng-model="newFieldType">
+                        <select class="form-control" id="inputNewField" ng-model="fieldVm.newFieldType">
                             <option selected value="TEXT">Single Line Text Field</option>
                             <option value="TEXTAREA">Multi Line Text Field</option>
                             <option value="DATE">Date Field</option>
@@ -113,7 +112,7 @@
                         </select>
                     </td>
                     <td class="td-no-border pull-right">
-                        <div ng-click="addField(newFieldType)"
+                        <div ng-click="fieldVm.addField(fieldVm.newFieldType)"
                                 class="btn btn-default glyphicon glyphicon-plus">
                         </div>
                     </td>

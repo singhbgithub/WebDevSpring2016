@@ -15,7 +15,8 @@
             })
             .when('/form/:formId/fields', {
                 templateUrl: 'views/forms/fields.view.html',
-                controller: 'FieldController'
+                controller: 'FieldController',
+                controllerAs: 'fieldVm'
             })
             .when('/home', {
                 templateUrl: 'views/home/home.view.html'

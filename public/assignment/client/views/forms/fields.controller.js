@@ -2,22 +2,23 @@
     'use strict';
     angular.module('FormBuilderApp').controller('FieldController', FieldController);
 
-    function FieldController($scope, $location, $rootScope, $routeParams, $uibModal, FormService,
+    function FieldController($location, $rootScope, $routeParams, $uibModal, FormService,
                              FieldService) {
+        var fieldVm = this;
         // We have a logged-in user.
         if ($rootScope.user.loggedIn) {
-            $scope.formId = $routeParams.formId;
+            fieldVm.formId = $routeParams.formId;
 
             // Populate the fields
             var findFieldsForFormAndSetScope = function() {
-                FieldService.getFieldsForForm($scope.formId)
+                FieldService.getFieldsForForm(fieldVm.formId)
                     .then(function (response) {
-                            $scope.fields = response;
+                            fieldVm.fields = response;
                         });
             };
             findFieldsForFormAndSetScope();
 
-            $scope.editField = function(field) {
+            fieldVm.editField = function(field) {
                 var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'fieldModal.html',
@@ -29,32 +30,32 @@
                     }
                 });
                 modalInstance.result.then(function (field) {
-                    FieldService.updateField($scope.formId, field._id, field)
+                    FieldService.updateField(fieldVm.formId, field._id, field)
                         .then(function() {
                             findFieldsForFormAndSetScope();
                         });
                 });
             };
 
-            $scope.cloneField = function(field) {
-                FieldService.createFieldForForm($scope.formId, field)
+            fieldVm.cloneField = function(field) {
+                FieldService.createFieldForForm(fieldVm.formId, field)
                     .then(function() {
                         findFieldsForFormAndSetScope();
                     });
             };
 
-            $scope.removeField = function(field) {
-                FieldService.deleteFieldFromForm($scope.formId, field._id)
+            fieldVm.removeField = function(field) {
+                FieldService.deleteFieldFromForm(fieldVm.formId, field._id)
                     .then(function() {
                         findFieldsForFormAndSetScope();
                     });
             };
 
             /* Used for drag and drop ordering. */
-            $scope.sortableOptions = {
+            fieldVm.sortableOptions = {
                 handle: '.sortableHandle',
                 update: function(e, ui) {
-                    FormService.updateFormById($scope.formId, {'fields': $scope.fields})
+                    FormService.updateFormById(fieldVm.formId, {'fields': fieldVm.fields})
                         .then(function(form) {
                             console.log('Form Updated', form);
                             findFieldsForFormAndSetScope();
@@ -62,33 +63,34 @@
                 }
             };
 
-            $scope.addField = function(newFieldType) {
-                FieldService.createFieldForForm($scope.formId, {'type': newFieldType})
+            fieldVm.addField = function(newFieldType) {
+                FieldService.createFieldForForm(fieldVm.formId, {'type': newFieldType})
                     .then(function() {
                         findFieldsForFormAndSetScope();
                 });
             };
         } else {
-            $scope.$location = $location.path('/register');
+            fieldVm.$location = $location.path('/register');
         }
     }
 
     angular.module('FormBuilderApp').controller('ModalInstanceController', ModalInstanceController);
     function ModalInstanceController($scope, $uibModalInstance, field) {
-
-        $scope.fieldToEdit = angular.copy(field);
-        $scope.hasPlaceholder = field.type === 'TEXT' || field.type === 'TEXTAREA' ||
+        // TODO(bobby): vm style is funky with uiModal... figure out later
+        var modalVm = $scope;
+        modalVm.fieldToEdit = angular.copy(field);
+        modalVm.hasPlaceholder = field.type === 'TEXT' || field.type === 'TEXTAREA' ||
             field.type === 'EMAIL';
-        $scope.hasOptions = field.type === 'OPTIONS' || field.type === 'CHECKBOXES' ||
+        modalVm.hasOptions = field.type === 'OPTIONS' || field.type === 'CHECKBOXES' ||
             field.type === 'RADIOS';
 
-        $scope.fieldToEdit.optionsText = '';
-        angular.forEach($scope.fieldToEdit.options || [], function(option) {
-           $scope.fieldToEdit.optionsText += option.label + ';' + option.value + '\n';
+        modalVm.fieldToEdit.optionsText = '';
+        angular.forEach(modalVm.fieldToEdit.options || [], function(option) {
+           modalVm.fieldToEdit.optionsText += option.label + ';' + option.value + '\n';
         });
 
-        $scope.update = function () {
-            var optionsTextFragments = $scope.fieldToEdit.optionsText.split('\n'),
+        modalVm.update = function () {
+            var optionsTextFragments = modalVm.fieldToEdit.optionsText.split('\n'),
                 options = [];
             angular.forEach(optionsTextFragments, function(optionTextFragment) {
                 var tokens = optionTextFragment.trim().split(';');
@@ -96,11 +98,11 @@
                     options.push({'label': tokens[0], 'value': tokens[1]});
                 }
             });
-            $scope.fieldToEdit.options = options;
-            $uibModalInstance.close($scope.fieldToEdit);
+            modalVm.fieldToEdit.options = options;
+            $uibModalInstance.close(modalVm.fieldToEdit);
         };
 
-        $scope.cancel = function () {
+        modalVm.cancel = function () {
             $uibModalInstance.dismiss('cancel');
         };
     }
