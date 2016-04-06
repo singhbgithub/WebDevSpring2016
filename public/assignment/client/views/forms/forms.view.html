@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="FormController">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <header class="page-header"><h3>Forms</h3></header>
     <div class="table-responsive">
         <ul class="nav nav-tabs">
@@ -17,25 +17,25 @@
                     </tr>
                     <tr>
                         <th><input type="text" class="form-control" id="inputFormName"
-                                   placeholder="name" ng-model="form.title"></th>
+                                   placeholder="name" ng-model="formVm.form.title"></th>
                         <th><span class="pull-right">
-                            <button type="submit" name="add" ng-click="addForm(form.title)"
+                            <button type="submit" name="add" ng-click="formVm.addForm(formVm.form.title)"
                                     class="btn btn-default glyphicon glyphicon-plus">
                             </button>
-                            <button type="submit" name="update" ng-click="updateForm(form.title)"
+                            <button type="submit" name="update" ng-click="formVm.updateForm(formVm.form.title)"
                                     class="btn btn-default glyphicon glyphicon-ok"></button>
                         </span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="form in forms">
+                    <tr ng-repeat="form in formVm.forms">
                         <td class="td-middle"><a href="#/form/{{form._id}}/fields">
                             {{ form.title }} </a></td>
                         <td><span class="pull-right">
-                            <button type="submit" name="remove" ng-click="deleteForm($index)"
+                            <button type="submit" name="remove" ng-click="formVm.deleteForm($index)"
                                     class="btn btn-default glyphicon glyphicon-remove">
                             </button>
-                            <button type="submit" name="edit" ng-click="selectForm($index)"
+                            <button type="submit" name="edit" ng-click="formVm.selectForm($index)"
                                     class="btn btn-default glyphicon glyphicon-pencil">
                             </button>
                         </span></td>

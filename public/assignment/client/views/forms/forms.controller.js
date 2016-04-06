@@ -2,7 +2,8 @@
     'use strict';
     angular.module('FormBuilderApp').controller('FormController', FormController);
 
-    function FormController($scope, $location, $rootScope, FormService) {
+    function FormController($location, $rootScope, FormService) {
+        var formVm = this;
         // We have a logged-in user.
         if ($rootScope.user.loggedIn) {
 
@@ -10,28 +11,28 @@
             var findFormsForUserAndSetScope = function() {
                 FormService.findAllFormsForUserId($rootScope.user._id)
                     .then(function(forms) {
-                        $scope.forms = forms;
+                        formVm.forms = forms;
                     });
             };
             findFormsForUserAndSetScope();
 
             // Handlers
-            $scope.addForm = function (formTitle) {
+            formVm.addForm = function (formTitle) {
                 var form = {'title': formTitle},
                     userId = $rootScope.user._id;
                 FormService.createFormForUser(userId, form)
                     .then(function() {
                         findFormsForUserAndSetScope();
                         // Clear the current form and input text.
-                        $scope.form.title = '';
-                        $scope.currentForm = undefined;
+                        formVm.form.title = '';
+                        formVm.currentForm = undefined;
                     });
             };
 
-            $scope.updateForm = function (formTitle) {
-                if ($scope.currentForm !== null && $scope.currentForm !== undefined) {
+            formVm.updateForm = function (formTitle) {
+                if (formVm.currentForm !== null && formVm.currentForm !== undefined) {
                     var form = {'title': formTitle},
-                        formId = $scope.currentForm._id;
+                        formId = formVm.currentForm._id;
                     FormService.updateFormById(formId, form)
                         .then(function() {
                             findFormsForUserAndSetScope();
@@ -39,27 +40,27 @@
                 }
             };
 
-            $scope.deleteForm = function (index) {
-                var formId = $scope.forms[index]._id;
+            formVm.deleteForm = function (index) {
+                var formId = formVm.forms[index]._id;
                 FormService.deleteFormById(formId)
                     .then(function() {
                         findFormsForUserAndSetScope();
-                        $scope.currentForm = undefined;
+                        formVm.currentForm = undefined;
                     });
             };
 
-            $scope.selectForm = function (index) {
-                $scope.currentForm = $scope.forms[index];
+            formVm.selectForm = function (index) {
+                formVm.currentForm = formVm.forms[index];
                 // In case the form obj has not been instantiated.
-                if ($scope.form == undefined || $scope.form == null) {
-                    $scope.form = {};
+                if (formVm.form == undefined || formVm.form == null) {
+                    formVm.form = {};
                 }
-                $scope.form.title = $scope.currentForm.title;
+                formVm.form.title = formVm.currentForm.title;
             };
 
         }
         else {
-            $scope.$location = $location.path('/register');
+            formVm.$location = $location.path('/register');
         }
     }
 })();
