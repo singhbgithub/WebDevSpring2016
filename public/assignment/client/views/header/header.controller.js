@@ -4,8 +4,10 @@
 
     function HeaderController($scope, $rootScope) {
         var headerVm = $scope;
-        headerVm.logout = function() {
+        headerVm.logout = logout;
+        
+        function logout() {
             $rootScope.$broadcast('userLoggedOut');
-        };
+        }
     }
 })();
