@@ -2,7 +2,8 @@
     'use strict';
     module.exports = function (app, mongoose) {
         // Load user model & service.
-        var userModel = require(__dirname + '/models/user.model.js')(mongoose);
+        var userSchema = require(__dirname + '/models/user.schema.js')(mongoose);
+        var userModel = require(__dirname + '/models/user.model.js')(mongoose, userSchema);
         require(__dirname + '/services/user.service.js')(app, userModel);
         // Load form model & service.
         var formModel = require(__dirname + '/models/form.model.js')(mongoose);
