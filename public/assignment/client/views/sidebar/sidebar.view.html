@@ -1,4 +1,6 @@
 <div class="col-sm-3 col-md-2 sidebar">
+    <!-- TODO(bobby): Does not follow VM model, but routeProvider does not easily support
+    nested VM controllerAs style -->
     <ul class="nav nav-sidebar" ng-controller="SidebarController">
         <li><a href="#/">Home</a></li>
         <li><a href="#/profile" ng-show="user.loggedIn">Profile</a></li>
