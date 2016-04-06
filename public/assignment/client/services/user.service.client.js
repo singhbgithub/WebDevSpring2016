@@ -4,9 +4,17 @@
 
     function UserService($q, $http) {
 
-        var service = {};
+        var service = {
+            'createUser': createUser,
+            'findAllUsers': findAllUsers,
+            'findUserById': findUserById,
+            'findUserByUsername': findUserByUsername,
+            'findUserByCredentials': findUserByCredentials,
+            'updateUser': updateUser,
+            'deleteUserById': deleteUserById
+        };
 
-        service.createUser = function(user) {
+        function createUser(user) {
             var deferred = $q.defer();
 
             $http.post('/api/assignment/user', user)
@@ -17,7 +25,7 @@
             return deferred.promise;
         };
 
-        service.findAllUsers = function() {
+        function findAllUsers() {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/user')
@@ -28,7 +36,7 @@
             return deferred.promise;
         };
 
-        service.findUserById = function(id) {
+        function findUserById(id) {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/user/' + id)
@@ -39,7 +47,7 @@
             return deferred.promise;
         };
 
-        service.findUserByUsername = function(username) {
+        function findUserByUsername(username) {
             var deferred = $q.defer(),
                 config = {'params': {'username': username}};
 
@@ -51,7 +59,7 @@
             return deferred.promise;
         };
 
-        service.findUserByCredentials = function(username, password) {
+        function findUserByCredentials(username, password) {
             var deferred = $q.defer(),
                 config = {'params': {'username': username, 'password': password}};
 
@@ -63,7 +71,7 @@
             return deferred.promise;
         };
 
-        service.updateUser = function(id, user) {
+        function updateUser(id, user) {
             var deferred = $q.defer();
 
             $http.put('/api/assignment/user/' + id, user)
@@ -74,7 +82,7 @@
             return deferred.promise;
         };
 
-        service.deleteUserById = function(id) {
+        function deleteUserById(id) {
             var deferred = $q.defer();
 
             $http.delete('/api/assignment/user/' + id)

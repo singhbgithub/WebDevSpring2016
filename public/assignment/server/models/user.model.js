@@ -7,7 +7,15 @@
 
     /* Add a node module w/out dependencies */
     module.exports = function() {
-        var model = {};
+        var model = {
+            'createUser': createUser,
+            'findAllUsers': findAllUsers,
+            'findUserById': findUserById,
+            'findUserByUsername': findUserByUsername,
+            'findUserByCredentials': findUserByCredentials,
+            'updateUserById': updateUserById,
+            'deleteUserById': deleteUserById
+        };
 
         /**
          * Creates a user.
@@ -16,7 +24,7 @@
          * @param {string} createUserRequest.password - the new user's password.
          * @return {object[] | null} the user collection or null if not created.
          */
-        model.createUser = function(createUserRequest) {
+        function createUser(createUserRequest) {
             var deferred = q.defer(); // TODO(bobby): this deferral code prob code be abstracted
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -48,7 +56,7 @@
          * Finds all users.
          * @return {object[]} the user collection.
          */
-        model.findAllUsers = function() {
+        function findAllUsers() {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -86,7 +94,7 @@
          * @param {string} id - user id.
          * @return {object | null} the desired user or null if not found.
          */
-        model.findUserById = function(id) {
+        function findUserById(id) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -105,7 +113,7 @@
          * @param {string} username - the desired user's username.
          * @return {object | null} the desired user or null if not found.
          */
-        model.findUserByUsername = function(username) {
+        function findUserByUsername(username) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -125,7 +133,7 @@
          * @param {string} findUserByCredentialsRequest.password - the desired user's password.
          * @return {object | null} the desired user or null if not found.
          */
-        model.findUserByCredentials = function(findUserByCredentialsRequest) {
+        function findUserByCredentials(findUserByCredentialsRequest) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -149,7 +157,7 @@
          * @param {string} updateUserByIdRequest.password - the desired user's password.
          * @return {object | null} the updated user or null if not found.
          */
-        model.updateUserById = function(id, updateUserByIdRequest) {
+        function updateUserById(id, updateUserByIdRequest) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -185,7 +193,7 @@
          * @param {string} id - user id.
          * @return {object | null} the deleted user or null if not found.
          */
-        model.deleteUserById = function(id) {
+        function deleteUserById(id) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later

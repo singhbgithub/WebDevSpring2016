@@ -4,9 +4,17 @@
 
     function FormService($q, $http) {
 
-        var service = {};
+        var service = {
+            'createFormForUser': createFormForUser,
+            'findAllForms': findAllForms,
+            'findAllFormsForUserId': findAllFormsForUserId,
+            'findFormById': findFormById,
+            'findFormByTitle': findFormByTitle,
+            'updateFormById': updateFormById,
+            'deleteFormById': deleteFormById
+        };
 
-        service.createFormForUser = function(userId, form) {
+        function createFormForUser(userId, form) {
             var deferred = $q.defer();
 
             $http.post('/api/assignment/user/' + userId + '/form', form)
@@ -17,7 +25,7 @@
             return deferred.promise;
         };
 
-        service.findAllForms = function() {
+        function findAllForms() {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/form')
@@ -28,7 +36,7 @@
             return deferred.promise;
         };
 
-        service.findAllFormsForUserId = function(userId) {
+        function findAllFormsForUserId(userId) {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/user/' + userId + '/form')
@@ -39,7 +47,7 @@
             return deferred.promise;
         };
 
-        service.findFormById = function(id) {
+        function findFormById(id) {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/form/' + id)
@@ -50,7 +58,7 @@
             return deferred.promise;
         };
 
-        service.findFormByTitle = function(title) {
+        function findFormByTitle(title) {
             var deferred = $q.defer(),
                 config = {'params': {'username': title}};
 
@@ -62,7 +70,7 @@
             return deferred.promise;
         };
 
-        service.updateFormById = function(id, form) {
+        function updateFormById(id, form) {
             var deferred = $q.defer();
 
             $http.put('/api/assignment/form/' + id, form)
@@ -73,7 +81,7 @@
             return deferred.promise;
         };
 
-        service.deleteFormById = function(id) {
+        function deleteFormById(id) {
             var deferred = $q.defer();
 
             $http.delete('/api/assignment/form/' + id)

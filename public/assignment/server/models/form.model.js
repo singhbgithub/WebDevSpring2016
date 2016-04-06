@@ -8,7 +8,15 @@
 
     /* Add a node module w/out dependencies */
     module.exports = function() {
-        var model = {};
+        var model = {
+            'createForm': createForm,
+            'findAllForms': findAllForms,
+            'findAllFormsForUserId': findAllFormsForUserId,
+            'findFormById': findFormById,
+            'findFormByTitle': findFormByTitle,
+            'updateFormById': updateFormById,
+            'deleteFormById': deleteFormById
+        };
 
         /**
          * Creates a form.
@@ -17,7 +25,7 @@
          * @param {string} createFormRequest.userId - the new form's user id.
          * @return {object[] | null} the form collection or null if not created.
          */
-        model.createForm = function(createFormRequest) {
+        function createForm(createFormRequest) {
             var deferred = q.defer();  // TODO(bobby): this deferral code prob code be abstracted
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -25,7 +33,7 @@
                 if (!(createFormRequest.title && createFormRequest.userId)) {
                     deferred.resolve(response);
                 } else {
-                    model.findFormByTitle(createFormRequest.title)
+                    findFormByTitle(createFormRequest.title)
                         .then(function(form) {
                             if (!form) {
                                 form = {
@@ -54,7 +62,7 @@
          * Finds all forms.
          * @return {object[]} the form collection.
          */
-        model.findAllForms = function() {
+        function findAllForms() {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -69,7 +77,7 @@
          * @param {string} userId - the user's id.
          * @return {object[]} the forms.
          */
-        model.findAllFormsForUserId = function(userId) {
+        function findAllFormsForUserId(userId) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -113,7 +121,7 @@
          * @param {string} id - form id.
          * @return {object | null} the desired form or null if not found.
          */
-        model.findFormById = function(id) {
+        function findFormById(id) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -131,7 +139,7 @@
          * @param {string} title - the desired form's title.
          * @return {object | null} the desired form or null if not found.
          */
-        model.findFormByTitle = function(title) {
+        function findFormByTitle(title) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -152,7 +160,7 @@
          * @param {object[]} updateFormByIdRequest.fields - the desired form's fields.
          * @return {object | null} the updated form or null if not found.
          */
-        model.updateFormById = function(id, updateFormByIdRequest) {
+        function updateFormById(id, updateFormByIdRequest) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later
@@ -181,7 +189,7 @@
          * @param {string} id - form id.
          * @return {object | null} the deleted form or null if not found.
          */
-        model.deleteFormById = function(id) {
+        function deleteFormById(id) {
             var deferred = q.defer();
 
             setTimeout(function() {  // TODO(bobby): add DB access here later

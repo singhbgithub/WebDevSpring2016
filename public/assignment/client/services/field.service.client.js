@@ -4,9 +4,15 @@
 
     function FieldService($q, $http) {
 
-        var service = {};
+        var service = {
+            'createFieldForForm': createFieldForForm,
+            'getFieldsForForm': getFieldsForForm,
+            'getFieldForForm': getFieldForForm,
+            'updateField': updateField,
+            'deleteFieldFromForm': deleteFieldFromForm
+        };
 
-        service.createFieldForForm = function(formId, field) {
+        function createFieldForForm(formId, field) {
             var deferred = $q.defer();
 
             $http.post('/api/assignment/form/' + formId + '/field', field)
@@ -17,7 +23,7 @@
             return deferred.promise;
         };
 
-        service.getFieldsForForm = function(formId) {
+        function getFieldsForForm(formId) {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/form/' + formId + '/field')
@@ -28,7 +34,7 @@
             return deferred.promise;
         };
 
-        service.getFieldForForm = function(formId, fieldId) {
+        function getFieldForForm(formId, fieldId) {
             var deferred = $q.defer();
 
             $http.get('/api/assignment/form/' + formId + '/field/' + fieldId)
@@ -39,7 +45,7 @@
             return deferred.promise;
         };
 
-        service.updateField = function(formId, fieldId, field) {
+        function updateField(formId, fieldId, field) {
             var deferred = $q.defer();
 
             $http.put('/api/assignment/form/' + formId + '/field/' + fieldId, field)
@@ -50,7 +56,7 @@
             return deferred.promise;
         };
 
-        service.deleteFieldFromForm = function(formId, fieldId) {
+        function deleteFieldFromForm(formId, fieldId) {
             var deferred = $q.defer();
 
             $http.delete('/api/assignment/form/' + formId + '/field/' + fieldId)
