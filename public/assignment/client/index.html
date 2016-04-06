@@ -21,6 +21,8 @@
     <link href="css/dashboard-customized.css" rel="stylesheet">
 </head>
 
+<!-- TODO(bobby): Does not follow angular controllerAs in routeProvider style b/c main controller
+ is in all routes and routeProvider does not support multiple/inherited controllerAs. -->
 <body ng-controller="MainController">
     <div ng-include src="'views/header/header.view.html'"></div>
 

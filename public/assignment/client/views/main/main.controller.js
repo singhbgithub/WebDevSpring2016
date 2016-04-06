@@ -2,8 +2,9 @@
     'use strict';
     angular.module('FormBuilderApp').controller('MainController', MainController);
 
-    function MainController($scope, $location, $rootScope) {
-        $scope.$location = $location;
+    function MainController($location, $rootScope) {
+        var mainVm = this;
+        mainVm.$location = $location;
         // Get around the ng-include not updating b/c it does not keep references to prim values;
         // wrap in object.
         $rootScope.user = {'loggedIn': false, 'isAdmin': false};
@@ -27,14 +28,14 @@
                 }
             }
             console.log('Logged In. User: ', $rootScope.user);
-            $scope.$location = $location.path('/profile');
+            mainVm.$location = $location.path('/profile');
         });
         // Listen for a user logout event.
         $rootScope.$on('userLoggedOut', function() {
             console.log('user logged out');
             // make separate var to hold transient state TODO(bobby)
             $rootScope.user = {'loggedIn': false, 'isAdmin': false};
-            $scope.$location = $location.path('/');
+            mainVm.$location = $location.path('/');
         });
     }
 })();
