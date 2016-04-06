@@ -2,10 +2,11 @@
     'use strict';
     angular.module('FormBuilderApp').controller('ProfileController', ProfileController);
 
-    function ProfileController($scope, $location, $rootScope, UserService) {
+    function ProfileController($location, $rootScope, UserService) {
+        var profileVm = this;
         // Must be logged in to view this page.
         if ($rootScope.user.loggedIn) {
-            $scope.update = function (updatedUser) {
+            profileVm.update = function (updatedUser) {
                 if (updatedUser) {
                     UserService.updateUser($rootScope.user._id, updatedUser)
                         .then(function(response) {
@@ -22,7 +23,7 @@
             };
         }
         else {
-            $scope.$location = $location.path('/register');
+            profileVm.$location = $location.path('/register');
         }
     }
 })();

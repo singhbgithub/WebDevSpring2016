@@ -23,8 +23,8 @@
             })
             .when('/profile', {
                 templateUrl: 'views/profile/profile.view.html',
-                controller: 'ProfileController'
-
+                controller: 'ProfileController',
+                controllerAs: 'profileVm'
             })
             .when('/login', {
                 templateUrl: 'views/login/login.view.html',

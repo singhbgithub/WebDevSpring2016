@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="ProfileController">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <header class="page-header"><h3>Profile</h3></header>
     Username: {{ user.username }}
     <form class="form-horizontal">
@@ -7,7 +7,7 @@
                 Password:</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputPassword"
-                       placeholder="Password" ng-model="newUser.password">
+                       placeholder="Password" ng-model="profileVm.newUser.password">
             </div>
         </div>
         <div class="form-group">
@@ -15,7 +15,7 @@
                 First Name:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputFirstName"
-                       placeholder="{{user.firstName}}" ng-model="newUser.firstName">
+                       placeholder="{{user.firstName}}" ng-model="profileVm.newUser.firstName">
             </div>
         </div>
         <div class="form-group">
@@ -23,7 +23,7 @@
                 Last Name:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputLastName"
-                       placeholder="{{user.lastName}}" ng-model="newUser.lastName">
+                       placeholder="{{user.lastName}}" ng-model="profileVm.newUser.lastName">
             </div>
         </div>
         <div class="form-group">
@@ -31,12 +31,12 @@
                 Email:</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control" id="inputEmail"
-                       placeholder="{{user.email}}" ng-model="newUser.email">
+                       placeholder="{{user.email}}" ng-model="profileVm.newUser.email">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-default" ng-click="update(newUser)">Update</button>
+                <button class="btn btn-default" ng-click="profileVm.update(profileVm.newUser)">Update</button>
             </div>
         </div>
     </form>
