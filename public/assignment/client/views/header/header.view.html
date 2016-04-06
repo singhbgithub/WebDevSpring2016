@@ -10,6 +10,8 @@
             </button>
             <a class="navbar-brand">Form Maker</a>
         </div>
+        <!-- TODO(bobby): Does not follow VM model, but routeProvider does not easily support
+        nested VM controllerAs style -->
         <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/register" ng-hide="user.loggedIn">Register</a></li>
