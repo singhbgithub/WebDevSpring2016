@@ -15,7 +15,14 @@
                 'findFormById': findFormById,
                 'findFormByTitle': findFormByTitle,
                 'updateFormById': updateFormById,
-                'deleteFormById': deleteFormById
+                'deleteFormById': deleteFormById,
+                // Form Field model APIs
+                'createFieldForForm': createFieldForForm,
+                'getFieldsForForm': getFieldsForForm,
+                'getFieldForForm': getFieldForForm,
+                'updateField': updateField,
+                'deleteFieldFromForm': deleteFieldFromForm
+
             };
 
         /**
@@ -136,6 +143,81 @@
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form);
+                }
+            });
+            return deferred.promise;
+        }
+
+        /* Field model APIs defined below, as they are an embedded document within a form */
+        function createFieldForForm(formId, field) {
+            var deferred = q.defer();
+            // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
+            Form.findById(formId, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    form.fields.push(field);
+                    form.save();
+                    deferred.resolve(field);
+                }
+            });
+            return deferred.promise;
+        }
+
+        function getFieldsForForm(formId) {
+            var deferred = q.defer();
+            // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
+            Form.findById(formId, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(form.fields);
+                }
+            });
+            return deferred.promise;
+        }
+
+        function getFieldForForm(formId, fieldId) {
+            var deferred = q.defer();
+            // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
+            Form.findById(formId, function(err, form) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(form.fields.id(fieldId));
+                }
+            });
+            return deferred.promise;
+        }
+
+        function updateField(formId, fieldId, field) {
+            var deferred = q.defer();
+            // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
+            Form.findOne({'_id': formId, 'fields._id': fieldId}, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    var savedField = form.fields.id(fieldId);
+                    savedField.label = field.label;
+                    savedField.placeholder = field.placeholder;
+                    savedField.options = field.options;
+                    form.save();
+                    deferred.resolve(savedField);
+                }
+            });
+            return deferred.promise;
+        }
+
+        function deleteFieldFromForm(formId, fieldId) {
+            var deferred = q.defer();
+            // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
+            Form.findById(formId, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    var field = form.fields.id(fieldId).remove();
+                    form.save();
+                    deferred.resolve(field);
                 }
             });
             return deferred.promise;
