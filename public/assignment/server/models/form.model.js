@@ -1,22 +1,22 @@
 (function() {
     'use strict';
 
-    var q = require('q'), /* Dependencies */
-        uuid = require('node-uuid'),
-        util = require('../util.js')(),
-        formMock = require('./form.mock.json'); /* Form data source. */
+    var q = require('q'); /* Dependencies */
 
     /* Add a node module w/out dependencies */
-    module.exports = function() {
-        var model = {
-            'createForm': createForm,
-            'findAllForms': findAllForms,
-            'findAllFormsForUserId': findAllFormsForUserId,
-            'findFormById': findFormById,
-            'findFormByTitle': findFormByTitle,
-            'updateFormById': updateFormById,
-            'deleteFormById': deleteFormById
-        };
+    module.exports = function(mongoose, fieldSchema, formSchema) {
+
+        var Field = mongoose.model('Field', fieldSchema),
+            Form = mongoose.model('Form', formSchema),
+            model = {
+                'createForm': createForm,
+                'findAllForms': findAllForms,
+                'findAllFormsForUserId': findAllFormsForUserId,
+                'findFormById': findFormById,
+                'findFormByTitle': findFormByTitle,
+                'updateFormById': updateFormById,
+                'deleteFormById': deleteFormById
+            };
 
         /**
          * Creates a form.
@@ -27,36 +27,15 @@
          */
         function createForm(createFormRequest) {
             var deferred = q.defer();  // TODO(bobby): this deferral code prob code be abstracted
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                var response = null;
-                if (!(createFormRequest.title && createFormRequest.userId)) {
-                    deferred.resolve(response);
+            Form.create(createFormRequest, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
                 } else {
-                    findFormByTitle(createFormRequest.title)
-                        .then(function(form) {
-                            if (!form) {
-                                form = {
-                                    'title': createFormRequest.title,
-                                    'userId': util.isNumeric(createFormRequest.userId)
-                                        ? parseInt(createFormRequest.userId)
-                                        : createFormRequest.userId,
-                                    '_id': uuid.v1(),
-                                    'fields': []
-                                };
-                                formMock.push(form);
-                                /* This would prob be better returning the forms for this user
-                                 but the requirements for the assignment indicate to return the
-                                 underlying collection. Silliness. */
-                                response = formMock;
-                            }
-                            deferred.resolve(response);
-                        });
+                    deferred.resolve(form);
                 }
-            }, 100);
-
+            });
             return deferred.promise;
-        };
+        }
 
         /**
          * Finds all forms.
@@ -64,13 +43,15 @@
          */
         function findAllForms() {
             var deferred = q.defer();
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                deferred.resolve(formMock);
-            }, 100);
-
+            Form.find({}, function(err, forms) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(forms);
+                }
+            });
             return deferred.promise;
-        };
+        }
 
         /**
          * Finds all forms for the given user id.
@@ -79,41 +60,14 @@
          */
         function findAllFormsForUserId(userId) {
             var deferred = q.defer();
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                var userForms = [];
-                userId = util.isNumeric(userId) ? parseInt(userId) : userId;
-                for (var i = 0; i < formMock.length; i++) {
-                    var form = formMock[i];
-                    if (form.userId === userId) {
-                        userForms.push(form);
-                    }
+            Form.find({'userId': userId}, function(err, forms) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(forms);
                 }
-                deferred.resolve(userForms);
-            }, 100);
-
+            });
             return deferred.promise;
-        };
-
-        /**
-         * TODO(bobby): This prob shouldn't be global doc.
-         * @callback findFormByCallbackCallback
-         * @param {object} form - form object.
-         * @return {Boolean} the form matches the find criteria.
-         */
-        /**
-         * Finds a form by the callback's criteria.
-         * @param {findFormByCallbackCallback} callback - determine if this is the desired form.
-         * @return {object | null} the desired form or null if not found.
-         */
-        function findFormByCallback(callback) {
-            for (var i = 0; i < formMock.length; i++) {
-                var form = formMock[i];
-                if (callback(form)) {
-                    return form;
-                }
-            }
-            return null;
         }
 
         /**
@@ -123,16 +77,15 @@
          */
         function findFormById(id) {
             var deferred = q.defer();
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                var form = findFormByCallback(function(form) {
-                    return form._id === id;
-                });
-                deferred.resolve(form);
-            }, 100);
-
+            Form.findById(id, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(form);
+                }
+            });
             return deferred.promise;
-        };
+        }
 
         /**
          * Finds a form by title.
@@ -141,16 +94,15 @@
          */
         function findFormByTitle(title) {
             var deferred = q.defer();
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                var form = findFormByCallback(function(form) {
-                    return form.title === title;
-                });
-                deferred.resolve(form);
-            }, 100);
-
+            Form.findOne({'title': title}, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(form);
+                }
+            });
             return deferred.promise;
-        };
+        }
 
         /**
          * Updates a form by id.
@@ -162,27 +114,15 @@
          */
         function updateFormById(id, updateFormByIdRequest) {
             var deferred = q.defer();
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                var response = null;
-                for (var i = 0; i < formMock.length; i++) { // TODO(bobby): can use the findById?
-                    var form = formMock[i];
-                    if (form._id === id) {  // TODO(bobby): find the new title to prevent dups
-                        if (updateFormByIdRequest.title) {
-                            form.title = updateFormByIdRequest.title;
-                        }
-                        if (updateFormByIdRequest.fields) {
-                            form.fields = updateFormByIdRequest.fields;
-                        }
-                        response = form;
-                        break;
-                    }
+            Form.findByIdAndUpdate(id, updateFormByIdRequest, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(form);
                 }
-                deferred.resolve(response);
-            }, 100);
-
+            });
             return deferred.promise;
-        };
+        }
 
         /**
          * Deletes a form by id.
@@ -191,23 +131,15 @@
          */
         function deleteFormById(id) {
             var deferred = q.defer();
-
-            setTimeout(function() {  // TODO(bobby): add DB access here later
-                var response = null;
-                for (var i = 0; i < formMock.length; i++) {
-                    // TODO(bobby): can use findById? need index... or use callback action?
-                    var form = formMock[i];
-                    if (form._id === id) {
-                        util.remove(formMock, i);
-                        response = form;
-                        break;
-                    }
+            Form.findByIdAndRemove(id, function(err, form) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(form);
                 }
-                deferred.resolve(response);
-            }, 100);
-
+            });
             return deferred.promise;
-        };
+        }
 
         return model;
     };
