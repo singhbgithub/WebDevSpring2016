@@ -22,7 +22,7 @@
          * @param {object} createUserRequest - the request.
          * @param {string} createUserRequest.username - the new user's username.
          * @param {string} createUserRequest.password - the new user's password.
-         * @return {object[] | null} the user collection or null if not created.
+         * @return {object} the created user.
          */
         function createUser(createUserRequest) {
             var deferred = q.defer(); // TODO(bobby): this deferral code prob code be abstracted

@@ -17,9 +17,8 @@
             if (user) {
                 UserService.createUser(user)
                     .then(function(response) {
-                        var responseUser = response[response.length + - 1];
-                        console.log('Account Created. User:', responseUser);
-                        $rootScope.$broadcast('userLoggedIn', {'user': responseUser});
+                        console.log('Account Created. User:', response);
+                        $rootScope.$broadcast('userLoggedIn', {'user': response});
                     });
                 registerVm.$location = $location.path('/profile');
             }
