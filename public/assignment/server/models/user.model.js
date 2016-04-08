@@ -117,11 +117,17 @@
          */
         function updateUserById(id, updateUserByIdRequest) {
             var deferred = q.defer();
-            User.findByIdAndUpdate(id, updateUserByIdRequest, function(err, user) {
+            User.findByIdAndUpdate(id, updateUserByIdRequest, function(err) {
                 if(err) {
                     deferred.reject(err);
                 } else {
-                    deferred.resolve(user);
+                    User.findById(id, function (err, user) {
+                        if(err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(user);
+                        }
+                    });
                 }
             });
             return deferred.promise;
