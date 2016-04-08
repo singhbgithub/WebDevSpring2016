@@ -11,6 +11,7 @@
                 <span ng-switch-when="CHECKBOXES">Checkboxes Field</span>
                 <span ng-switch-when="RADIOS">Radio Buttons Field</span>
                 <span ng-switch-when="EMAIL">Email Field</span>
+                <span ng-switch-when="PASSWORD">Password Field</span>
             </h5>
         </div>
         <div class="modal-body">
@@ -73,6 +74,8 @@
                         </div>
                         <input type="email" class="form-control" ng-switch-when="EMAIL"
                                placeholder="{{field.placeholder}}">
+                        <input type="password" class="form-control" ng-switch-when="PASSWORD"
+                               placeholder="{{field.placeholder}}">
                     </td>
                     <td class="td-no-border pull-right">
                         <div ng-click="fieldVm.editField(field)"
@@ -109,6 +112,7 @@
                             <option value="CHECKBOXES">Checkboxes Field</option>
                             <option value="RADIOS">Radio Buttons Field</option>
                             <option value="EMAIL">Email Field</option>
+                            <option value="PASSWORD">Password Field</option>
                         </select>
                     </td>
                     <td class="td-no-border pull-right">

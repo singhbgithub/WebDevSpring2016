@@ -98,8 +98,10 @@
         
         // Scope Variables
         modalVm.fieldToEdit = angular.copy(field);
-        modalVm.hasPlaceholder = field.type === 'TEXT' || field.type === 'TEXTAREA' || field.type === 'EMAIL';
-        modalVm.hasOptions = field.type === 'OPTIONS' || field.type === 'CHECKBOXES' || field.type === 'RADIOS';
+        modalVm.hasPlaceholder = field.type === 'TEXT' || field.type === 'TEXTAREA' ||
+            field.type === 'EMAIL' || field.type === 'PASSWORD';
+        modalVm.hasOptions = field.type === 'OPTIONS' || field.type === 'CHECKBOXES' ||
+            field.type === 'RADIOS';
         modalVm.fieldToEdit.optionsText = '';
 
         // Add the options as text
