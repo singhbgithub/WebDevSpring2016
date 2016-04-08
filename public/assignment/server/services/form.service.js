@@ -31,8 +31,8 @@
          */
         function createForm(req, res) {
             var createFormRequest = {
-                'title': req.param('title') || null,
-                'userId': req.param('userId') || null
+                'title': req.param('title'),
+                'userId': req.param('userId')
             };
             model.createForm(createFormRequest)
                 .then(function (response) {
@@ -95,8 +95,9 @@
          */
         function updateFormById(req, res) {
             var updateFormByIdRequest = {
-                'title': req.param('title') || null,
-                'fields': req.param('fields') || null
+                'title': req.param('title'),
+                'fields': req.param('fields'),
+                'updated': Date.now()
             };
             model.updateFormById(req.params.formId, updateFormByIdRequest)
                 .then(function (response) {
