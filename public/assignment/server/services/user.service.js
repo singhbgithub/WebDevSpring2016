@@ -34,9 +34,9 @@
          */
         function createUser(req, res) {
             var createUserRequest = {
-                'username': req.param('username') || null,
-                'password': req.param('password') || null,
-                'email': req.param('email') || null
+                'username': req.param('username'),
+                'password': req.param('password'),
+                'email': req.param('email')
             };
             model.createUser(createUserRequest)
                 .then(function (response) {
@@ -105,12 +105,23 @@
          * @param {object} res - node response.
          */
         function updateUserById(req, res) {
-            var updateUserByIdRequest = {
-                'email': req.param('email'),
-                'firstName': req.param('firstName'),
-                'lastName': req.param('lastName'),
-                'password': req.param('password')
-            };
+            var email = req.param('email'),
+                firstName = req.param('firstName'),
+                lastName = req.param('lastName'),
+                password = req.param('password'),
+                updateUserByIdRequest = {};
+            if (email) {
+                updateUserByIdRequest.email = email;
+            }
+            if (firstName) {
+                updateUserByIdRequest.firstName = firstName;
+            }
+            if (lastName) {
+                updateUserByIdRequest.lastName = lastName;
+            }
+            if (password) {
+                updateUserByIdRequest.password = password;
+            }
             model.updateUserById(req.params.id, updateUserByIdRequest)
                 .then(function (response) {
                     res.json(response);

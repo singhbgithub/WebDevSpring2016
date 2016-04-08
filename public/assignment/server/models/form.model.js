@@ -117,9 +117,10 @@
          * Updates a form by id.
          * @param {string} id - form id.
          * @param {object} updateFormByIdRequest - the request.
-         * @param {string} updateFormByIdRequest.title - the desired form's title.
-         * @param {object[]} updateFormByIdRequest.fields - the desired form's fields.
-         * @return {object | null} the updated form or null if not found.
+         * @param {string} [updateFormByIdRequest.title] - the desired form's title.
+         * @param {object[]} [updateFormByIdRequest.fields] - the desired form's fields.
+         * @param {number} updateFormByIdRequest.updated - the desired form's updated timestamp.
+         * @return {object} the updated form.
          */
         function updateFormById(id, updateFormByIdRequest) {
             var deferred = q.defer();

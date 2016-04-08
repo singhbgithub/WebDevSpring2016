@@ -94,11 +94,18 @@
          * @param {object} res - node response.
          */
         function updateFormById(req, res) {
-            var updateFormByIdRequest = {
-                'title': req.param('title'),
-                'fields': req.param('fields'),
-                'updated': Date.now()
-            };
+            var title = req.param('title'),
+                fields = req.param('fields'),
+                updateFormByIdRequest = {
+                    'updated': Date.now()
+                };
+            // Check to ensure null values aren't being written on update.
+            if (title) {
+                updateFormByIdRequest.title = title;
+            }
+            if (fields) {
+                updateFormByIdRequest.fields = fields;
+            }
             model.updateFormById(req.params.formId, updateFormByIdRequest)
                 .then(function (response) {
                     res.json(response);

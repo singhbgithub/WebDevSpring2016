@@ -58,11 +58,19 @@
          * @param {object} res - node response.
          */
         function updateField(req, res) {
-            var updateFieldRequest = {
-                'label': req.param('label'),
-                'placeholder': req.param('placeholder'),
-                'options': req.param('options')
-            };
+            var label = req.param('label'),
+                placeholder = req.param('placeholder'),
+                options = req.param('options'),
+                updateFieldRequest = {};
+            if (label) {
+                updateFieldRequest.label = label;
+            }
+            if (placeholder) {
+                updateFieldRequest.placeholder = placeholder;
+            }
+            if (options) {
+                updateFieldRequest.options = options;
+            }
             model.updateField(req.params.formId, req.params.fieldId, updateFieldRequest)
                 .then(function(field) {
                     res.json(field);
