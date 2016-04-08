@@ -90,7 +90,8 @@
     angular.module('FormBuilderApp').controller('ModalInstanceController', ModalInstanceController);
     function ModalInstanceController($scope, $uibModalInstance, field) {
         // TODO(bobby): vm style is funky with nested controllers
-        var modalVm = $scope;
+        var modalVm = $scope,
+            optionDelimiter = ':';
 
         // Event Handlers
         modalVm.update = update;
@@ -106,14 +107,14 @@
 
         // Add the options as text
         angular.forEach(modalVm.fieldToEdit.options || [], function(option) {
-            modalVm.fieldToEdit.optionsText += option.label + ';' + option.value + '\n';
+            modalVm.fieldToEdit.optionsText += option.label + optionDelimiter + option.value + '\n';
         });
 
         function update() {
             var optionsTextFragments = modalVm.fieldToEdit.optionsText.split('\n'),
                 options = [];
             angular.forEach(optionsTextFragments, function(optionTextFragment) {
-                var tokens = optionTextFragment.trim().split(';');
+                var tokens = optionTextFragment.trim().split(optionDelimiter);
                 if (tokens.length === 2) {
                     options.push({'label': tokens[0], 'value': tokens[1]});
                 }
