@@ -36,7 +36,8 @@
             var createUserRequest = {
                 'username': req.param('username'),
                 'password': req.param('password'),
-                'emails': req.param('emails')
+                'emails': req.param('emails'),
+                'phones': req.param('phones')
             };
             model.createUser(createUserRequest)
                 .then(function (response) {
@@ -106,12 +107,16 @@
          */
         function updateUserById(req, res) {
             var emails = req.param('emails'),
+                phones = req.param('phones'),
                 firstName = req.param('firstName'),
                 lastName = req.param('lastName'),
                 password = req.param('password'),
                 updateUserByIdRequest = {};
             if (emails) {
                 updateUserByIdRequest.emails = emails;
+            }
+            if (phones) {
+                updateUserByIdRequest.phones = phones;
             }
             if (firstName) {
                 updateUserByIdRequest.firstName = firstName;

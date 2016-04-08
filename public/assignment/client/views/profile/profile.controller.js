@@ -21,6 +21,12 @@
                     updatedUser.emails.push(updatedUser.email);
                     delete updatedUser.email;
                 }
+                // Add a new phone to the user's history of phones.
+                updatedUser.phones = angular.copy($rootScope.user.phones);
+                if (updatedUser.phone) {
+                    updatedUser.phones.push(updatedUser.phone);
+                    delete updatedUser.phone;
+                }
                 UserService.updateUser($rootScope.user._id, updatedUser)
                     .then(function(response) {
                         // FIXME(bobby): transient state fields again

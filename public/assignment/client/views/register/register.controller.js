@@ -20,6 +20,11 @@
                 user.emails = [user.email];
                 delete user.email;
             }
+            // We store a list of phones.
+            if (user.phone) {
+                user.phones = [user.phone];
+                delete user.phone;
+            }
             UserService.createUser(user)
                 .then(function(response) {
                     console.log('Account Created. User:', response);
