@@ -21,7 +21,12 @@
 
             $http.post('/api/assignment/user', user)
                 .then(function(response) {
-                    deferred.resolve(response.data);
+                    var data = response.data;
+                    if (data.error) {
+                        deferred.reject(data.error);
+                    } else {
+                        deferred.resolve(data);
+                    }
                 });
 
             return deferred.promise;

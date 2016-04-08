@@ -41,6 +41,9 @@
             model.createUser(createUserRequest)
                 .then(function (response) {
                     res.json(response);
+                }, function (err) {
+                    // Favor 200 with error object over HTTP error.
+                    res.json({'error': err});
                 });
         }
 
