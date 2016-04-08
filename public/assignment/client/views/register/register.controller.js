@@ -15,6 +15,11 @@
         }
 
         function create(user) {
+            // We store a list of emails.
+            if (user.email) {
+                user.emails = [user.email];
+                delete user.email;
+            }
             UserService.createUser(user)
                 .then(function(response) {
                     console.log('Account Created. User:', response);

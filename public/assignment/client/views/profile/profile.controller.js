@@ -15,6 +15,12 @@
 
         function update(updatedUser) {
             if (updatedUser) {
+                // Add a new email to the user's history of emails.
+                updatedUser.emails = angular.copy($rootScope.user.emails);
+                if (updatedUser.email) {
+                    updatedUser.emails.push(updatedUser.email);
+                    delete updatedUser.email;
+                }
                 UserService.updateUser($rootScope.user._id, updatedUser)
                     .then(function(response) {
                         // FIXME(bobby): transient state fields again

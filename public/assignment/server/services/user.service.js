@@ -36,7 +36,7 @@
             var createUserRequest = {
                 'username': req.param('username'),
                 'password': req.param('password'),
-                'email': req.param('email')
+                'emails': req.param('emails')
             };
             model.createUser(createUserRequest)
                 .then(function (response) {
@@ -105,13 +105,13 @@
          * @param {object} res - node response.
          */
         function updateUserById(req, res) {
-            var email = req.param('email'),
+            var emails = req.param('emails'),
                 firstName = req.param('firstName'),
                 lastName = req.param('lastName'),
                 password = req.param('password'),
                 updateUserByIdRequest = {};
-            if (email) {
-                updateUserByIdRequest.email = email;
+            if (emails) {
+                updateUserByIdRequest.emails = emails;
             }
             if (firstName) {
                 updateUserByIdRequest.firstName = firstName;

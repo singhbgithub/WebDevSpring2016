@@ -31,7 +31,8 @@
                 Email:</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control" id="inputEmail"
-                       placeholder="{{user.email}}" ng-model="profileVm.newUser.email">
+                       placeholder="{{user.emails.length ? user.emails[user.emails.length - 1] : 'Email'}}"
+                       ng-model="profileVm.newUser.email">
             </div>
         </div>
         <div class="form-group">

@@ -22,6 +22,7 @@
          * @param {object} createUserRequest - the request.
          * @param {string} createUserRequest.username - the new user's username.
          * @param {string} createUserRequest.password - the new user's password.
+         * @param {[string]} createUserRequest.emails - the new user's emails.
          * @return {object} the created user.
          */
         function createUser(createUserRequest) {
