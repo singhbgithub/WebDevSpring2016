@@ -15,6 +15,8 @@
             'deleteUserById': deleteUserById
         };
 
+        return model;
+
         /**
          * Creates a user.
          * @param {object} createUserRequest - the request.
@@ -141,7 +143,5 @@
             });
             return deferred.promise;
         }
-
-        return model;
     };
 })();

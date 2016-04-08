@@ -14,6 +14,8 @@
             'deleteUserById': deleteUserById
         };
 
+        return service;
+
         function createUser(user) {
             var deferred = $q.defer();
 
@@ -92,7 +94,5 @@
 
             return deferred.promise;
         };
-
-        return service;
     }
 })();

@@ -25,6 +25,8 @@
 
             };
 
+        return model;
+
         /**
          * Creates a form.
          * @param {object} createFormRequest - the request.
@@ -222,7 +224,5 @@
             });
             return deferred.promise;
         }
-
-        return model;
     };
 })();

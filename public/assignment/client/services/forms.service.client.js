@@ -14,6 +14,8 @@
             'deleteFormById': deleteFormById
         };
 
+        return service;
+
         function createFormForUser(userId, form) {
             var deferred = $q.defer();
 
@@ -91,7 +93,5 @@
 
             return deferred.promise;
         };
-
-        return service;
     }
 })();

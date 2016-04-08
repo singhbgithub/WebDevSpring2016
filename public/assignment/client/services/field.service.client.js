@@ -12,6 +12,8 @@
             'deleteFieldFromForm': deleteFieldFromForm
         };
 
+        return service;
+
         function createFieldForForm(formId, field) {
             var deferred = $q.defer();
 
@@ -66,7 +68,5 @@
 
             return deferred.promise;
         };
-
-        return service;
     }
 })();
