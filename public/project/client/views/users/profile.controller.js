@@ -2,10 +2,12 @@
     'use strict';
     angular.module('ThotApp').controller('ProfileController', ProfileController);
 
-    function ProfileController($scope, $location, $rootScope, UserService) {
+    function ProfileController($location, $rootScope, UserService) {
+        var profileVm = this;
+        
         // Must be logged in to view this page.
         if ($rootScope.user.loggedIn) {
-            $scope.update = function (updateInfo) {
+            profileVm.update = function (updateInfo) {
                 if (updateInfo) {
                     // TODO(bobby): handle this check server side?
                     if (updateInfo.newPassword === updateInfo.newPassword2 &&
@@ -29,7 +31,7 @@
             };
         }
         else {
-            $scope.$location = $location.path('/register');
+            profileVm.$location = $location.path('/register');
         }
     }
 })();

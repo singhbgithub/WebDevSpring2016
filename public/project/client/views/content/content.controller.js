@@ -2,15 +2,17 @@
     'use strict';
     angular.module('ThotApp').controller('ContentController', ContentController);
 
-    function ContentController($scope, $location, $rootScope, ContentService) {
+    function ContentController($location, $rootScope, ContentService) {
+        var contentVm = this;
+
         // We have a logged-in user.
         if ($rootScope.user.loggedIn) {
             // Populate the content
-            $scope.contentList = [];
+            contentVm.contentList = [];
             populateContent();
 
             // Handlers
-            $scope.createContent = function (newContent) {
+            contentVm.createContent = function (newContent) {
                 var content = {'src': newContent.src, 'tags': [newContent.tag], 'likes': 0, 'comments': []};
                 ContentService.createContentForUser($rootScope.user._id, content)
                     .then(function (content) {
@@ -22,7 +24,7 @@
                         console.log(err);
                     });
             };
-            $scope.like = function () {
+            contentVm.like = function () {
                 if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
                     var updatedContent = angular.copy($rootScope.currentContent);
                     updatedContent.likes += 1;
@@ -35,7 +37,7 @@
                         });
                 }
             };
-            $scope.comment = function (newComment) {
+            contentVm.comment = function (newComment) {
                 if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
                     var updatedContent = angular.copy($rootScope.currentContent);
                     updatedContent.comments.push(newComment);
@@ -48,7 +50,7 @@
                         });
                 }
             };
-            $scope.tag = function (newTag) {
+            contentVm.tag = function (newTag) {
                 if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
                     var updatedContent = angular.copy($rootScope.currentContent);
                     updatedContent.tags.push(newTag);
@@ -61,29 +63,29 @@
                         });
                 }
             };
-            $scope.deleteContent = function () {
+            contentVm.deleteContent = function () {
                 ContentService.deleteContentById($rootScope.currentContent._id)
                     .then(function (deletedContent) {
                         console.log('Deleted: ', deletedContent);
                         $rootScope.currentContent = undefined;
-                        $scope.$location = $location.path('/profile');
+                        contentVm.$location = $location.path('/profile');
                     }, function (err) {
                         console.log(err);
                     });
             };
-            $scope.selectContent = function (index) {
-                $rootScope.currentContent = $scope.contentList[index];
+            contentVm.selectContent = function (index) {
+                $rootScope.currentContent = contentVm.contentList[index];
                 console.log('Current Content:', $rootScope.currentContent);
             };
         }
         else {
-            $scope.$location = $location.path('/register');
+            contentVm.$location = $location.path('/register');
         }
 
         function populateContent() {
             ContentService.findAllContentForUser($rootScope.user._id)
                 .then(function (contentForUser) {
-                    $scope.contentList = contentForUser;
+                    contentVm.contentList = contentForUser;
                 }, function (err) {
                     console.log(err);
                 });

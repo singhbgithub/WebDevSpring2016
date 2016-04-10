@@ -7,23 +7,28 @@
             })
             .when('/login', {
                 templateUrl: 'views/users/login.view.html',
-                controller: 'LoginController'
+                controller: 'LoginController',
+                controllerAs: 'loginVm'
             })
             .when('/register', {
                 templateUrl: 'views/users/register.view.html',
-                controller: 'RegisterController'
+                controller: 'RegisterController',
+                controllerAs: 'registerVm'
             })
             .when('/profile', {
                 templateUrl: 'views/users/profile.view.html',
-                controller: 'ProfileController'
+                controller: 'ProfileController',
+                controllerAs: 'profileVm'
             })
             .when('/search', {
                 templateUrl: 'views/users/search.view.html',
-                controller: 'SearchController'
+                controller: 'SearchController',
+                controllerAs: 'searchVm'
             })
             .when('/content', {
                 templateUrl: 'views/content/content.view.html',
-                controller: 'ContentController'
+                controller: 'ContentController',
+                controllerAs: 'contentVm'
             })
             .otherwise({
                 redirectTo: '/'

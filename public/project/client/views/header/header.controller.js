@@ -3,7 +3,8 @@
     angular.module('ThotApp').controller('HeaderController', HeaderController);
 
     function HeaderController($scope, $rootScope) {
-        $scope.logout = function() {
+        var headerVm = $scope;
+        headerVm.logout = function() {
             $rootScope.$broadcast('userLoggedOut');
         };
     }

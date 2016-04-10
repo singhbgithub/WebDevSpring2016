@@ -2,8 +2,9 @@
     'use strict';
     angular.module('ThotApp').controller('SearchController', SearchController);
 
-    function SearchController($scope, $location, $rootScope /*, ContentService*/) {
-        $scope.search = function (searchQuery) {
+    function SearchController($location, $rootScope /*, ContentService*/) {
+        var searchVm = this;
+        searchVm.search = function (searchQuery) {
             console.log('Search Query: ', searchQuery);
             if (searchQuery) {
                 //ContentService.findUserByTag(tag, callback);
