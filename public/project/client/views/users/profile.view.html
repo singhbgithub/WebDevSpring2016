@@ -65,7 +65,7 @@
                     </td></tr>
                     <tr ng-repeat="content in contentList track by $index">
                         <td><a href="#/content" ng-click="selectContent($index)">
-                            <img class="content-src" src="{{content.src}}"></a></td>
+                            <img class="content-src" ng-src="{{content.src}}" ng-if="content.src"></a></td>
                     </tr>
                 </table>
             </div>
