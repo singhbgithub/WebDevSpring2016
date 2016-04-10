@@ -7,21 +7,17 @@
         if ($rootScope.user.loggedIn) {
             $scope.update = function (updateInfo) {
                 if (updateInfo) {
-                    var callback = function (user) {
-                        $rootScope.user = user;
-                        window.alert('Account Updated');
-                    };
-                    debugger;
+                    // TODO(bobby): handle this check server side?
                     if (updateInfo.newPassword === updateInfo.newPassword2 &&
                         updateInfo.oldPassword === $rootScope.password) {
-                        var newUser = Object.clone($rootScope.user);
-                        // This should really be handled into the update User function.
-                        // FIXME(bobby)
-                        newUser.password = updateInfo.newPassword;
-                        UserService.updateUser(newUser._id, newUser, callback);
-                        UserService.findAllUsers(function (users) {
-                            console.log(users);
-                        });
+                        UserService.updateUser(newUser._id, {'password': updateInfo.newPassword})
+                            .then(function (user) {
+                                $rootScope.user = user;
+                                console.log(user);
+                                window.alert('Account Updated');
+                            }, function (err) {
+                                window.alert('Account could not be updated.');
+                            });
                     }
                     else {
                         window.alert('Passwords do not match.');

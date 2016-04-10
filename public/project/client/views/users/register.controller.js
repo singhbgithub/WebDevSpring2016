@@ -8,18 +8,13 @@
             $scope.create = function (newUser) {
                 console.log('Attempting to create account for:', newUser);
                 if (newUser) {
-                    var accountExists = true,
-                        callback = function (user) {
-                            console.log('Account created for:', user);
-                            $rootScope.$broadcast('userLoggedIn', {'user': user});
-                            accountExists = false;
-                        };
-                    UserService.createUser(newUser, callback);
-                    if (accountExists) {
-                        // FIXME(bobby): the create user call allows for the same username diff password.
-                        window.alert('This account is already registered.');
-                    }
-                    $scope.$location = $location.path('/profile');
+                    UserService.createUser(newUser).then(function (user) {
+                        console.log('Account created for:', user);
+                        $rootScope.$broadcast('userLoggedIn', {'user': user});
+                        $scope.$location = $location.path('/profile'); 
+                    }, function (err) {
+                        window.alert('This account is already registered.');                        
+                    });
                 }
                 else {
                     window.alert('Enter your information.');
