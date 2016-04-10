@@ -6,60 +6,70 @@
         // We have a logged-in user.
         if ($rootScope.user.loggedIn) {
             // Populate the content
-            var callbackContent = function(content) {
-                $scope.contentList = content;
-            };
-            ContentService.findAllContentForUser($rootScope.user._id, callbackContent);
+            $scope.contentList = [];
+            populateContent();
+
             // Handlers
             $scope.createContent = function (newContent) {
-                var content = {'src': newContent.src, 'tags': [newContent.tag], 'likes': 0, 'comments': [],},
-                    callback = function() {
-                    console.log('New content created.');
-                    ContentService.findAllContentForUser($rootScope.user._id, callbackContent);
-                    $rootScope.currentContent = undefined;
-                };
-                ContentService.createContentForUser($rootScope.user._id, content, callback);
+                var content = {'src': newContent.src, 'tags': [newContent.tag], 'likes': 0, 'comments': []};
+                ContentService.createContentForUser($rootScope.user._id, content)
+                    .then(function (content) {
+                        console.log('New content created.');
+                        populateContent();
+                        // FIXME(bobby): why is this line even here?
+                        $rootScope.currentContent = undefined;
+                    }, function (err) {
+                        console.log(err);
+                    });
             };
             $scope.like = function () {
                 if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
-                    $rootScope.currentContent.likes += 1;
-                    var content = $rootScope.currentContent,
-                        contentId = $rootScope.currentContent._id,
-                        callback = function() {
+                    var updatedContent = angular.copy($rootScope.currentContent);
+                    updatedContent.likes += 1;
+                    ContentService.updateContentById($rootScope.currentContent._id, updatedContent)
+                        .then(function (content) {
+                            $rootScope.currentContent = content;
                             console.log('Liked', $rootScope.currentContent);
-                        };
-                    ContentService.updateContentById(contentId, content, callback);
+                        }, function (err) {
+                            console.log(err);
+                        });
                 }
             };
             $scope.comment = function (newComment) {
                 if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
-                    $rootScope.currentContent.comments.push(newComment);
-                    var content = $rootScope.currentContent,
-                        contentId = $rootScope.currentContent._id,
-                        callback = function() {
+                    var updatedContent = angular.copy($rootScope.currentContent);
+                    updatedContent.comments.push(newComment);
+                    ContentService.updateContentById($rootScope.currentContent._id, updatedContent)
+                        .then(function (content) {
+                            $rootScope.currentContent = content;
                             console.log('Commented', $rootScope.currentContent);
-                        };
-                    ContentService.updateContentById(contentId, content, callback);
+                        }, function (err) {
+                            console.log(err);
+                        });
                 }
             };
             $scope.tag = function (newTag) {
                 if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
-                    $rootScope.currentContent.tags.push(newTag);
-                    var content = $rootScope.currentContent,
-                        contentId = $rootScope.currentContent._id,
-                        callback = function() {
+                    var updatedContent = angular.copy($rootScope.currentContent);
+                    updatedContent.tags.push(newTag);
+                    ContentService.updateContentById($rootScope.currentContent._id, updatedContent)
+                        .then(function (content) {
+                            $rootScope.currentContent = content;
                             console.log('Tagged', $rootScope.currentContent);
-                        };
-                    ContentService.updateContentById(contentId, content, callback);
+                        }, function (err) {
+                            console.log(err);
+                        });
                 }
             };
             $scope.deleteContent = function () {
-                var callback = function() {
-                    console.log('Deleted');
-                    $rootScope.currentContent = undefined;
-                    $scope.$location = $location.path('/profile');
-                };
-                ContentService.deleteContentById($rootScope.currentContent._id, callback);
+                ContentService.deleteContentById($rootScope.currentContent._id)
+                    .then(function (deletedContent) {
+                        console.log('Deleted: ', deletedContent);
+                        $rootScope.currentContent = undefined;
+                        $scope.$location = $location.path('/profile');
+                    }, function (err) {
+                        console.log(err);
+                    });
             };
             $scope.selectContent = function (index) {
                 $rootScope.currentContent = $scope.contentList[index];
@@ -68,6 +78,15 @@
         }
         else {
             $scope.$location = $location.path('/register');
+        }
+
+        function populateContent() {
+            ContentService.findAllContentForUser($rootScope.user._id)
+                .then(function (contentForUser) {
+                    $scope.contentList = contentForUser;
+                }, function (err) {
+                    console.log(err);
+                });
         }
     }
 })();
