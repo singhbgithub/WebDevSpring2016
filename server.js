@@ -5,6 +5,7 @@
         mongoose = require('mongoose'),
         multer = require('multer'),
         assignmentServerModule = require(__dirname + '/public/assignment/server/app.js'),
+        projectServerModule = require(__dirname + '/public/project/server/app.js'),
         app = express(),
         ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
         port = process.env.OPENSHIFT_NODEJS_PORT || 3000,
@@ -33,6 +34,7 @@
      db.once('open', function() {
          // Load the server for the assignment directory.
          assignmentServerModule(app, mongoose);
+         projectServerModule(app);
          app.listen(port, ipaddress);
      });
 })();
