@@ -30,11 +30,12 @@
     }
     mongoose.connect(connectionString);
     var db = mongoose.connection;
-     db.on('error', console.error.bind(console, 'connection error:'));
-     db.once('open', function() {
-         // Load the server for the assignment directory.
-         assignmentServerModule(app, mongoose);
-         projectServerModule(app);
-         app.listen(port, ipaddress);
-     });
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+        // Load the server for the assignment directory.
+        assignmentServerModule(app, mongoose);
+        // Load the server for the project directory. Really should have a separate db for project.
+        projectServerModule(app, mongoose);
+        app.listen(port, ipaddress);
+    });
 })();
