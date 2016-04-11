@@ -19,9 +19,10 @@
         function createContentForUserId(req, res) {
             var createContentRequest = {
                 'src': req.param('src'),
-                'tags': req.param('tags')
+                'tags': req.param('tags'),
+                'userId': req.params.userId
             };
-            model.createContentForUserId(req.params.userId, createContentRequest)
+            model.createContentForUserId(createContentRequest)
                 .then(function (response) {
                     res.json(response);
                 }, function (err) {
