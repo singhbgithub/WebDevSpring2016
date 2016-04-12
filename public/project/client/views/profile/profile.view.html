@@ -18,9 +18,29 @@
                 <form class="form-horizontal">
                     <ul class="profile-input-list">
                         <li>
+                            <input type="text" class="form-control profile-text"
+                                   id="inputFirstName" placeholder="{{user.firstName || 'First Name'}}"
+                                   ng-model="updateInfo.firstName">
+                        </li>
+                        <li>
+                            <input type="text" class="form-control profile-text"
+                                   id="inputLastName" placeholder="{{user.lastName || 'Last Name'}}"
+                                   ng-model="updateInfo.lastName">
+                        </li>
+                        <li>
+                            <input type="email" class="form-control profile-text"
+                                   id="inputEmail" placeholder="{{user.email || 'Email'}}"
+                                   ng-model="updateInfo.email">
+                        </li>
+                        <li>
+                            <input type="text" class="form-control profile-text"
+                                   id="inputPhone" placeholder="{{user.phone || 'Phone'}}"
+                                   ng-model="updateInfo.phone">
+                        </li>
+                        <li>
                             <input type="password" class="form-control profile-text"
                                    id="inputOldPassword" placeholder="Enter Old Password"
-                                   ng-model="updateInfo.oldPassword"> <!-- Not used yet -->
+                                   ng-model="updateInfo.oldPassword">
                         </li>
                         <li>
                             <input type="password" class="form-control profile-text"
