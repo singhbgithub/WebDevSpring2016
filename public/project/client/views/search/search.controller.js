@@ -4,7 +4,11 @@
 
     function SearchController($location, $rootScope /*, ContentService*/) {
         var searchVm = this;
-        searchVm.search = function (searchQuery) {
+
+        // Scope Event Handlers
+        searchVm.search = search;
+
+        function search(searchQuery) {
             console.log('Search Query: ', searchQuery);
             if (searchQuery) {
                 //ContentService.findUserByTag(tag, callback);
@@ -13,6 +17,6 @@
             else {
                 window.alert('Enter a search.');
             }
-        };
+        }
     }
 })();
