@@ -1,27 +1,27 @@
 (function() {
     'use strict';
-    angular.module('ThotApp').config(function($routeProvider){
+    angular.module('ThotApp').config(function($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home/home.view.html'
             })
             .when('/login', {
-                templateUrl: 'views/users/login.view.html',
+                templateUrl: 'views/login/login.view.html',
                 controller: 'LoginController',
                 controllerAs: 'loginVm'
             })
             .when('/register', {
-                templateUrl: 'views/users/register.view.html',
+                templateUrl: 'views/register/register.view.html',
                 controller: 'RegisterController',
                 controllerAs: 'registerVm'
             })
             .when('/profile', {
-                templateUrl: 'views/users/profile.view.html',
+                templateUrl: 'views/profile/profile.view.html',
                 controller: 'ProfileController',
                 controllerAs: 'profileVm'
             })
             .when('/search', {
-                templateUrl: 'views/users/search.view.html',
+                templateUrl: 'views/search/search.view.html',
                 controller: 'SearchController',
                 controllerAs: 'searchVm'
             })
