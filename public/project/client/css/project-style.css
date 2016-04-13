@@ -21,6 +21,11 @@ h6 {
     font-weight: 600;
 }
 
+.main-view {
+    width: inherit;
+    height: inherit;
+}
+
 .topnav {
     font-size: 14px;
 }
