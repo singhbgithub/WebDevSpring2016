@@ -19,13 +19,12 @@
                     .then(function (user) {
                         $rootScope.$broadcast('userLoggedIn', {'user': user});
                     }, function (err) {
-                        // TODO(bobby): add error message in the UI instead of alert.
-                        window.alert('No associated account. Please sign up.');
-                        loginVm.$location = $location.path('/register');
+                        loginVm.error = 'Your credentials could not be validated.';
+                        console.log(err);
                     });
             }
             else {
-                window.alert('Enter your information.');
+                loginVm.error = 'Enter your username and password.';
             }
         }
     }

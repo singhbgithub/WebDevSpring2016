@@ -2,6 +2,16 @@
     <img class="content-src" src="{{currentContent.src}}">
     <form class="form-horizontal">
         <ul class="profile-input-list">
+            <li ng-if="contentVm.error">
+                <div class="alert alert-danger profile-text alert-text">
+                    {{contentVm.error}}
+                </div>
+            </li>
+            <li ng-if="contentVm.success">
+                <div class="alert alert-success profile-text alert-text">
+                    {{contentVm.success}}
+                </div>
+            </li>
             <li>
                 <!-- Need to manage 'like' state - this is supposed to be a rating -->
                 <a class="btn btn-default btn-lg btn-profile"

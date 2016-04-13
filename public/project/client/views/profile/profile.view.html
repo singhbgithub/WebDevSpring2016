@@ -17,6 +17,16 @@
             <div class="col-lg-4">
                 <form class="form-horizontal">
                     <ul class="profile-input-list">
+                        <li ng-if="profileVm.error">
+                            <div class="alert alert-danger profile-text alert-text">
+                                {{profileVm.error}}
+                            </div>
+                        </li>
+                        <li ng-if="profileVm.success">
+                            <div class="alert alert-success profile-text alert-text">
+                                {{profileVm.success}}
+                            </div>
+                        </li>
                         <li>
                             <input type="text" class="form-control profile-text"
                                    id="inputFirstName" placeholder="{{user.firstName || 'First Name'}}"
@@ -39,23 +49,26 @@
                         </li>
                         <li>
                             <input type="password" class="form-control profile-text"
-                                   id="inputOldPassword" placeholder="Enter Old Password"
-                                   ng-model="updateInfo.oldPassword">
-                        </li>
-                        <li>
-                            <input type="password" class="form-control profile-text"
-                                   id="inputNewPassword" placeholder="Enter New Password"
+                                   id="inputNewPassword" placeholder="New Password"
                                    ng-model="updateInfo.newPassword">
                         </li>
                         <li>
                             <input type="password" class="form-control profile-text"
-                                   id="inputNewPassword2" placeholder="Verify New Password"
+                                   id="inputNewPassword2" placeholder="Repeat New Password"
                                    ng-model="updateInfo.newPassword2">
+                        </li>
+                        <li>
+                            To make changes to your account, enter your current password below:
+                        </li>
+                        <li>
+                            <input type="password" class="form-control profile-text"
+                                   id="inputOldPassword" placeholder="Enter Current Password"
+                                   ng-model="updateInfo.oldPassword">
                         </li>
                         <li>
                             <a class="btn btn-default btn-lg btn-profile"
                                ng-click="profileVm.update(updateInfo)">
-                                <span class="account-name">Update Password</span>
+                                <span class="account-name">Update Profile</span>
                             </a>
                         </li>
                     </ul>
@@ -68,12 +81,12 @@
                             <ul class="profile-input-list">
                                 <li>
                                     <input type="text" class="form-control profile-text"
-                                           id="inputSrc" placeholder="Enter Src"
+                                           id="inputSrc" placeholder="Image Source"
                                            ng-model="newContent.src">
                                 </li>
                                 <li>
                                     <input type="text" class="form-control profile-text"
-                                           id="inputTag" placeholder="Enter Tag"
+                                           id="inputTag" placeholder="Tag1,Tag2,Tag3"
                                            ng-model="newContent.tag">
                                 </li>
                                 <li>

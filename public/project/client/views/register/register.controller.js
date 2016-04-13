@@ -15,18 +15,32 @@
 
         function create(newUser) {
             console.log('Attempting to create account for:', newUser);
-            if (newUser) {
-                UserService.createUser(newUser).then(function (user) {
-                    console.log('Account created for:', user);
-                    $rootScope.$broadcast('userLoggedIn', {'user': user});
-                    registerVm.$location = $location.path('/profile');
-                }, function (err) {
-                    window.alert('This account is already registered.');
-                });
-            }
-            else {
-                window.alert('Enter your information.');
-            }
+            UserService.createUser(newUser).then(function (user) {
+                console.log('Account created for:', user);
+                $rootScope.$broadcast('userLoggedIn', {'user': user});
+                registerVm.$location = $location.path('/profile');
+            }, function (err) {
+                if (err.errors) {
+                    registerVm.error = err.message + ':';
+                    Object.keys(err.errors).forEach(function(errorProperty) {
+                        var error = err.errors[errorProperty];
+                        if (error.hasOwnProperty('message')) {
+                            registerVm.error += ' ' + error.message;
+                        } else {
+                            console.log('Missing error message for error:', error);
+                        }
+                    });
+                } else if (err.code === 11000) {
+                    if (err.errmsg.indexOf('$email') !== -1) {
+                        registerVm.error = 'That email is already registered.';
+                    } else {
+                        registerVm.error = 'That username is already registered.';
+                    }
+                } else {
+                    registerVm.error = 'Unknown Error Occurred.';
+                }
+                console.log(err);
+            });
         }
     }
 })();

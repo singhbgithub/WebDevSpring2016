@@ -24,16 +24,21 @@
         }
 
         function createContent(newContent) {
-            var content = {'src': newContent.src, 'tags': [newContent.tag], 'likes': 0, 'comments': []};
-            ContentService.createContentForUser($rootScope.user._id, content)
-                .then(function (content) {
-                    console.log('New content created.');
-                    populateContent();
-                    // FIXME(bobby): why is this line even here?
-                    $rootScope.currentContent = undefined;
-                }, function (err) {
-                    console.log(err);
-                });
+            if (newContent && newContent.src && newContent.tag) {
+                var content = {'src': newContent.src, 'tags': newContent.tag.split(',')};
+                ContentService.createContentForUser($rootScope.user._id, content)
+                    .then(function (content) {
+                        console.log('New content created.');
+                        populateContent();
+                        // FIXME(bobby): why is this line even here?
+                        $rootScope.currentContent = undefined;
+                    }, function (err) {
+                        contentVm.error = 'An error occurred trying to create content.';
+                        console.log(err);
+                    });
+            } else {
+                contentVm.error = 'Please add a src and tag.';
+            }
         }
 
         function like() {
@@ -45,6 +50,7 @@
                         $rootScope.currentContent = content;
                         console.log('Liked', $rootScope.currentContent);
                     }, function (err) {
+                        contentVm.error = 'An error occurred trying to like.';
                         console.log(err);
                     });
             }
@@ -59,6 +65,7 @@
                         $rootScope.currentContent = content;
                         console.log('Commented', $rootScope.currentContent);
                     }, function (err) {
+                        contentVm.error = 'An error occurred trying to comment.';
                         console.log(err);
                     });
             }
@@ -73,6 +80,7 @@
                         $rootScope.currentContent = content;
                         console.log('Tagged', $rootScope.currentContent);
                     }, function (err) {
+                        contentVm.error = 'An error occurred trying to tag.';
                         console.log(err);
                     });
             }
@@ -85,6 +93,9 @@
                     $rootScope.currentContent = undefined;
                     contentVm.$location = $location.path('/profile');
                 }, function (err) {
+                    console.log(err);
+                }, function (err) {
+                    contentVm.error = 'An error occurred trying to delete.';
                     console.log(err);
                 });
         }
@@ -99,6 +110,7 @@
                 .then(function (contentForUser) {
                     contentVm.contentList = contentForUser;
                 }, function (err) {
+                    contentVm.error = 'An error occurred trying to load the content.';
                     console.log(err);
                 });
         }

@@ -7,6 +7,11 @@
                     <hr class="intro-divider">
                     <form class="form-horizontal">
                         <ul class="intro-social-buttons">
+                            <li  ng-if="registerVm.error">
+                                <div class="alert alert-danger input-text alert-text">
+                                    {{registerVm.error}}
+                                </div>
+                            </li>
                             <li>
                                 <input type="text" class="form-control input-text" id="inputFirstName"
                                        placeholder="First Name" ng-model="newUser.firstName">
