@@ -97,7 +97,7 @@
                         </form>
                     </td></tr>
                     <tr ng-repeat="content in contentVm.contentList track by $index">
-                        <td><a href="#/content" ng-click="contentVm.selectContent($index)">
+                        <td><a href="#/content" class="img-wrap" ng-click="contentVm.selectContent($index)">
                             <img class="content-src" ng-src="{{content.src}}" ng-if="content.src"></a></td>
                     </tr>
                 </table>
