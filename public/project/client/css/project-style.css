@@ -171,6 +171,10 @@ ul.profile-input-list > li {
     width: 100%;
 }
 
+.btn-search {
+    vertical-align: inherit;
+}
+
 /* Content styles */
 .content-src {
     width: 100%;
@@ -180,4 +184,12 @@ ul.profile-input-list > li {
 .tag-list,
 .comment-list {
     display: inline;
+}
+
+.search-result {
+    padding-top: 20px;
+}
+
+.img-wrap {
+    display: block;
 }

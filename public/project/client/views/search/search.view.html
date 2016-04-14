@@ -5,14 +5,23 @@
                 <div class="intro-message">
                     <h1>Thots</h1>
                     <hr class="intro-divider">
+                    <div class="alert alert-danger input-text" ng-if="searchVm.error">
+                        {{searchVm.error}}
+                    </div>
                     <form class="form-horizontal">
                         <input type="text" class="form-control input-text" id="inputQuery"
                                placeholder="Search for a Tag" ng-model="searchQuery">
-                        <a class="btn btn-default btn-lg"
+                        <a class="btn btn-default btn-search"
                            ng-click="searchVm.search(searchQuery)">
                             <span class="account-name">Search</span>
                         </a>
                     </form>
+                </div>
+                <div ng-if="searchVm.resultMessage">{{searchVm.resultMessage}}</div>
+                <div ng-repeat="result in searchVm.results track by $index" class="search-result">
+                    <a class="img-wrap" ng-click="searchVm.selectContent($index)">
+                        <img class="content-src" ng-src="{{result.src}}" ng-if="result.src">
+                    </a>
                 </div>
             </div>
         </div>
