@@ -4,6 +4,9 @@
         bodyParser = require('body-parser'),
         mongoose = require('mongoose'),
         multer = require('multer'),
+        passport = require('passport'),
+        cookieParser = require('cookie-parser'),
+        session = require('express-session'),
         assignmentServerModule = require(__dirname + '/public/assignment/server/app.js'),
         projectServerModule = require(__dirname + '/public/project/server/app.js'),
         app = express(),
@@ -19,6 +22,16 @@
     app.use(bodyParser.urlencoded({ extended: true }));
     // For parsing multipart/form-data
     app.use(multer());
+    
+    // Configure session for the server.
+    app.use(cookieParser());
+    app.use(session({
+        'secret': process.env.SESSION_SECRET,
+        'resave': true,
+        'saveUninitialized': true
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     // Connect to the database dependent on environment.
     if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
