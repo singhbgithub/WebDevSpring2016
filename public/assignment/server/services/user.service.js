@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    var bcrypt = require("bcrypt-nodejs");
+
     /* Add a node module w/ dependencies */
     module.exports = function (app, model) {
         /* TODO(bobby): apis should have permissions ...*/
@@ -54,12 +56,35 @@
          * @param {object} res - node response.
          */
         function createUser(req, res) {
-            var createUserRequest = {
-                'username': req.param('username'),
-                'password': req.param('password'),
-                'emails': req.param('emails'),
-                'phones': req.param('phones')
-            };
+            var emails = req.param('emails'),
+                phones = req.param('phones'),
+                firstName = req.param('firstName'),
+                lastName = req.param('lastName'),
+                username = req.param('username'),
+                password = req.param('password'),
+                roles = req.param('roles'),
+                createUserRequest = {};
+            if (emails) {
+                createUserRequest.emails = emails;
+            }
+            if (phones) {
+                createUserRequest.phones = phones;
+            }
+            if (firstName) {
+                createUserRequest.firstName = firstName;
+            }
+            if (lastName) {
+                createUserRequest.lastName = lastName;
+            }
+            if (username) {
+                createUserRequest.username = username;
+            }
+            if (password) {
+                createUserRequest.password = bcrypt.hashSync(password);
+            }
+            if (roles) {
+                createUserRequest.roles = roles;
+            }
             model.createUser(createUserRequest)
                 .then(function (response) {
                     res.json(response);
@@ -132,6 +157,7 @@
                 firstName = req.param('firstName'),
                 lastName = req.param('lastName'),
                 password = req.param('password'),
+                roles = req.param('roles'),
                 updateUserByIdRequest = {};
             if (emails) {
                 updateUserByIdRequest.emails = emails;
@@ -146,7 +172,10 @@
                 updateUserByIdRequest.lastName = lastName;
             }
             if (password) {
-                updateUserByIdRequest.password = password;
+                updateUserByIdRequest.password = bcrypt.hashSync(password);
+            }
+            if (roles) {
+                updateUserByIdRequest.roles = roles;
             }
             model.updateUserById(req.params.id, updateUserByIdRequest)
                 .then(function (response) {

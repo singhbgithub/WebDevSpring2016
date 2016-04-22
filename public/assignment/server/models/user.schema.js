@@ -9,7 +9,8 @@
             'password': {'type': String, 'required': true},
             'emails': [String],
             'phones': [String],
-            'type': {'type': String, 'default': 'assignment'}
+            'type': {'type': String, 'default': 'assignment'},
+            'roles': {'type': [String], 'default': []}
         }, {'collection': 'user'});
         return userSchema;
     };
