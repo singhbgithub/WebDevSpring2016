@@ -1,6 +1,8 @@
 (function() {
     'use strict';
-    angular.module('ThotApp').config(function($routeProvider) {
+    angular.module('ThotApp').config(config);
+    
+    function config($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home/home.view.html'
@@ -36,7 +38,7 @@
             .otherwise({
                 redirectTo: '/'
             });
-    });
+    }
 
     function isLoggedIn($q, $http, $location, $rootScope) {
         var deferred = $q.defer();

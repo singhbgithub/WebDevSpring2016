@@ -1,6 +1,8 @@
 (function() {
     'use strict';
-    angular.module('FormBuilderApp').config(function($routeProvider) {
+    angular.module('FormBuilderApp').config(config);
+
+    function config($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home/home.view.html'
@@ -47,7 +49,7 @@
             .otherwise({
                 redirectTo: '/'
             });
-    });
+    }
 
     function isLoggedIn($q, $http, $location, $rootScope) {
         var deferred = $q.defer();
