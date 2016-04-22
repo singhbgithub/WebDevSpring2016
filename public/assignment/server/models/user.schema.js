@@ -8,7 +8,8 @@
             'username': {'type': String, 'unique': true, 'required': true},
             'password': {'type': String, 'required': true},
             'emails': [String],
-            'phones': [String]
+            'phones': [String],
+            'type': {'type': String, 'default': 'assignment'}
         }, {'collection': 'user'});
         return userSchema;
     };
