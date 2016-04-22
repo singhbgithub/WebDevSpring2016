@@ -45,10 +45,13 @@
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function() {
+        // FIXME(bobby): find a workaround for the 2 lines below.
+        var projectUserSchema = require(__dirname + '/public/project/server/models/user.schema.js')(mongoose);
+        var projectUserModel = require(__dirname + '/public/project/server/models/user.model.js')(mongoose, projectUserSchema);
         // Load the server for the assignment directory.
-        assignmentServerModule(app, mongoose);
+        assignmentServerModule(app, mongoose, projectUserModel);
         // Load the server for the project directory. Really should have a separate db for project.
-        projectServerModule(app, mongoose);
+        projectServerModule(app, mongoose, projectUserModel);
         app.listen(port, ipaddress);
     });
 })();
