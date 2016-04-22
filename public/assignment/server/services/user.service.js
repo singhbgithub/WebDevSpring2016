@@ -9,6 +9,27 @@
         app.get('/api/assignment/user/:id', findUserById);
         app.put('/api/assignment/user/:id', updateUserById);
         app.delete('/api/assignment/user/:id', deleteUserById);
+        // Admin API
+        app.post("/api/assignment/admin/user", isAdmin, createUser);
+        app.get("/api/assignment/admin/user", isAdmin, routeFindUser);
+        app.get("/api/assignment/admin/user/:id", isAdmin, findUserById);
+        app.put("/api/assignment/admin/user/:id", isAdmin, updateUserById);
+        app.delete("/api/assignment/admin/user/:id", isAdmin, deleteUserById);
+
+        /**
+         * Middle-ware to determine if the request is authorized by a user with the admin role.
+         * @param {object} req - node request.
+         * @param {object} res - node response.
+         * @param {function} next - node next function.
+         */
+        function isAdmin(req, res, next) {
+            var user = req.isAuthenticated() ? req.user : null;
+            if (user && user.roles.indexOf('admin') >= 0) {
+                next();
+            } else {
+                res.send(403);
+            }
+        }
 
         /**
          * Handles the route logic for base user URL.
