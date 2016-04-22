@@ -2,7 +2,7 @@
     'use strict';
     angular.module('FormBuilderApp').controller('FormController', FormController);
 
-    function FormController($location, $rootScope, FormService) {
+    function FormController($rootScope, FormService) {
         var formVm = this;
 
         // Event Handlers
@@ -10,18 +10,12 @@
         formVm.updateForm = updateForm;
         formVm.deleteForm = deleteForm;
         formVm.selectForm = selectForm;
-
-        // We have a logged-in user.
-        if ($rootScope.user.loggedIn) {
-            findFormsForUserAndSetScope();
-        }
-        else {
-            formVm.$location = $location.path('/register');
-        }
+        
+        findFormsForUserAndSetScope();
 
         // Populate the forms
         function findFormsForUserAndSetScope () {
-            FormService.findAllFormsForUserId($rootScope.user._id)
+            FormService.findAllFormsForUserId($rootScope.user.obj._id)
                 .then(function(forms) {
                     formVm.forms = forms;
                 });
@@ -30,7 +24,7 @@
         // Handlers
         function addForm(formTitle) {
             var form = {'title': formTitle},
-                userId = $rootScope.user._id;
+                userId = $rootScope.user.obj._id;
             FormService.createFormForUser(userId, form)
                 .then(function() {
                     findFormsForUserAndSetScope();

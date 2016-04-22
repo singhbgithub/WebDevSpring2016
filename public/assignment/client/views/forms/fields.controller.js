@@ -14,14 +14,9 @@
 
         // Scope Variables
         fieldVm.sortableOptions = sortableOptionsGenerator();
-
-        // We have a logged-in user.
-        if ($rootScope.user.loggedIn) {
-            fieldVm.formId = $routeParams.formId;
-            findFieldsForFormAndSetScope();
-        } else {
-            fieldVm.$location = $location.path('/register');
-        }
+        
+        fieldVm.formId = $routeParams.formId;
+        findFieldsForFormAndSetScope();
 
         // Populate the fields
         function findFieldsForFormAndSetScope() {

@@ -2,31 +2,26 @@
     'use strict';
     angular.module('FormBuilderApp').controller('LoginController', LoginController);
 
-    function LoginController($location, $rootScope, UserService) {
+    function LoginController($location, $rootScope, SecurityService) {
         var loginVm = this;
 
         // Event Handlers
         loginVm.login = login;
 
-        // Must not be logged-in to view this page.
-        if ($rootScope.user.loggedIn) {
-            loginVm.$location = $location.path('/profile');
-        }
-
         function login(username, password) {
             if (username && password) {
-                UserService.findUserByCredentials(username, password)
-                    .then(function(user) {
-                        if (user) {
-                            $rootScope.$broadcast('userLoggedIn', {'user': user});
-                        } else {
-                            window.alert('No associated account. Please sign up.');
-                            loginVm.$location = $location.path('/register');
+                SecurityService.login(username, password)
+                    .then(function() {
+                        if (!$rootScope.user.obj) {
+                            loginVm.error = 'No associated account. Ensure your credentials are correct.';
                         }
+                        loginVm.$location = $location.path('/profile');
+                    }, function (err) {
+                        loginVm.error = err;
                     });
             }
             else {
-                window.alert('Enter your information.');
+                loginVm.error = 'Enter your information.';
             }
         }
     }
