@@ -29,22 +29,22 @@
                         </li>
                         <li>
                             <input type="text" class="form-control profile-text"
-                                   id="inputFirstName" placeholder="{{user.firstName || 'First Name'}}"
+                                   id="inputFirstName" placeholder="{{user.obj.firstName || 'First Name'}}"
                                    ng-model="updateInfo.firstName">
                         </li>
                         <li>
                             <input type="text" class="form-control profile-text"
-                                   id="inputLastName" placeholder="{{user.lastName || 'Last Name'}}"
+                                   id="inputLastName" placeholder="{{user.obj.lastName || 'Last Name'}}"
                                    ng-model="updateInfo.lastName">
                         </li>
                         <li>
                             <input type="email" class="form-control profile-text"
-                                   id="inputEmail" placeholder="{{user.email || 'Email'}}"
+                                   id="inputEmail" placeholder="{{user.obj.email || 'Email'}}"
                                    ng-model="updateInfo.email">
                         </li>
                         <li>
                             <input type="text" class="form-control profile-text"
-                                   id="inputPhone" placeholder="{{user.phone || 'Phone'}}"
+                                   id="inputPhone" placeholder="{{user.obj.phone || 'Phone'}}"
                                    ng-model="updateInfo.phone">
                         </li>
                         <li>

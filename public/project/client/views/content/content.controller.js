@@ -14,19 +14,14 @@
         contentVm.selectContent = selectContent;
         // Scope Variables
         contentVm.contentList = [];
-
-        // We have a logged-in user.
-        if ($rootScope.user.loggedIn) {
-            // Populate the content
-            populateContent();
-        } else {
-            contentVm.$location = $location.path('/register');
-        }
+        
+        // Populate the content
+        populateContent();
 
         function createContent(newContent) {
             if (newContent && newContent.src && newContent.tag) {
                 var content = {'src': newContent.src, 'tags': newContent.tag.split(',')};
-                ContentService.createContentForUser($rootScope.user._id, content)
+                ContentService.createContentForUser($rootScope.user.obj._id, content)
                     .then(function (content) {
                         console.log('New content created.');
                         populateContent();
@@ -106,7 +101,7 @@
         }
 
         function populateContent() {
-            ContentService.findAllContentForUser($rootScope.user._id)
+            ContentService.findAllContentForUser($rootScope.user.obj._id)
                 .then(function (contentForUser) {
                     contentVm.contentList = contentForUser;
                 }, function (err) {

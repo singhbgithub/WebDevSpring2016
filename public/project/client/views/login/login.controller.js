@@ -2,25 +2,22 @@
     'use strict';
     angular.module('ThotApp').controller('LoginController', LoginController);
 
-    function LoginController($location, $rootScope, UserService) {
+    function LoginController($location, $rootScope, SecurityService) {
         var loginVm = this;
 
         // Scope Event Handlers
         loginVm.login = login;
 
-        // Must not be logged-in to view this page.
-        if ($rootScope.user.loggedIn) {
-            loginVm.$location = $location.path('/profile');
-        }
-
         function login(username, password) {
             if (username && password) {
-                UserService.findUserByCredentials(username, password)
-                    .then(function (user) {
-                        $rootScope.$broadcast('userLoggedIn', {'user': user});
+                SecurityService.login(username, password)
+                    .then(function() {
+                        if (!$rootScope.user.obj) {
+                            loginVm.error = 'No associated account. Ensure your credentials are correct.';
+                        }
+                        loginVm.$location = $location.path('/profile');
                     }, function (err) {
-                        loginVm.error = 'Your credentials could not be validated.';
-                        console.log(err);
+                        loginVm.error = err;
                     });
             }
             else {

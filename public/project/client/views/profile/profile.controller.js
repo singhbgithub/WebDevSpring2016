@@ -2,26 +2,21 @@
     'use strict';
     angular.module('ThotApp').controller('ProfileController', ProfileController);
 
-    function ProfileController($location, $rootScope, UserService) {
+    function ProfileController($rootScope, UserService) {
         var profileVm = this;
 
         // Scope Event Handlers
         profileVm.update = update;
 
-        // Must be logged in to view this page.
-        if (!$rootScope.user.loggedIn) {
-            profileVm.$location = $location.path('/register');
-        }
-
         function update(updateInfo) {
                 // TODO(bobby): handle this check server side?
-                if (updateInfo && updateInfo.oldPassword === $rootScope.user.password) {
+                if (updateInfo && updateInfo.oldPassword === $rootScope.user.obj.password) {
                     if (updateInfo.newPassword && updateInfo.newPassword !== updateInfo.newPassword2) {
                         profileVm.error = 'New passwords do not match.';
                     } else {
-                        UserService.updateUser($rootScope.user._id, updateInfo)
+                        UserService.updateUser($rootScope.user.obj._id, updateInfo)
                             .then(function (user) {
-                                $rootScope.user = user;
+                                $rootScope.user.obj = user;
                                 console.log('Account updated: ', user);
                                 profileVm.success = 'Account Updated';
                             }, function (err) {
