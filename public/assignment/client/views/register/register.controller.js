@@ -11,14 +11,16 @@
 
         function create(user) {
             // We store a list of emails.
-            if (user.email) {
-                user.emails = [user.email];
-                delete user.email;
-            }
-            // We store a list of phones.
-            if (user.phone) {
-                user.phones = [user.phone];
-                delete user.phone;
+            if (user) {
+                if (user.email) {
+                    user.emails = [user.email];
+                    delete user.email;
+                }
+                // We store a list of phones.
+                if (user.phone) {
+                    user.phones = [user.phone];
+                    delete user.phone;
+                }
             }
             SecurityService.register(user)
                 .then(function() {
