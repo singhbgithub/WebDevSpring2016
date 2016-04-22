@@ -6,7 +6,10 @@
                 templateUrl: 'views/home/home.view.html'
             })
             .when('/admin', {
-                templateUrl: 'views/admin/admin.view.html'
+                templateUrl: 'views/admin/admin.view.html',
+                controller: 'AdminController',
+                controllerAs: 'adminVm',
+                resolve: {isLoggedInAndAdmin: isLoggedInAndAdmin}
             })
             .when('/forms', {
                 templateUrl: 'views/forms/forms.view.html',
@@ -51,9 +54,10 @@
 
         $http.get('/api/assignment/loggedin').then(function(response) {
             if (response.data && response.data !== '0') {
+                var user = response.data;
                 $rootScope.user = {
                     'loggedIn': true,
-                    'isAdmin': false, // TODO(bobby): add logic here when roles added to schema
+                    'isAdmin': user && user.roles.indexOf('admin') >= 0,
                     'obj': response.data
                 };
                 deferred.resolve();
@@ -80,6 +84,35 @@
                 deferred.reject();
             }
         }, function() {
+            deferred.reject();
+        });
+
+        return deferred.promise;
+    }
+
+    function isLoggedInAndAdmin($q, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+
+        $http.get('/api/assignment/loggedin').then(function(response) {
+            if (response.data && response.data !== '0') {
+                var user = response.data;
+                $rootScope.user = {
+                    'loggedIn': true,
+                    'isAdmin': user && user.roles.indexOf('admin') >= 0,
+                    'obj': response.data
+                };
+                if ($rootScope.user.isAdmin) {
+                    deferred.resolve();
+                } else {
+                    $location.url('/profile');
+                    deferred.reject();
+                }
+            } else {
+                $location.url('/login');
+                deferred.reject();
+            }
+        }, function() {
+            $location.url('/login');
             deferred.reject();
         });
 
