@@ -5,7 +5,8 @@
     function config($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/home/home.view.html'
+                templateUrl: 'views/home/home.view.html',
+                resolve: {setLoggedInUser: setLoggedInUser}
             })
             .when('/admin', {
                 templateUrl: 'views/admin/admin.view.html',
@@ -26,7 +27,8 @@
                 resolve: {loggedIn: isLoggedIn}
             })
             .when('/home', {
-                templateUrl: 'views/home/home.view.html'
+                templateUrl: 'views/home/home.view.html',
+                resolve: {setLoggedInUser: setLoggedInUser}
             })
             .when('/profile', {
                 templateUrl: 'views/profile/profile.view.html',
@@ -49,6 +51,26 @@
             .otherwise({
                 redirectTo: '/'
             });
+    }
+
+    function setLoggedInUser($q, $http, $rootScope) {
+        var deferred = $q.defer();
+
+        $http.get('/api/assignment/loggedin').then(function(response) {
+            if (response.data && response.data !== '0') {
+                var user = response.data;
+                $rootScope.user = {
+                    'loggedIn': true,
+                    'isAdmin': user && user.roles.indexOf('admin') >= 0,
+                    'obj': response.data
+                };
+            }
+            deferred.resolve();
+        }, function() {
+            deferred.resolve();
+        });
+
+        return deferred.promise;
     }
 
     function isLoggedIn($q, $http, $location, $rootScope) {
