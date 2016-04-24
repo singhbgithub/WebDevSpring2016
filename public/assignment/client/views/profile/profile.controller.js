@@ -25,7 +25,7 @@
                 UserService.updateUser($rootScope.user.obj._id, updatedUser)
                     .then(function (user) {
                         $rootScope.user.obj = user;
-                        console.log('Account Updated. User: ', response);
+                        console.log('Account Updated. User: ', user);
                     }, function (err) {
                         profileVm.error = err;
                     });
