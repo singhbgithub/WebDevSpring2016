@@ -26,7 +26,7 @@
     // Configure session for the server.
     app.use(cookieParser());
     app.use(session({
-        'secret': process.env.SESSION_SECRET,
+        'secret': process.env.SESSION_SECRET || 'themotion',
         'resave': true,
         'saveUninitialized': true
     }));
