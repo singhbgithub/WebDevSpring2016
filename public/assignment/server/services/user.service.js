@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var bcrypt = require("bcrypt-nodejs");
+    var bcrypt = require('bcrypt-nodejs');
 
     /* Add a node module w/ dependencies */
     module.exports = function (app, model) {
@@ -12,11 +12,11 @@
         app.put('/api/assignment/user/:id', updateUserById);
         app.delete('/api/assignment/user/:id', deleteUserById);
         // Admin API
-        app.post("/api/assignment/admin/user", isAdmin, createUser);
-        app.get("/api/assignment/admin/user", isAdmin, routeFindUser);
-        app.get("/api/assignment/admin/user/:id", isAdmin, findUserById);
-        app.put("/api/assignment/admin/user/:id", isAdmin, updateUserById);
-        app.delete("/api/assignment/admin/user/:id", isAdmin, deleteUserById);
+        app.post('/api/assignment/admin/user', isAdmin, createUser);
+        app.get('/api/assignment/admin/user', isAdmin, routeFindUser);
+        app.get('/api/assignment/admin/user/:id', isAdmin, findUserById);
+        app.put('/api/assignment/admin/user/:id', isAdmin, updateUserById);
+        app.delete('/api/assignment/admin/user/:id', isAdmin, deleteUserById);
 
         /**
          * Middle-ware to determine if the request is authorized by a user with the admin role.

@@ -13,7 +13,7 @@
                 SecurityService.login(username, password)
                     .then(function() {
                         if (!$rootScope.user.obj) {
-                            loginVm.error = 'No associated account. Ensure your credentials are correct.';
+                            loginVm.error = 'No associated account. Check your credentials.';
                         }
                         loginVm.$location = $location.path('/profile');
                     }, function (err) {

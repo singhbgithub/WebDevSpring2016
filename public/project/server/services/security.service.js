@@ -2,7 +2,7 @@
     'use strict';
     var passport = require('passport'),
         LocalStrategy = require('passport-local').Strategy,
-        bcrypt = require("bcrypt-nodejs"),
+        bcrypt = require('bcrypt-nodejs'),
         passportName = 'project';
 
     module.exports = function(app, model) {
@@ -58,7 +58,7 @@
             model.createUser(user)
                 .then(function(createdUser) {
                     req.login(createdUser, function(err) {
-                        if(err) {
+                        if (err) {
                             res.json({'error': err});
                         }
                         res.json(req.user);

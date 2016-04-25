@@ -23,7 +23,7 @@
                 findAllForms(req, res);
             }
         }
-        
+
         /**
          * Creates a form.
          * @param {object} req - node request.

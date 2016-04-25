@@ -24,7 +24,7 @@
             };
             model.createFieldForForm(req.params.formId, createFieldForFormRequest)
                 .then(function(field) {
-                    res.json(field); 
+                    res.json(field);
                 });
         }
 
@@ -88,5 +88,5 @@
                     res.json(field);
                 });
         }
-    }
+    };
 })();

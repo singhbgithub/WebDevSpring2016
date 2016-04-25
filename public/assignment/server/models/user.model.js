@@ -22,7 +22,7 @@
          * @param {object} createUserRequest - the request.
          * @param {string} createUserRequest.username - the new user's username.
          * @param {string} createUserRequest.password - the new user's password.
-         * @param {[string]} createUserRequest.emails - the new user's emails.
+         * @param {string[]} createUserRequest.emails - the new user's emails.
          * @return {object} the created user.
          */
         function createUser(createUserRequest) {
@@ -44,7 +44,7 @@
         function findAllUsers() {
             var deferred = q.defer();
             User.find({}, function(err, users) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(users);
@@ -61,7 +61,7 @@
         function findUserById(id) {
             var deferred = q.defer();
             User.findById(id, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(user);
@@ -78,7 +78,7 @@
         function findUserByUsername(username) {
             var deferred = q.defer();
             User.findOne({'username': username}, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(user);
@@ -97,7 +97,7 @@
         function findUserByCredentials(findUserByCredentialsRequest) {
             var deferred = q.defer();
             User.findOne(findUserByCredentialsRequest, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(user);
@@ -119,11 +119,11 @@
         function updateUserById(id, updateUserByIdRequest) {
             var deferred = q.defer();
             User.findByIdAndUpdate(id, updateUserByIdRequest, function(err) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     User.findById(id, function (err, user) {
-                        if(err) {
+                        if (err) {
                             deferred.reject(err);
                         } else {
                             deferred.resolve(user);
@@ -142,7 +142,7 @@
         function deleteUserById(id) {
             var deferred = q.defer();
             User.findByIdAndRemove(id, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(user);

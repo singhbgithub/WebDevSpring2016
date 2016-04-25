@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('ThotApp').config(config);
-    
+
     function config($routeProvider) {
         $routeProvider
             .when('/', {

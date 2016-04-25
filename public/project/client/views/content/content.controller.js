@@ -14,7 +14,7 @@
         contentVm.selectContent = selectContent;
         // Scope Variables
         contentVm.contentList = [];
-        
+
         // Populate the content
         populateContent();
 

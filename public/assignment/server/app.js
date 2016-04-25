@@ -11,7 +11,8 @@
         // Load form model & service.
         var fieldSchema = require(__dirname + '/models/field.schema.js')(mongoose);
         var formSchema = require(__dirname + '/models/form.schema.js')(mongoose, fieldSchema);
-        var formModel = require(__dirname + '/models/form.model.js')(mongoose, fieldSchema, formSchema);
+        var formModel = require(__dirname + '/models/form.model.js')(mongoose, fieldSchema,
+            formSchema);
         require(__dirname + '/services/form.service.js')(app, formModel);
         // Load field service.
         require(__dirname + '/services/field.service.js')(app, formModel);

@@ -35,7 +35,7 @@
         function findAllUsers() {
             var deferred = q.defer();
             User.find({}, function(err, users) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(users);
@@ -47,7 +47,7 @@
         function findUserById(id) {
             var deferred = q.defer();
             User.findById(id, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else if (!user) {
                     deferred.reject('No user with id ' + id + ' found.');
@@ -61,7 +61,7 @@
         function findUserByUsername(username) {
             var deferred = q.defer();
             User.findOne({'username': username}, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else if (!user) {
                     deferred.reject('User ' + username + ' not found.');
@@ -75,7 +75,7 @@
         function findUserByCredentials(username, password) {
             var deferred = q.defer();
             User.findOne({'username': username, 'password': password}, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else if (!user) {
                     deferred.reject('User ' + username + ' not found with specified credentials.');
@@ -89,11 +89,11 @@
         function updateUserById(id, updateUserByIdRequest) {
             var deferred = q.defer();
             User.findByIdAndUpdate(id, updateUserByIdRequest, function(err) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     User.findById(id, function (err, user) {
-                        if(err) {
+                        if (err) {
                             deferred.reject(err);
                         } else if (!user) {
                             deferred.reject('No updated user with id ' + id + ' found.');
@@ -109,7 +109,7 @@
         function deleteUserById(id) {
             var deferred = q.defer();
             User.findByIdAndRemove(id, function(err, user) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else if (!user) {
                     deferred.reject('No user with id ' + id + ' found for deletion.');
@@ -119,5 +119,5 @@
             });
             return deferred.promise;
         }
-    }
+    };
 })();

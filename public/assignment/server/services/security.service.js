@@ -2,11 +2,11 @@
     'use strict';
     var passport = require('passport'),
         LocalStrategy = require('passport-local').Strategy,
-        bcrypt = require("bcrypt-nodejs"),
+        bcrypt = require('bcrypt-nodejs'),
         passportName = 'assignment';
 
     module.exports = function(app, model, projectModel) {
-        
+
         passport.use(passportName, new LocalStrategy(strategy));
         passport.serializeUser(serializeUser);
         passport.deserializeUser(deserializeUser);
@@ -52,7 +52,7 @@
             model.createUser(user)
                 .then(function(createdUser) {
                     req.login(createdUser, function(err) {
-                        if(err) {
+                        if (err) {
                             res.json({'error': err});
                         }
                         res.json(req.user);
@@ -61,7 +61,7 @@
                     res.json({'error': err});
                 });
         }
-        
+
         function serializeUser(user, done) {
             done(null, {'id': user._id, 'type': user.type});
         }

@@ -30,7 +30,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findAllUsers() {
             var deferred = $q.defer();
@@ -41,7 +41,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findUserById(id) {
             var deferred = $q.defer();
@@ -52,7 +52,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findUserByUsername(username) {
             var deferred = $q.defer(),
@@ -64,7 +64,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findUserByCredentials(username, password) {
             var deferred = $q.defer(),
@@ -76,7 +76,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function updateUser(id, user) {
             var deferred = $q.defer();
@@ -87,7 +87,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function deleteUserById(id) {
             var deferred = $q.defer();
@@ -98,6 +98,6 @@
                 });
 
             return deferred.promise;
-        };
+        }
     }
 })();

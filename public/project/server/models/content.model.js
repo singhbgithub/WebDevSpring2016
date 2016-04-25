@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    
+
     var q = require('q'); /* Dependencies */
 
     /* Add a node module */
@@ -33,7 +33,7 @@
         function findAllContent() {
             var deferred = q.defer();
             Content.find({}, function (err, allContent) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(allContent);
@@ -45,7 +45,7 @@
         function findAllContentForUserId(userId) {
             var deferred = q.defer();
             Content.find({'userId': userId}, function (err, userContent) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(userContent);
@@ -57,7 +57,7 @@
         function findContentById(contentId) {
             var deferred = q.defer();
             Content.findById(contentId, function (err, content) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(content);
@@ -83,7 +83,7 @@
         function updateContentById(contentId, updateContentRequest) {
             var deferred = q.defer();
             Content.findByIdAndUpdate(contentId, updateContentRequest, function(err) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     Content.findById(contentId, function (err, content) {
@@ -101,7 +101,7 @@
         function deleteContentById(contentId) {
             var deferred = q.defer();
             Content.findByIdAndRemove(contentId, function(err, content) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(content);
@@ -109,5 +109,5 @@
             });
             return deferred.promise;
         }
-    }
+    };
 })();

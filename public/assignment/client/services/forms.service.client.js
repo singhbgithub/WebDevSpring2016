@@ -25,7 +25,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findAllForms() {
             var deferred = $q.defer();
@@ -36,7 +36,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findAllFormsForUserId(userId) {
             var deferred = $q.defer();
@@ -47,7 +47,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findFormById(id) {
             var deferred = $q.defer();
@@ -58,7 +58,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function findFormByTitle(title) {
             var deferred = $q.defer(),
@@ -70,7 +70,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function updateFormById(id, form) {
             var deferred = $q.defer();
@@ -81,7 +81,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function deleteFormById(id) {
             var deferred = $q.defer();
@@ -92,6 +92,6 @@
                 });
 
             return deferred.promise;
-        };
+        }
     }
 })();

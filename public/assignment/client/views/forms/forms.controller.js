@@ -10,7 +10,7 @@
         formVm.updateForm = updateForm;
         formVm.deleteForm = deleteForm;
         formVm.selectForm = selectForm;
-        
+
         findFormsForUserAndSetScope();
 
         // Populate the forms
@@ -57,7 +57,7 @@
         function selectForm(index) {
             formVm.currentForm = formVm.forms[index];
             // In case the form obj has not been instantiated.
-            if (formVm.form == undefined || formVm.form == null) {
+            if (formVm.form === undefined || formVm.form === null) {
                 formVm.form = {};
             }
             formVm.form.title = formVm.currentForm.title;

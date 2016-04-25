@@ -23,7 +23,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function getFieldsForForm(formId) {
             var deferred = $q.defer();
@@ -34,7 +34,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function getFieldForForm(formId, fieldId) {
             var deferred = $q.defer();
@@ -45,7 +45,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function updateField(formId, fieldId, field) {
             var deferred = $q.defer();
@@ -56,7 +56,7 @@
                 });
 
             return deferred.promise;
-        };
+        }
 
         function deleteFieldFromForm(formId, fieldId) {
             var deferred = $q.defer();
@@ -67,6 +67,6 @@
                 });
 
             return deferred.promise;
-        };
+        }
     }
 })();

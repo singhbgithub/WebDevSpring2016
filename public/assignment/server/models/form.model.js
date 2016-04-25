@@ -37,7 +37,7 @@
         function createForm(createFormRequest) {
             var deferred = q.defer();  // TODO(bobby): this deferral code prob code be abstracted
             Form.create(createFormRequest, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form);
@@ -53,7 +53,7 @@
         function findAllForms() {
             var deferred = q.defer();
             Form.find({}, function(err, forms) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(forms);
@@ -70,7 +70,7 @@
         function findAllFormsForUserId(userId) {
             var deferred = q.defer();
             Form.find({'userId': userId}, function(err, forms) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(forms);
@@ -87,7 +87,7 @@
         function findFormById(id) {
             var deferred = q.defer();
             Form.findById(id, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form);
@@ -104,7 +104,7 @@
         function findFormByTitle(title) {
             var deferred = q.defer();
             Form.findOne({'title': title}, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form);
@@ -125,7 +125,7 @@
         function updateFormById(id, updateFormByIdRequest) {
             var deferred = q.defer();
             Form.findByIdAndUpdate(id, updateFormByIdRequest, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form);
@@ -142,7 +142,7 @@
         function deleteFormById(id) {
             var deferred = q.defer();
             Form.findByIdAndRemove(id, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form);
@@ -156,7 +156,7 @@
             var deferred = q.defer();
             // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
             Form.findById(formId, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     form.fields.push(field);
@@ -171,7 +171,7 @@
             var deferred = q.defer();
             // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
             Form.findById(formId, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(form.fields);
@@ -197,7 +197,7 @@
             var deferred = q.defer();
             // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
             Form.findOne({'_id': formId, 'fields._id': fieldId}, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     var savedField = form.fields.id(fieldId);
@@ -215,7 +215,7 @@
             var deferred = q.defer();
             // TODO(bobby): don't agree w/ the embedded field document structure. Should be relational.
             Form.findById(formId, function(err, form) {
-                if(err) {
+                if (err) {
                     deferred.reject(err);
                 } else {
                     var field = form.fields.id(fieldId).remove();

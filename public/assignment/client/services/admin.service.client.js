@@ -4,7 +4,7 @@
     angular.module('FormBuilderApp').factory('AdminService', AdminService);
 
     function AdminService($http, $q) {
-        
+
         var service = {
             'createUser': createUser,
             'findAllUsers': findAllUsers,
@@ -69,7 +69,7 @@
 
             return deferred.promise;
         }
-        
+
         function updateUser(id, user) {
             var deferred = $q.defer();
 

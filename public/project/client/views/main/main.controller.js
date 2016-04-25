@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('ThotApp').controller('MainController', MainController);
-    
+
     function MainController($location, $rootScope) {
         var mainVm = this;
         //Scope Variables

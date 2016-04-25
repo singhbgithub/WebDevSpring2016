@@ -14,7 +14,7 @@
 
         // Scope Variables
         fieldVm.sortableOptions = sortableOptionsGenerator();
-        
+
         fieldVm.formId = $routeParams.formId;
         findFieldsForFormAndSetScope();
 
@@ -71,7 +71,7 @@
                             findFieldsForFormAndSetScope();
                         });
                 }
-            }
+            };
         }
 
         function addField(newFieldType) {
@@ -91,7 +91,7 @@
         // Event Handlers
         modalVm.update = update;
         modalVm.cancel = cancel;
-        
+
         // Scope Variables
         modalVm.fieldToEdit = angular.copy(field);
         modalVm.hasPlaceholder = field.type === 'TEXT' || field.type === 'TEXTAREA' ||

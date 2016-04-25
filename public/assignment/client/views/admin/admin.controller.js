@@ -71,7 +71,7 @@
                     adminVm.error = err;
                 });
         }
-        
+
         function selectUser(index) {
             adminVm.selectedUser = adminVm.users[index];
             adminVm.newUser = {
