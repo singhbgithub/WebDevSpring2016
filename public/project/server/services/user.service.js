@@ -2,7 +2,7 @@
     'use strict';
 
     var bcrypt = require('bcrypt-nodejs');
-    
+
     /* Add a node module w/ dependencies */
     module.exports = function (app, model) {
         /* TODO(bobby): apis should have permissions ...*/
