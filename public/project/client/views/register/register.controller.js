@@ -14,7 +14,7 @@
                     if (!$rootScope.user.obj) {
                         registerVm.error = 'Error signing up!';
                     } else {
-                        registerVm.$location = $location.path('/profile');
+                        registerVm.$location = $location.path('/search');
                     }
                 }, function (err) {
                     registerVm.error = err;

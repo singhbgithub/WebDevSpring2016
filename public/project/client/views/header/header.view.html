@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/register" ng-hide="user.loggedIn">Register</a></li>
                 <li><a href="#/login" ng-hide="user.loggedIn">Login</a></li>
-                <li><a href="#/profile" ng-show="user.loggedIn">{{ user.obj.username }}</a></li>
+                <li><a href="#/my_content" ng-show="user.loggedIn">{{ user.obj.username }}</a></li>
                 <li><a class="no-link" ng-click="logout()" ng-show="user.loggedIn">Logout</a></li>
             </ul>
         </div>

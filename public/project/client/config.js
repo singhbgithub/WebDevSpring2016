@@ -26,6 +26,12 @@
                 controllerAs: 'profileVm',
                 resolve: {loggedIn: isLoggedIn}
             })
+            .when('/my_content', {
+                templateUrl: 'views/content/my-content.view.html',
+                controller: 'ContentController',
+                controllerAs: 'myContentVm',
+                resolve: {loggedIn: isLoggedIn}
+            })
             .when('/search', {
                 templateUrl: 'views/search/search.view.html',
                 controller: 'SearchController',

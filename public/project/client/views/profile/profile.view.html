@@ -1,20 +1,11 @@
 <div class="profile-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
                 <div class="profile-message">
                     <h2>Profile Settings</h2>
                 </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="profile-message">
-                    <h2>Your Content</h2>
-                </div>
-            </div>
-            <div class="col-lg-12">
                 <hr class="profile-divider">
-            </div>
-            <div class="col-lg-4">
                 <form class="form-horizontal">
                     <ul class="profile-input-list">
                         <li ng-if="profileVm.error">
@@ -66,41 +57,13 @@
                                    ng-model="updateInfo.oldPassword">
                         </li>
                         <li>
-                            <a class="btn btn-default btn-lg btn-profile"
+                            <a class="btn btn-default btn-lg profile-text"
                                ng-click="profileVm.update(updateInfo)">
                                 <span class="account-name">Update Profile</span>
                             </a>
                         </li>
                     </ul>
                 </form>
-            </div>
-            <div class="col-lg-8 border-left" ng-controller="ContentController as contentVm">
-                <table>
-                    <tr><td>
-                        <form class="form-horizontal">
-                            <ul class="profile-input-list">
-                                <li>
-                                    <input type="text" class="form-control profile-text"
-                                           id="inputSrc" placeholder="Image Source"
-                                           ng-model="newContent.src">
-                                </li>
-                                <li>
-                                    <input type="text" class="form-control profile-text"
-                                           id="inputTag" placeholder="Tag1,Tag2,Tag3"
-                                           ng-model="newContent.tag">
-                                </li>
-                                <li>
-                                    <a class="btn btn-default btn-lg btn-profile"
-                                       ng-click="contentVm.createContent(newContent)">Post</a>
-                                </li>
-                            </ul>
-                        </form>
-                    </td></tr>
-                    <tr ng-repeat="content in contentVm.contentList track by $index">
-                        <td><a href="#/content" class="img-wrap" ng-click="contentVm.selectContent($index)">
-                            <img class="content-src" ng-src="{{content.src}}" ng-if="content.src"></a></td>
-                    </tr>
-                </table>
             </div>
         </div>
     </div>

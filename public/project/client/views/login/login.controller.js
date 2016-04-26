@@ -15,7 +15,7 @@
                         if (!$rootScope.user.obj) {
                             loginVm.error = 'No associated account. Check your credentials.';
                         }
-                        loginVm.$location = $location.path('/profile');
+                        loginVm.$location = $location.path('/search');
                     }, function (err) {
                         loginVm.error = err;
                     });

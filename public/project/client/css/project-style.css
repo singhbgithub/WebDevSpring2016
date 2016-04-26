@@ -131,10 +131,10 @@ ul.intro-social-buttons > li:last-child {
 /* Profile Page styles TODO(bobby) organize css styles better - use LESS */
 .profile-header {
     background-color: #fff;
+    text-align: center;
 }
 
-.profile-message,
-.content-message {
+.profile-message {
     padding-top: 51px;
 }
 
@@ -150,6 +150,20 @@ ul.intro-social-buttons > li:last-child {
     margin-bottom: 0;
 }
 
+@media(min-width:480px) {
+    .profile-divider,
+    .profile-text {
+        width: 400px;
+    }
+}
+
+@media(min-width:640px) {
+    .profile-divider,
+    .profile-text {
+        width: 560px;
+    }
+}
+
 ul.profile-input-list {
     padding-top: 16px;
     padding-left: 0;
@@ -161,24 +175,39 @@ ul.profile-input-list > li {
     padding: 0;
 }
 
-@media(min-width:1170px) {
-    .border-left {
-        border-left: 1px solid rgba(0,0,0,0.2);
-    }
-}
-
-.btn-profile {
-    width: 100%;
-}
-
 .btn-search {
     vertical-align: inherit;
 }
 
 /* Content styles */
+.content-header {
+    background-color: #fff;
+    text-align: center;
+}
+
 .content-src {
     width: 100%;
     height: auto;
+}
+
+.content-detail-src {
+    max-width: 100%;
+    max-height: 100vh;
+}
+
+.content-message {
+    padding-top: 51px;
+}
+
+ul.content-input-list {
+    padding-top: 16px;
+    padding-left: 0;
+}
+
+ul.content-input-list > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0;
 }
 
 .tag-list,
