@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    var bcrypt = require('bcrypt-nodejs');
+    
     /* Add a node module w/ dependencies */
     module.exports = function (app, model) {
         /* TODO(bobby): apis should have permissions ...*/
@@ -16,14 +18,31 @@
          * @param {object} res - node response.
          */
         function createUser(req, res) {
-            var createUserRequest = {
-                'username': req.param('username'),
-                'password': req.param('password'),
-                'firstName': req.param('firstName'),
-                'lastName': req.param('lastName'),
-                'email': req.param('email'),
-                'phone': req.param('phone')
-            };
+            var email = req.param('email'),
+                phone = req.param('phone'),
+                firstName = req.param('firstName'),
+                lastName = req.param('lastName'),
+                username = req.param('username'),
+                password = req.param('password'),
+                createUserRequest = {};
+            if (email) {
+                createUserRequest.email = email;
+            }
+            if (phone) {
+                createUserRequest.phone = phone;
+            }
+            if (firstName) {
+                createUserRequest.firstName = firstName;
+            }
+            if (lastName) {
+                createUserRequest.lastName = lastName;
+            }
+            if (username) {
+                createUserRequest.username = username;
+            }
+            if (password) {
+                createUserRequest.password = bcrypt.hashSync(password);
+            }
             model.createUser(createUserRequest)
                 .then(function (response) {
                     res.json(response);
@@ -133,7 +152,7 @@
                 updateUserByIdRequest.lastName = lastName;
             }
             if (password) {
-                updateUserByIdRequest.password = password;
+                updateUserByIdRequest.password = bcrypt.hashSync(password);
             }
             model.updateUserById(req.params.id, updateUserByIdRequest)
                 .then(function (response) {

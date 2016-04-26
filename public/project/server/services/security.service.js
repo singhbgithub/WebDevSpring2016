@@ -21,6 +21,7 @@
         app.get('/api/project/loggedin', loggedin);
         app.post('/api/project/logout', logout);
         app.post('/api/project/register', register);
+        app.post('/api/project/validate', validatePassword);
 
         function strategy(username, password, done) {
             model.findUserByUsername(username)
@@ -66,6 +67,24 @@
                 }, function(err) {
                     res.json({'error': err});
                 });
+        }
+
+        function validatePassword(req, res) {
+            var password = req.param('password');
+            if (!req.user) {
+                res.json({'error': 'No logged in user.'});
+            } else {
+                model.findUserByUsername(req.user.username)
+                    .then(function(user) {
+                        if (!user) {
+                            res.json({'error': 'User does not exist.'});
+                        } else {
+                            res.json(bcrypt.compareSync(password, user.password) ? true : false);
+                        }
+                    }, function(err) {
+                        res.json({'error': err});
+                    });
+            }
         }
     };
 })();

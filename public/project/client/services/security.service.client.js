@@ -8,7 +8,8 @@
             login: login,
             loggedIn: loggedIn,
             logout: logout,
-            register: register
+            register: register,
+            validate: validate
         };
 
         return service;
@@ -102,6 +103,21 @@
                     }
                 }, function () {
                     deferred.reject('There was an error registering.');
+                });
+
+            return deferred.promise;
+        }
+
+        function validate(password) {
+            var deferred = $q.defer();
+
+            $http.post('/api/project/validate', {'password': password})
+                .then(function (response) {
+                    var isValid = response.data;
+                    console.log('Valid password?', isValid);
+                    deferred.resolve(password);
+                }, function () {
+                    deferred.reject('There was an error validating the password.');
                 });
 
             return deferred.promise;
