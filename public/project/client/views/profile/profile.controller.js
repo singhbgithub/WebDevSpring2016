@@ -2,13 +2,14 @@
     'use strict';
     angular.module('ThotApp').controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, UserService, SecurityService) {
+    function ProfileController($rootScope, $location, UserService, SecurityService) {
         var profileVm = this;
 
         // Scope Event Handlers
-        profileVm.update = update;
+        profileVm.updateUser = updateUser;
+        profileVm.deleteUser = deleteUser;
 
-        function update(updateInfo) {
+        function updateUser(updateInfo) {
             if (updateInfo.newPassword && updateInfo.newPassword !== updateInfo.newPassword2) {
                 profileVm.error = 'New passwords do not match.';
             } else {
@@ -49,6 +50,25 @@
                         profileVm.error = err;
                     });
             }
+        }
+
+        function deleteUser() {
+            // Need to store id prior to logout, because $rootScope.user is deleted.
+            var id = $rootScope.user.obj._id;
+            SecurityService.logout()
+                .then(function () {
+                    UserService.deleteUserById(id)
+                        .then(function () {
+                            $rootScope.user = {'loggedIn': false, 'obj': null};
+                            profileVm.$location = $location.path('/');
+                        }, function (err) {
+                            profileVm.error = 'Could not delete profile! As a result, ' +
+                                'you were logged out.';
+                            console.log('Error in deleting user: ', err);
+                        })
+                }, function (err) {
+                    profileVm.error = err;
+                });
         }
     }
 })();
