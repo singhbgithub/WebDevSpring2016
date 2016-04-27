@@ -280,3 +280,8 @@ ul.content-input-list > li {
 .empty-heart {
     color: rgba(0,0,0,0.3);
 }
+
+.form-control-inline {
+    display: inline-block;
+    width: auto;
+}
