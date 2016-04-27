@@ -58,7 +58,8 @@
         }
 
         function canDelete() {
-            return $rootScope.currentContent.userId === $rootScope.user._id;
+            return $rootScope.user.obj &&
+                $rootScope.currentContent.userId === $rootScope.user.obj._id;
         }
         
         function deleteContent() {

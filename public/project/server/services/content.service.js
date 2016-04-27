@@ -24,7 +24,7 @@
             if (user) {
                 model.findContentById(req.params.id)
                     .then(function (content) {
-                        if (content.userId === user._id) {
+                        if (content.userId === user._id.toString()) {
                             next();
                         } else {
                             res.send(403);
