@@ -8,13 +8,18 @@
             <hr class="content-divider">
             <form class="form-horizontal">
                 <ul class="content-input-list">
+                    <li ng-if="createContentVm.error">
+                        <div class="alert alert-danger content-text alert-text">
+                            {{createContentVm.error}}
+                        </div>
+                    </li>
                     <li>
-                        <input type="text" class="form-control profile-text"
+                        <input type="text" class="form-control content-text"
                                id="inputSrc" placeholder="Image Source"
                                ng-model="newContent.src">
                     </li>
                     <li>
-                        <input type="text" class="form-control profile-text"
+                        <input type="text" class="form-control content-text"
                                id="inputTag" placeholder="Tag1,Tag2,Tag3"
                                ng-model="newContent.tag">
                     </li>

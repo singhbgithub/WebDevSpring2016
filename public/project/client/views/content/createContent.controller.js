@@ -16,7 +16,7 @@
                         console.log('New content created.');
                         createContentVm.$location = $location.path('/my_content');
                     }, function (err) {
-                        createContentVm.error = 'An error occurred trying to create content.';
+                        createContentVm.error = err;
                         console.log(err);
                     });
             } else {

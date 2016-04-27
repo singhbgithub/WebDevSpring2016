@@ -17,18 +17,27 @@
          * @param {object} res - node response.
          */
         function createContentForUserId(req, res) {
-            var createContentRequest = {
-                'src': req.param('src'),
-                'tags': req.param('tags'),
-                'userId': req.params.userId
-            };
-            model.createContentForUserId(createContentRequest)
-                .then(function (response) {
-                    res.json(response);
-                }, function (err) {
-                    // Favor 200 with error object over HTTP error.
-                    res.json({'error': err});
-                });
+            var src = req.param('src'),
+                tags = Array.from(new Set(req.param('tags') || [])),
+                createContentRequest = {
+                    'src': src,
+                    // TODO(bobby): really should be supported in the model/schema
+                    'tags': tags,
+                    'userId': req.params.userId
+                };
+
+            // If src is set properly, but isn't doesn't have the right file extensions.
+            if (typeof src === 'string' && !src.match(/^((http|https):\/\/).+\.(jpg|jpeg|png)/)) {
+                res.json({'error': 'Only .jpg, .jpeg, and .png images through HTTP are supported.'})
+            } else {
+                model.createContentForUserId(createContentRequest)
+                    .then(function (response) {
+                        res.json(response);
+                    }, function (err) {
+                        // Favor 200 with error object over HTTP error.
+                        res.json({'error': err});
+                    });
+            }
         }
 
         /**
