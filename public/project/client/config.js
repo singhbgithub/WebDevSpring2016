@@ -27,7 +27,7 @@
                 resolve: {loggedIn: isLoggedIn}
             })
             .when('/my_content', {
-                templateUrl: 'views/content/my-content.view.html',
+                templateUrl: 'views/content/myContent.view.html',
                 controller: 'ContentController',
                 controllerAs: 'myContentVm',
                 resolve: {loggedIn: isLoggedIn}
