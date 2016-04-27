@@ -17,6 +17,7 @@
         detailContentVm.range = range;
         // Scope Variables
         detailContentVm.rating = 0;
+        detailContentVm.numRatings = 0;
         detailContentVm.userReview = undefined;
 
         populateReviews();
@@ -120,11 +121,13 @@
                         // TODO(bobby): the value of an average rating should be precomputed in the
                         // data model to scale properly.
                         if (reviewsForContent && reviewsForContent.length) {
+                            var numRatings = reviewsForContent.length;
                             detailContentVm.rating = 0;
                             reviewsForContent.forEach(function (review) {
                                 detailContentVm.rating += review.rating;
                             });
-                            detailContentVm.rating /= reviewsForContent.length;
+                            detailContentVm.rating /= numRatings;
+                            detailContentVm.numRatings = numRatings;
                         }
                     }, function (err) {
                         detailContentVm.error = 'Could not load all reviews for this content.';

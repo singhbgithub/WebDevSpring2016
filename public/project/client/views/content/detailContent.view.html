@@ -46,6 +46,7 @@
                                       class="glyphicon glyphicon-heart full-heart"></span>
                                 <span ng-repeat="i in detailContentVm.range(10 - detailContentVm.rating) track by $index"
                                       class="glyphicon glyphicon-heart empty-heart"></span>
+                                ({{detailContentVm.numRatings}})
                             </li>
                             <li ng-if="!detailContentVm.rating">
                             No ratings yet.
