@@ -17,9 +17,11 @@
                         </a>
                     </form>
                 </div>
-                <div class="search-result" ng-if="searchVm.resultMessage">
-                    {{searchVm.resultMessage}}</div>
-                <div ng-repeat="result in searchVm.results track by $index" class="search-result">
+                <div class="search-result" ng-if="searchVm.hasNoResults">
+                    No results found for that tag.
+                </div>
+                <div ng-repeat="result in searchVm.results track by $index"
+                     ng-if="!searchVm.hasNoResults" class="search-result">
                     <a class="img-wrap" ng-click="searchVm.selectContent($index)">
                         <img class="content-src" ng-src="{{result.src}}" ng-if="result.src">
                     </a>

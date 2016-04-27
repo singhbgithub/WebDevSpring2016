@@ -9,7 +9,7 @@
         searchVm.search = search;
         searchVm.selectContent = selectContent;
         searchVm.results = [];
-        searchVm.resultMessage = '';
+        searchVm.hasNoResults = false;
 
         function search(searchQuery) {
             console.log('Search Query: ', searchQuery);
@@ -19,11 +19,9 @@
                 var tag = searchQuery;
                 ContentService.findContentByTag(tag)
                     .then(function (contentList) {
-                        if (contentList && contentList.length) {
-                            searchVm.results = contentList;
-                        } else {
-                            searchVm.resultMessage = 'No results found for that tag.';
-                        }
+                        var hasResults = contentList && contentList.length;
+                        searchVm.results = hasResults ? contentList: [];
+                        searchVm.hasNoResults = !hasResults;
                         console.log('Found content: ', contentList);
                     }, function (err) {
                         searchVm.error = 'Could not search for that tag. An error occurred.';
