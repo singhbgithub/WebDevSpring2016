@@ -103,7 +103,11 @@
         function populateContent() {
             ContentService.findAllContentForUser($rootScope.user.obj._id)
                 .then(function (contentForUser) {
-                    contentVm.contentList = contentForUser;
+                    if (contentForUser && contentForUser.length) {
+                        contentVm.contentList = contentForUser;
+                    } else {
+                        contentVm.noContent = true;
+                    }
                 }, function (err) {
                     contentVm.error = 'An error occurred trying to load the content.';
                     console.log(err);
