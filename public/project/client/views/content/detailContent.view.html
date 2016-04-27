@@ -16,11 +16,42 @@
                                     {{detailContentVm.success}}
                                 </div>
                             </li>
-                            <li>
-                                <!-- Need to manage 'like' state - this is supposed to be a rating -->
+
+                            <!-- REVIEW LOGIC -->
+                            <li ng-if="!detailContentVm.ownsContent()">
+                                <!-- FIXME(bobby): prettier UI to add ratings -->
+                                <select ng-model="detailContentVm.newRating">
+                                    <option ng-repeat="i in detailContentVm.range(10) track by $index"
+                                            value="{{$index + 1}}">
+                                        {{$index + 1}}
+                                    </option>
+                                </select>
                                 <a class="btn btn-default"
-                                   ng-click="detailContentVm.like()">{{currentContent.likes}}<i class="fa fa-heart"></i></a>
+                                   ng-model="detailContentVm.newRating"
+                                   ng-click="detailContentVm.review(detailContentVm.newRating)"
+                                   ng-if="!detailContentVm.userReview"> Add Review
+                                </a>
+                                <a class="btn btn-default"
+                                   ng-model="detailContentVm.newRating"
+                                   ng-click="detailContentVm.updateReview(detailContentVm.newRating)"
+                                   ng-if="detailContentVm.userReview"> Update Review
+                                </a>
+                                <a class="btn btn-default"
+                                   ng-click="detailContentVm.removeReview()"
+                                   ng-if="detailContentVm.userReview"> Remove Review
+                                </a>
                             </li>
+                            <li ng-if="detailContentVm.rating">
+                                <span ng-repeat="i in detailContentVm.range(detailContentVm.rating) track by $index"
+                                      class="glyphicon glyphicon-heart full-heart"></span>
+                                <span ng-repeat="i in detailContentVm.range(10 - detailContentVm.rating) track by $index"
+                                      class="glyphicon glyphicon-heart empty-heart"></span>
+                            </li>
+                            <li ng-if="!detailContentVm.rating">
+                            No ratings yet.
+                            </li>
+                            <!-- /REVIEW LOGIC -->
+
                             <li>
                                 <!-- Need to handle permissions of Rater vs. Creator
                                     TODO(bobby) also handle dups better-->
@@ -44,7 +75,7 @@
                             </li>
                             <li>
                                 <a class="btn btn-default"
-                                   ng-show="detailContentVm.canDelete()"
+                                   ng-show="detailContentVm.ownsContent()"
                                    ng-click="detailContentVm.deleteContent()">
                                     <span class="account-name">Delete</span>
                                 </a>

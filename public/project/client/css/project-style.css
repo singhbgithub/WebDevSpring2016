@@ -187,7 +187,8 @@ ul.profile-input-list > li {
     padding: 0;
 }
 
-.btn-search {
+.btn-search,
+.btn {
     vertical-align: inherit;
 }
 
@@ -270,4 +271,12 @@ ul.content-input-list > li {
 
 .img-wrap {
     display: block;
+}
+
+.full-heart {
+    color: #000;
+}
+
+.empty-heart {
+    color: rgba(0,0,0,0.3);
 }
