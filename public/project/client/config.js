@@ -28,13 +28,13 @@
             })
             .when('/my_content', {
                 templateUrl: 'views/content/myContent.view.html',
-                controller: 'ContentController',
+                controller: 'MyContentController',
                 controllerAs: 'myContentVm',
                 resolve: {loggedIn: isLoggedIn}
             })
             .when('/create_content', {
                 templateUrl: 'views/content/createContent.view.html',
-                controller: 'ContentController',
+                controller: 'CreateContentController',
                 controllerAs: 'createContentVm',
                 resolve: {loggedIn: isLoggedIn}
             })
@@ -45,9 +45,9 @@
                 resolve: {setLoggedInUser: setLoggedInUser}
             })
             .when('/content', {
-                templateUrl: 'views/content/content.view.html',
-                controller: 'ContentController',
-                controllerAs: 'contentVm',
+                templateUrl: 'views/content/detailContent.view.html',
+                controller: 'DetailContentController',
+                controllerAs: 'detailContentVm',
                 resolve: {setLoggedInUser: setLoggedInUser}
             })
             .otherwise({

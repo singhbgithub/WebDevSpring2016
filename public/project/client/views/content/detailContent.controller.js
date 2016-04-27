@@ -1,38 +1,15 @@
 (function() {
     'use strict';
-    angular.module('ThotApp').controller('ContentController', ContentController);
+    angular.module('ThotApp').controller('DetailContentController', DetailContentController);
 
-    function ContentController($location, $rootScope, ContentService) {
-        var contentVm = this;
+    function DetailContentController($location, $rootScope, ContentService) {
+        var detailContentVm = this;
 
         // Scope Event Handlers
-        contentVm.createContent = createContent;
-        contentVm.like = like;
-        contentVm.comment = comment;
-        contentVm.tag = tag;
-        contentVm.deleteContent = deleteContent;
-        contentVm.selectContent = selectContent;
-        // Scope Variables
-        contentVm.contentList = [];
-
-        // Populate the content
-        populateContent();
-
-        function createContent(newContent) {
-            if (newContent && newContent.src && newContent.tag) {
-                var content = {'src': newContent.src, 'tags': newContent.tag.split(',')};
-                ContentService.createContentForUser($rootScope.user.obj._id, content)
-                    .then(function (content) {
-                        console.log('New content created.');
-                        contentVm.$location = $location.path('/my_content');
-                    }, function (err) {
-                        contentVm.error = 'An error occurred trying to create content.';
-                        console.log(err);
-                    });
-            } else {
-                contentVm.error = 'Please add a src and tag.';
-            }
-        }
+        detailContentVm.like = like;
+        detailContentVm.comment = comment;
+        detailContentVm.tag = tag;
+        detailContentVm.deleteContent = deleteContent;
 
         function like() {
             if ($rootScope.currentContent !== null && $rootScope.currentContent !== undefined) {
@@ -43,7 +20,7 @@
                         $rootScope.currentContent = content;
                         console.log('Liked', $rootScope.currentContent);
                     }, function (err) {
-                        contentVm.error = 'An error occurred trying to like.';
+                        detailContentVm.error = 'An error occurred trying to like.';
                         console.log(err);
                     });
             }
@@ -58,7 +35,7 @@
                         $rootScope.currentContent = content;
                         console.log('Commented', $rootScope.currentContent);
                     }, function (err) {
-                        contentVm.error = 'An error occurred trying to comment.';
+                        detailContentVm.error = 'An error occurred trying to comment.';
                         console.log(err);
                     });
             }
@@ -73,7 +50,7 @@
                         $rootScope.currentContent = content;
                         console.log('Tagged', $rootScope.currentContent);
                     }, function (err) {
-                        contentVm.error = 'An error occurred trying to tag.';
+                        detailContentVm.error = 'An error occurred trying to tag.';
                         console.log(err);
                     });
             }
@@ -84,30 +61,11 @@
                 .then(function (deletedContent) {
                     console.log('Deleted: ', deletedContent);
                     $rootScope.currentContent = undefined;
-                    contentVm.$location = $location.path('/profile');
+                    detailContentVm.$location = $location.path('/profile');
                 }, function (err) {
                     console.log(err);
                 }, function (err) {
-                    contentVm.error = 'An error occurred trying to delete.';
-                    console.log(err);
-                });
-        }
-
-        function selectContent(index) {
-            $rootScope.currentContent = contentVm.contentList[index];
-            console.log('Current Content:', $rootScope.currentContent);
-        }
-
-        function populateContent() {
-            ContentService.findAllContentForUser($rootScope.user.obj._id)
-                .then(function (contentForUser) {
-                    if (contentForUser && contentForUser.length) {
-                        contentVm.contentList = contentForUser;
-                    } else {
-                        contentVm.noContent = true;
-                    }
-                }, function (err) {
-                    contentVm.error = 'An error occurred trying to load the content.';
+                    detailContentVm.error = 'An error occurred trying to delete.';
                     console.log(err);
                 });
         }
