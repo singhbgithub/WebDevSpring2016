@@ -5,9 +5,12 @@
             <div class="content-message">
                 <h2>Your Content</h2>
             </div>
-            <hr class="content-divider">
+            <hr class="mycontent-divider">
+            <div class="content-add">
+                <a href="#/create_content"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
             <div ng-show="myContentVm.noContent" class="content-no-content">
-                You don't have any content! <a href="#/create_content">Add some?</a>
+                You don't have any content! Add some :)
             </div>
             <div ng-repeat="content in myContentVm.contentList track by $index">
                 <a href="#/content" class="img-wrap" ng-click="myContentVm.selectContent($index)">

@@ -223,11 +223,16 @@ ul.content-input-list > li {
     display: inline-block;
 }
 
-.content-divider {
+.content-divider,
+.mycontent-divider {
     width: 100%;
     border-top: 1px solid #f8f8f8;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     margin-bottom: 0;
+}
+
+.content-add {
+    padding: 16px 0;
 }
 
 @media(min-width:480px) {
