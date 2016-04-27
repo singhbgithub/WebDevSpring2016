@@ -44,6 +44,7 @@
                             </li>
                             <li>
                                 <a class="btn btn-default"
+                                   ng-show="detailContentVm.canDelete()"
                                    ng-click="detailContentVm.deleteContent()">
                                     <span class="account-name">Delete</span>
                                 </a>

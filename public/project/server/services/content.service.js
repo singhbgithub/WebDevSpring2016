@@ -9,7 +9,31 @@
         app.get('/api/project/content', routeFindContent);
         app.get('/api/project/content/:id', findContentById);
         app.put('/api/project/content/:id', updateContentById);
-        app.delete('/api/project/content/:id', deleteContentById);
+        app.delete('/api/project/content/:id', ownsContent,  deleteContentById);
+
+        /**
+         * Middle-ware to determine if the request is authorized by the content Owner.
+         * @param {object} req - node request.
+         * @param {object} res - node response.
+         * @param {function} next - node next function.
+         */
+        function ownsContent(req, res, next) {
+            var user = req.isAuthenticated() ? req.user : null;
+            if (user) {
+                model.findContentById(req.params.id)
+                    .then(function (content) {
+                        if (content.userId === user._id) {
+                            next();
+                        } else {
+                            res.send(403);
+                        }
+                    }, function () {
+                        res.send(500);
+                    });
+            } else {
+                res.send(403);
+            }
+        }
 
         /**
          * Creates content.

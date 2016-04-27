@@ -9,6 +9,7 @@
         detailContentVm.like = like;
         detailContentVm.comment = comment;
         detailContentVm.tag = tag;
+        detailContentVm.canDelete = canDelete;
         detailContentVm.deleteContent = deleteContent;
 
         function like() {
@@ -56,6 +57,10 @@
             }
         }
 
+        function canDelete() {
+            return $rootScope.currentContent.userId === $rootScope.user._id;
+        }
+        
         function deleteContent() {
             ContentService.deleteContentById($rootScope.currentContent._id)
                 .then(function (deletedContent) {
