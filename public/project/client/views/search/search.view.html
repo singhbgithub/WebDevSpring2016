@@ -17,7 +17,8 @@
                         </a>
                     </form>
                 </div>
-                <div ng-if="searchVm.resultMessage">{{searchVm.resultMessage}}</div>
+                <div class="search-result" ng-if="searchVm.resultMessage">
+                    {{searchVm.resultMessage}}</div>
                 <div ng-repeat="result in searchVm.results track by $index" class="search-result">
                     <a class="img-wrap" ng-click="searchVm.selectContent($index)">
                         <img class="content-src" ng-src="{{result.src}}" ng-if="result.src">

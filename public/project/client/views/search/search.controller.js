@@ -19,7 +19,7 @@
                 var tag = searchQuery;
                 ContentService.findContentByTag(tag)
                     .then(function (contentList) {
-                        if (contentList) {
+                        if (contentList && contentList.length) {
                             searchVm.results = contentList;
                         } else {
                             searchVm.resultMessage = 'No results found for that tag.';
