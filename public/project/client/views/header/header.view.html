@@ -17,6 +17,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/register" ng-hide="user.loggedIn">Register</a></li>
                 <li><a href="#/login" ng-hide="user.loggedIn">Login</a></li>
+                <li><a href="#/search" ng-show="user.loggedIn">
+                    <span class="glyphicon glyphicon-search"></span></a></li>
                 <li><a href="#/my_content" ng-show="user.loggedIn">{{ user.obj.username }}</a></li>
                 <li><a class="no-link" ng-click="logout()" ng-show="user.loggedIn">Logout</a></li>
             </ul>
