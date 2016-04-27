@@ -48,7 +48,7 @@
                 templateUrl: 'views/content/detailContent.view.html',
                 controller: 'DetailContentController',
                 controllerAs: 'detailContentVm',
-                resolve: {setLoggedInUser: setLoggedInUser}
+                resolve: {setLoggedInUser: setLoggedInUser, isContentSet: isContentSet}
             })
             .otherwise({
                 redirectTo: '/'
@@ -72,6 +72,12 @@
         });
 
         return deferred.promise;
+    }
+
+    function isContentSet($location, $rootScope) {
+        if (!$rootScope.currentContent) {
+            $location.url('/');
+        }
     }
 
     function isLoggedIn($q, $http, $location, $rootScope) {
