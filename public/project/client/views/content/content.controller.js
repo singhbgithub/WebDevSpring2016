@@ -24,9 +24,7 @@
                 ContentService.createContentForUser($rootScope.user.obj._id, content)
                     .then(function (content) {
                         console.log('New content created.');
-                        populateContent();
-                        // FIXME(bobby): why is this line even here?
-                        $rootScope.currentContent = undefined;
+                        contentVm.$location = $location.path('/my_content');
                     }, function (err) {
                         contentVm.error = 'An error occurred trying to create content.';
                         console.log(err);

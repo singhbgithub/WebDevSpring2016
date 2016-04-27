@@ -7,7 +7,7 @@
             </div>
             <hr class="content-divider">
             <div ng-show="myContentVm.noContent">
-                You don't have any content! <a href="#/">Add some?</a>
+                You don't have any content! <a href="#/create_content">Add some?</a>
             </div>
             <div ng-repeat="content in myContentVm.contentList track by $index">
                 <a href="#/content" class="img-wrap" ng-click="myContentVm.selectContent($index)">

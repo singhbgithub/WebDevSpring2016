@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div><a href="#/profile"><span></span></a></div>
+            <div class="content-message">
+                <h2>Create Content</h2>
+            </div>
+            <hr class="content-divider">
+            <form class="form-horizontal">
+                <ul class="content-input-list">
+                    <li>
+                        <input type="text" class="form-control profile-text"
+                               id="inputSrc" placeholder="Image Source"
+                               ng-model="newContent.src">
+                    </li>
+                    <li>
+                        <input type="text" class="form-control profile-text"
+                               id="inputTag" placeholder="Tag1,Tag2,Tag3"
+                               ng-model="newContent.tag">
+                    </li>
+                    <li>
+                        <a class="btn btn-default btn-profile"
+                           ng-click="createContentVm.createContent(newContent)">Post</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
