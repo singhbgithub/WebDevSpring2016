@@ -18,7 +18,7 @@
                             </li>
                             <li>
                                 <!-- Need to manage 'like' state - this is supposed to be a rating -->
-                                <a class="btn btn-default btn-profile"
+                                <a class="btn btn-default"
                                    ng-click="detailContentVm.like()">{{currentContent.likes}}<i class="fa fa-heart"></i></a>
                             </li>
                             <li>
@@ -29,7 +29,7 @@
                                 <input type="text" class="form-control profile-text"
                                        id="inputTag" placeholder="Enter New Tag"
                                        ng-model="newTag">
-                                <a class="btn btn-default btn-profile"
+                                <a class="btn btn-default"
                                    ng-click="detailContentVm.tag(newTag)">Tag</a>
                             </li>
                             <li><!-- Need to handle permissions of Rater vs. Creator -->
@@ -39,11 +39,11 @@
                                 <input type="text" class="form-control profile-text"
                                        id="inputComment" placeholder="Enter New Comment"
                                        ng-model="newComment">
-                                <a class="btn btn-default btn-profile"
+                                <a class="btn btn-default"
                                    ng-click="detailContentVm.comment(newComment)">Comment</a>
                             </li>
                             <li>
-                                <a class="btn btn-default btn-profile"
+                                <a class="btn btn-default"
                                    ng-click="detailContentVm.deleteContent()">
                                     <span class="account-name">Delete</span>
                                 </a>
