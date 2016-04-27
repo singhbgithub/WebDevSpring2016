@@ -61,7 +61,7 @@
                 .then(function (deletedContent) {
                     console.log('Deleted: ', deletedContent);
                     $rootScope.currentContent = undefined;
-                    detailContentVm.$location = $location.path('/profile');
+                    detailContentVm.$location = $location.path('/my_content');
                 }, function (err) {
                     console.log(err);
                 }, function (err) {

@@ -109,7 +109,7 @@
             if (response.data && response.data === '0') {
                 deferred.resolve();
             } else {
-                $location.url('/profile');
+                $location.url('/my_content');
                 deferred.reject();
             }
         }, function() {
