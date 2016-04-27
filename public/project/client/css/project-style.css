@@ -200,11 +200,13 @@ ul.profile-input-list > li {
 .content-src {
     width: 100%;
     height: auto;
+    cursor: pointer;
 }
 
 .content-detail-src {
     max-width: 100%;
     max-height: 100vh;
+    cursor: pointer;
 }
 
 .content-message {
