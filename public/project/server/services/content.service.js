@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    var core = require('core-js/library');
+
     /* Add a node module w/ dependencies */
     module.exports = function (app, model) {
         /* TODO(bobby): apis should have permissions ...*/
@@ -42,7 +44,7 @@
          */
         function createContentForUserId(req, res) {
             var src = req.param('src'),
-                tags = Array.from(new Set(req.param('tags') || [])),
+                tags = core.Array.from(new core.Set(req.param('tags') || [])),
                 createContentRequest = {
                     'src': src,
                     // TODO(bobby): really should be supported in the model/schema
