@@ -26,6 +26,10 @@ h6 {
     height: inherit;
 }
 
+.container {
+    text-align: center;
+}
+
 .topnav {
     font-size: 14px;
 }
@@ -199,6 +203,10 @@ ul.profile-input-list > li {
     padding-top: 51px;
 }
 
+.content-no-content {
+    padding-top: 16px;
+}
+
 ul.content-input-list {
     padding-top: 16px;
     padding-left: 0;
@@ -208,6 +216,32 @@ ul.content-input-list > li {
     display: block;
     margin-bottom: 20px;
     padding: 0;
+}
+
+.content-text {
+    width: 100%;
+    display: inline-block;
+}
+
+.content-divider {
+    width: 100%;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 0;
+}
+
+@media(min-width:480px) {
+    .content-divider,
+    .content-text {
+        width: 400px;
+    }
+}
+
+@media(min-width:640px) {
+    .content-divider,
+    .content-text {
+        width: 560px;
+    }
 }
 
 .tag-list,

@@ -6,7 +6,7 @@
                 <h2>Your Content</h2>
             </div>
             <hr class="content-divider">
-            <div ng-show="myContentVm.noContent">
+            <div ng-show="myContentVm.noContent" class="content-no-content">
                 You don't have any content! <a href="#/create_content">Add some?</a>
             </div>
             <div ng-repeat="content in myContentVm.contentList track by $index">
