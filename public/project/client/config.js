@@ -56,6 +56,12 @@
                 controllerAs: 'toMessageVm',
                 resolve: {loggedIn: isLoggedIn}
             })
+            .when('/message/from', {
+                templateUrl: 'views/message/fromMessage.view.html',
+                controller: 'FromMessageController',
+                controllerAs: 'fromMessageVm',
+                resolve: {loggedIn: isLoggedIn}
+            })
             .otherwise({
                 redirectTo: '/'
             });
