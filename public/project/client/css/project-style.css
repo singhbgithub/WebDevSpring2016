@@ -38,6 +38,10 @@ a:hover {
     text-align: center;
 }
 
+.glyphicon {
+    top: 2px;
+}
+
 .topnav {
     font-size: 14px;
 }
