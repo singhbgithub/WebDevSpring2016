@@ -2,25 +2,32 @@
     'use strict';
     angular.module('ThotApp').controller('DetailContentController', DetailContentController);
 
-    function DetailContentController($location, $rootScope, ContentService, ReviewService) {
+    function DetailContentController($location, $rootScope, ContentService, ReviewService,
+                                     TagService) {
         var detailContentVm = this;
-
-        // Scope Event Handlers
+        
+        // Review Events
         detailContentVm.review = review;
         detailContentVm.updateReview = updateReview;
         detailContentVm.removeReview = removeReview;
-        detailContentVm.review = review;
-        detailContentVm.comment = comment;
+        // Tag Events
         detailContentVm.tag = tag;
+        detailContentVm.removeTag = removeTag;
+        detailContentVm.ownsTag = ownsTag;
+        // Scope Event Handlers
+        detailContentVm.comment = comment;
         detailContentVm.deleteContent = deleteContent;
         detailContentVm.ownsContent = ownsContent;
         detailContentVm.range = range;
-        // Scope Variables
+        // Review Variables
         detailContentVm.rating = 0;
         detailContentVm.numRatings = 0;
         detailContentVm.userReview = undefined;
+        // Tag Variables
+        detailContentVm.tags = [];
 
         populateReviews();
+        populateTags();
         
         function review(rating) {
             if (rating) {
@@ -64,6 +71,34 @@
                 });
         }
 
+        function tag(newTag) {
+            TagService.createTag($rootScope.user.obj._id, $rootScope.currentContent._id, newTag)
+                .then(function (tag) {
+                    console.log('New tag created.', tag);
+                    populateTags();
+                }, function (err) {
+                    detailContentVm.error = 'An error occurred trying to add the tag.';
+                    console.log(err);
+                });
+        }
+
+        function removeTag(index) {
+            var tag = detailContentVm.tags[index];
+            TagService.deleteTagById(tag._id)
+                .then(function (tag) {
+                    console.log('Deleted tag', tag);
+                    populateTags();
+                }, function (err) {
+                    detailContentVm.error = 'An error occurred trying to remove the tag.';
+                    console.log(err);
+                });
+        }
+
+        function ownsTag(index) {
+            var tag = detailContentVm.tags[index];
+            return $rootScope.user.obj && tag.userId === $rootScope.user.obj._id;
+        }
+
         function comment(newComment) {
             var updatedContent = angular.copy($rootScope.currentContent);
             updatedContent.comments.push(newComment);
@@ -73,19 +108,6 @@
                     console.log('Commented', $rootScope.currentContent);
                 }, function (err) {
                     detailContentVm.error = 'An error occurred trying to comment.';
-                    console.log(err);
-                });
-        }
-
-        function tag(newTag) {
-            var updatedContent = angular.copy($rootScope.currentContent);
-            updatedContent.tags.push(newTag);
-            ContentService.updateContentById($rootScope.currentContent._id, updatedContent)
-                .then(function (content) {
-                    $rootScope.currentContent = content;
-                    console.log('Tagged', $rootScope.currentContent);
-                }, function (err) {
-                    detailContentVm.error = 'An error occurred trying to tag.';
                     console.log(err);
                 });
         }
@@ -105,7 +127,7 @@
         }
 
         function ownsContent() {
-            return $rootScope.user.obj &&
+            return $rootScope.user.obj && $rootScope.currentContent &&
                 $rootScope.currentContent.userId === $rootScope.user.obj._id;
         }
 
@@ -147,6 +169,19 @@
                         console.log(err);
                     });
             }
+        }
+
+        function populateTags() {
+            TagService.findAllTagForContentId($rootScope.currentContent._id)
+                .then(function (tagsForContent) {
+                    console.log('Tags for Content:', tagsForContent);
+                    if (tagsForContent && tagsForContent.length) {
+                        detailContentVm.tags = tagsForContent;
+                    }
+                }, function (err) {
+                    detailContentVm.error = 'Could not load all tags for this content.';
+                    console.log(err);
+                });
         }
     }
 })();

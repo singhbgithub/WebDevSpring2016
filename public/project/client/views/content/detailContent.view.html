@@ -53,11 +53,15 @@
                             </li>
                             <!-- /REVIEW LOGIC -->
 
+                            <!-- TAG LOGIC -->
                             <li>
                                 <ul>
                                     <li class="tag-list"
-                                        ng-repeat="tag in currentContent.tags track by $index">
-                                    "{{tag}}"
+                                        ng-repeat="tag in detailContentVm.tags track by $index">
+                                        <a class="btn"><span ng-click="detailContentVm.removeTag($index)"
+                                              ng-if="detailContentVm.ownsTag($index) || detailContentVm.ownsContent()"
+                                              class="glyphicon glyphicon-remove"></span>
+                                            {{tag.name}}</a>
                                     </li>
                                     <li class="tag-list">
                                         <input type="text" class="form-control form-control-inline"
@@ -68,6 +72,8 @@
                                     </li>
                                 </ul>
                             </li>
+                            <!-- /TAG LOGIC -->
+
                             <li>
                                 <ul><li class="comment-list"
                                         ng-repeat="comment in currentContent.comments track by $index">
@@ -80,7 +86,7 @@
                             </li>
                             <li>
                                 <a class="btn btn-default"
-                                   ng-show="detailContentVm.ownsContent()"
+                                   ng-if="detailContentVm.ownsContent()"
                                    ng-click="detailContentVm.deleteContent()">
                                     <span class="account-name">Delete</span>
                                 </a>
