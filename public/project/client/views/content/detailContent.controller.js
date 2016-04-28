@@ -155,7 +155,7 @@
                         detailContentVm.error = 'Could not load all reviews for this content.';
                         console.log(err);
                     });
-            } else {
+            } else if ($rootScope.loggedIn) {
                 ReviewService.findReviewForUserAndContentId(
                     $rootScope.user.obj._id, $rootScope.currentContent._id)
                     .then(function (review) {

@@ -18,7 +18,7 @@
                             </li>
 
                             <!-- REVIEW LOGIC -->
-                            <li ng-if="!detailContentVm.ownsContent()">
+                            <li ng-if="!detailContentVm.ownsContent() && user.loggedIn">
                                 <!-- FIXME(bobby): prettier UI to add ratings -->
                                 <select ng-model="detailContentVm.newRating">
                                     <option ng-repeat="i in detailContentVm.range(10) track by $index"
@@ -63,10 +63,10 @@
                                               class="glyphicon glyphicon-remove"></span>
                                             {{tag.name}}</a>
                                     </li>
-                                    <li class="tag-list">
+                                    <li class="tag-list" ng-if="user.loggedIn">
                                         <input type="text" class="form-control form-control-inline"
                                                id="inputTag" placeholder="Enter New Tag"
-                                               ng-model="newTag">
+                                               ng-if="user.loggedIn" ng-model="newTag">
                                         <a ng-click="detailContentVm.tag(newTag)" class="btn">
                                             <span class="glyphicon glyphicon-plus"></span></a>
                                     </li>
