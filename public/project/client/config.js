@@ -62,6 +62,12 @@
                 controllerAs: 'fromMessageVm',
                 resolve: {loggedIn: isLoggedIn}
             })
+            .when('/message/create/:contentId', {
+                templateUrl: 'views/message/createMessage.view.html',
+                controller: 'CreateMessageController',
+                controllerAs: 'createMessageVm',
+                resolve: {loggedIn: isLoggedIn}
+            })
             .when('/message/detail/:messageId', {
                 templateUrl: 'views/content/detailMessage.view.html',
                 controller: 'DetailMessageController',
