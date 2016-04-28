@@ -20,7 +20,8 @@
         function createReview(userId, contentId, rating) {
             var deferred = $q.defer();
 
-            $http.post('/api/project/user/' + userId + '/content/' + contentId, {'rating': rating})
+            $http.post('/api/project/user/' + userId + '/content/' + contentId + '/review',
+                {'rating': rating})
                 .then(function(response) {
                     var data = response.data;
                     if (data.error) {
@@ -84,7 +85,7 @@
         function findReviewForUserAndContentId(userId, contentId) {
             var deferred = $q.defer();
 
-            $http.get('/api/project/user/' + userId + '/content/' + contentId)
+            $http.get('/api/project/user/' + userId + '/content/' + contentId + '/review')
                 .then(function(response) {
                     var data = response.data;
                     if (!data) {

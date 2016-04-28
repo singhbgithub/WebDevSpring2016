@@ -4,11 +4,12 @@
     /* Add a node module w/ dependencies */
     module.exports = function (app, model) {
         /* TODO(bobby): apis should have permissions ...*/
-        app.post('/api/project/user/:userId/content/:contentId', createReview);
+        app.post('/api/project/user/:userId/content/:contentId/review', createReview);
         app.get('/api/project/review', findAllReview);
         app.get('/api/project/user/:userId/review', findAllReviewForUserId);
         app.get('/api/project/content/:contentId/review', findAllReviewForContentId);
-        app.get('/api/project/user/:userId/content/:contentId', findReviewForUserAndContentId);
+        app.get('/api/project/user/:userId/content/:contentId/review',
+            findReviewForUserAndContentId);
         app.get('/api/project/review/:id', findReviewById);
         app.put('/api/project/review/:id', ownsReview, updateReviewById);
         app.delete('/api/project/review/:id', ownsReview,  deleteReviewById);
