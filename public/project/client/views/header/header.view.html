@@ -21,6 +21,8 @@
                     <span class="glyphicon glyphicon-search"></span></a></li>
                 <li><a href="#/profile" ng-show="user.loggedIn">
                     <span class="glyphicon glyphicon-cog"></span></a></li>
+                <li><a href="#/message/to" ng-show="user.loggedIn">
+                    <span class="glyphicon glyphicon-envelope"></span></a></li>
                 <li><a href="#/my_content" ng-show="user.loggedIn">
                     <span class="glyphicon glyphicon-user"></span> {{ user.obj.username }}</a></li>
                 <li><a class="no-link" ng-click="logout()" ng-show="user.loggedIn">Logout</a></li>

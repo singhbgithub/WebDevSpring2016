@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="thot-message">
+                <h2>Inbox</h2>
+            </div>
+            <hr class="thot-divider">
+            <ul class="thot-list">
+                <li ng-if="toMessageVm.error">
+                    <div class="alert alert-danger thot-text alert-text">
+                        {{toMessageVm.error}}
+                    </div>
+                </li>
+                <li class="thot-text">
+                    <a class="btn" href="#/message/from">See Sent Mail?</a>
+                </li>
+                <li ng-if="!toMessageVm.messages.length" class="thot-text">
+                    No messages to display.
+                </li>
+                <li ng-repeat="message in toMessageVm.messages" ng-if="toMessageVm.messages"
+                    class="thot-text">
+                    {{message}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
