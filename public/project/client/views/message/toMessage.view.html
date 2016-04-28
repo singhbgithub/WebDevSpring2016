@@ -20,7 +20,9 @@
             </ul>
         </div>
     </div>
-    <div class="row row-table" ng-repeat="message in toMessageVm.messages"
+    <div class="row row-table "
+         ng-repeat="message in toMessageVm.messages"
+         ng-click="toMessageVm.detailMessage($index)"
          ng-if="toMessageVm.messages">
         <div class="col-lg-4 invert-text">
             {{message.subject}}

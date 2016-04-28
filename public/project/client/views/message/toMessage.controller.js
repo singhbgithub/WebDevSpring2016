@@ -7,6 +7,7 @@
 
         // Scope Event Handlers
         toMessageVm.select = select;
+        toMessageVm.detailMessage = detailMessage;
         // Scope Variables
         toMessageVm.messages = [];
 
@@ -29,6 +30,7 @@
                                     text = message.text.substring(0, maxText);
                                 console.log('Found src', content.src);
                                 messages.push({
+                                    '_id': message._id,
                                     'src': content.src,
                                     'text': message.text.length > maxText ? text + ' ...' : text,
                                     'subject': message.subject})
@@ -41,6 +43,11 @@
                     toMessageVm.error = err;
                     console.log(err);
                 });
+        }
+
+        function detailMessage(index) {
+            var message = toMessageVm.messages[index];
+            toMessageVm.$location = $location.path('/message/detail/' + message._id);
         }
     }
 })();
