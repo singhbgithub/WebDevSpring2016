@@ -2,7 +2,7 @@
     'use strict';
     angular.module('ThotApp').controller('SearchController', SearchController);
 
-    function SearchController($location, $rootScope, ContentService) {
+    function SearchController($location, $rootScope, ContentService, TagService) {
         var searchVm = this;
 
         // Scope Event Handlers
@@ -29,12 +29,25 @@
         }
 
         function searchByTag(tag) {
-            ContentService.findContentByTag(tag)
-                .then(function (contentList) {
-                    var hasResults = contentList && contentList.length;
-                    searchVm.results = hasResults ? contentList: [];
+            TagService.findTagByName(tag)
+                .then(function (tags) {
+                    console.log('Found tags', tags);
+                    var hasResults = tags && tags.length,
+                        contentList = [];
+                    if (hasResults) {
+                        tags.forEach(function (tag) {
+                            ContentService.findContentById(tag.contentId)
+                                .then(function (content) {
+                                    if (content) {
+                                        contentList.push(content);
+                                    }
+                                }, function (err) {
+                                    searchVm.error = err;
+                                });
+                        });
+                    }
+                    searchVm.results = contentList;
                     searchVm.hasNoResults = !hasResults;
-                    console.log('Found content: ', contentList);
                 }, function (err) {
                     searchVm.error = 'Could not search for that tag. An error occurred.';
                     console.log(err);
