@@ -69,7 +69,7 @@
                 resolve: {loggedIn: isLoggedIn}
             })
             .when('/message/detail/:messageId', {
-                templateUrl: 'views/content/detailMessage.view.html',
+                templateUrl: 'views/message/detailMessage.view.html',
                 controller: 'DetailMessageController',
                 controllerAs: 'detailMessageVm',
                 resolve: {loggedIn: isLoggedIn}

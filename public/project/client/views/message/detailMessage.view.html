@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <img class="col-lg-12">
+            <div class="thot-message">
+                <h2>
+                    {{detailMessageVm.message ? detailMessageVm.message.subject : 'Message Detail'}}
+                </h2>
+            </div>
+            <hr class="thot-divider">
+            <ul class="thot-list">
+                <li ng-if="detailMessageVm.error">
+                    <div class="alert alert-danger thot-text alert-text">
+                        {{createMessageVm.error}}
+                    </div>
+                </li>
+                <li class="align-left" ng-if="detailMessageVm.message">
+                    <span class="light-text big-text">
+                        {{detailMessageVm.message.text}}
+                    </span>
+                    <a ng-click="detailMessageVm.navCreateMessage()" class="btn pull-right">
+                        <span class="glyphicon glyphicon-envelope"></span> Reply?
+                    </a>
+                </li>
+            </ul>
+            <img class="thumbnail-src-full" ng-src="{{detailMessageVm.src}}"
+                 ng-if="detailMessageVm.src">
+        </div>
+    </div>
+</div>

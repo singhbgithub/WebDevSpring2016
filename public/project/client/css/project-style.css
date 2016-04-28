@@ -318,8 +318,17 @@ ul.thot-list-inline > li.border-left {
     max-height: 100px;
 }
 
+.thumbnail-src-full {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
 .invert-text {
     color: #fff;
+}
+
+.big-text {
+    font-size: 18px;
 }
 
 .light-text {
@@ -333,4 +342,12 @@ ul.thot-list-inline > li.border-left {
 
 .row-table:not(:last-child) {
     border-bottom: 1px inset #fff;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.pull-right {
+    float: right;
 }
