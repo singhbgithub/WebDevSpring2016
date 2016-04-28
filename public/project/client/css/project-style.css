@@ -313,3 +313,24 @@ ul.thot-list-inline > li.border-left {
     display: inline-block;
     width: auto;
 }
+
+.thumbnail-src {
+    max-height: 100px;
+}
+
+.invert-text {
+    color: #fff;
+}
+
+.light-text {
+    font-weight: 400;
+}
+
+.row-table {
+    padding: 16px 0;
+    background-color: #000;
+}
+
+.row-table:not(:last-child) {
+    border-bottom: 1px inset #fff;
+}

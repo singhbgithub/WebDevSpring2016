@@ -2,7 +2,7 @@
     'use strict';
     angular.module('ThotApp').controller('FromMessageController', FromMessageController);
 
-    function FromMessageController($location, $rootScope, MessageService) {
+    function FromMessageController($location, $rootScope, MessageService, ContentService) {
         var fromMessageVm = this;
 
         // Scope Event Handlers
@@ -23,7 +23,18 @@
                     var messages = [];
                     console.log('Messages from user found.', messagesFromUser);
                     messagesFromUser.forEach(function (message) {
-                        messages.push(message.text);
+                        ContentService.findContentById(message.contentId)
+                            .then(function (content) {
+                                var maxText = 32,
+                                    text = message.text.substring(0, maxText);
+                                console.log('Found src', content.src);
+                                messages.push({
+                                    'src': content.src,
+                                    'text': message.text.length > maxText ? text + ' ...' : text,
+                                    'subject': message.subject})
+                            }, function (err) {
+                                fromMessageVm.error = err;
+                            });
                     });
                     fromMessageVm.messages = messages;
                 }, function (err) {

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="thot-message">
-                <h2>Sent Mail</h2>
+                <h2>Inbox</h2>
             </div>
             <hr class="thot-divider">
             <ul class="thot-list">
@@ -12,16 +12,24 @@
                     </div>
                 </li>
                 <li class="thot-text">
-                    <a class="btn" href="#/message/to">See Inbox?</a>
+                    <a class="btn" href="#/message/to">See Sent Mail?</a>
                 </li>
                 <li ng-if="!fromMessageVm.messages.length" class="thot-text">
-                    No messages to display.
-                </li>
-                <li ng-repeat="message in fromMessageVm.messages" ng-if="fromMessageVm.messages"
-                    class="thot-text">
-                    {{message}}
+                    No messages from display.
                 </li>
             </ul>
+        </div>
+    </div>
+    <div class="row row-table" ng-repeat="message in fromMessageVm.messages"
+         ng-if="fromMessageVm.messages">
+        <div class="col-lg-4 invert-text">
+            {{message.subject}}
+        </div>
+        <div class="col-lg-4 invert-text light-text">
+            {{message.text}}
+        </div>
+        <div class="col-lg-4">
+            <img ng-src="{{message.src}}" class="thumbnail-src">
         </div>
     </div>
 </div>
