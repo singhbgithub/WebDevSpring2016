@@ -62,6 +62,12 @@
                 controllerAs: 'fromMessageVm',
                 resolve: {loggedIn: isLoggedIn}
             })
+            .when('/message/detail/:messageId', {
+                templateUrl: 'views/content/detailMessage.view.html',
+                controller: 'DetailMessageController',
+                controllerAs: 'detailMessageVm',
+                resolve: {loggedIn: isLoggedIn}
+            })
             .otherwise({
                 redirectTo: '/'
             });
