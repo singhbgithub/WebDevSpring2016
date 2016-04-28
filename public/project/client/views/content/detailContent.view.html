@@ -84,8 +84,9 @@
                                     <li class="tag-list" ng-if="user.loggedIn">
                                         <input type="text" class="form-control form-control-inline"
                                                id="inputTag" placeholder="Enter New Tag"
-                                               ng-if="user.loggedIn" ng-model="newTag">
-                                        <a ng-click="detailContentVm.tag(newTag)" class="btn">
+                                               ng-if="user.loggedIn" ng-model="detailContentVm.newTag">
+                                        <a ng-click="detailContentVm.tag(detailContentVm.newTag)"
+                                           class="btn">
                                             <span class="glyphicon glyphicon-plus"></span></a>
                                     </li>
                                 </ul>
