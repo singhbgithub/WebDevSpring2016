@@ -214,7 +214,8 @@ ul.profile-input-list > li {
     cursor: pointer;
 }
 
-.content-message {
+.content-message,
+.thot-message {
     padding-top: 51px;
 }
 
@@ -222,24 +223,55 @@ ul.profile-input-list > li {
     padding-top: 16px;
 }
 
-ul.content-input-list {
+ul.content-input-list,
+ul.thot-list {
     padding-top: 16px;
     padding-left: 0;
 }
 
-ul.content-input-list > li {
+ul.thot-list-inline {
+    list-style-type:none;
+}
+
+ul.content-input-list > li,
+ul.thot-list > li {
     display: block;
     margin-bottom: 20px;
     padding: 0;
 }
 
-.content-text {
+ul.thot-list-inline > li {
+    display: inline;
+    list-style-type:none;
+}
+
+ul.thot-list-inline > li:not(:first-child) {
+    padding-left: 8px;
+}
+
+ul.thot-list-inline > li:not(:last-child) {
+    padding-right: 8px;
+}
+
+ul.thot-list-inline > li.border-left {
+    border-left: 1px solid #000;
+}
+
+.content-text,
+.thot-text {
     width: 100%;
     display: inline-block;
 }
 
+.thot-text-area {
+    resize: none;
+    /* Resize only works w/ none-visible overflow, which is the default */
+    overflow: scroll;
+}
+
 .content-divider,
-.mycontent-divider {
+.mycontent-divider,
+.thot-divider {
     width: 100%;
     border-top: 1px solid #f8f8f8;
     border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -275,14 +307,6 @@ ul.content-input-list > li {
 
 .img-wrap {
     display: block;
-}
-
-.full-heart {
-    color: #000;
-}
-
-.empty-heart {
-    color: rgba(0,0,0,0.3);
 }
 
 .form-control-inline {
