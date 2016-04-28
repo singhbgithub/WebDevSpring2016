@@ -10,6 +10,7 @@
         app.get('/api/project/content/:contentId/tag', findAllTagForContentId);
         app.get('/api/project/user/:userId/content/:contentId/tag', findTagForUserAndContentId);
         app.get('/api/project/tag/:id', findTagById);
+        app.get('/api/project/tag/name/:name', findTagByName);
         app.delete('/api/project/tag/:id', ownsTag,  deleteTagById);
 
         /**
@@ -122,6 +123,20 @@
          */
         function findTagById(req, res) {
             model.findTagById(req.params.id)
+                .then(function (response) {
+                    res.json(response);
+                }, function (err) {
+                    res.json({'error': err});
+                });
+        }
+
+        /**
+         * Finds tag by id.
+         * @param {object} req - node request.
+         * @param {object} res - node response.
+         */
+        function findTagByName(req, res) {
+            model.findTagByName(req.params.name)
                 .then(function (response) {
                     res.json(response);
                 }, function (err) {

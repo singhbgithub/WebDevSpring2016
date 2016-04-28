@@ -13,6 +13,7 @@
                 'findAllTagForContentId': findAllTagForContentId,
                 'findTagForUserAndContentId': findTagForUserAndContentId,
                 'findTagById': findTagById,
+                'findTagByName': findTagByName,
                 // No update API b/c does not make sense. There is nothing that is meant to be
                 // updatable on a tag.
                 'deleteTagById': deleteTagById
@@ -83,6 +84,18 @@
         function findTagById(tagId) {
             var deferred = q.defer();
             Tag.findById(tagId, function (err, tag) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(tag);
+                }
+            });
+            return deferred.promise;
+        }
+
+        function findTagByName(name) {
+            var deferred = q.defer();
+            Tag.find({'name': name}, function (err, tag) {
                 if (err) {
                     deferred.reject(err);
                 } else {

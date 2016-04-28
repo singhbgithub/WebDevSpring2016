@@ -11,6 +11,7 @@
             'findAllTagForContentId': findAllTagForContentId,
             'findTagForUserAndContentId': findTagForUserAndContentId,
             'findTagById': findTagById,
+            'findTagByName': findTagByName,
             'deleteTagById': deleteTagById
         };
 
@@ -106,6 +107,22 @@
                 .then(function(response) {
                     var data = response.data;
                     if (data.error) {
+                        deferred.reject(data.error);
+                    } else {
+                        deferred.resolve(data);
+                    }
+                });
+
+            return deferred.promise;
+        }
+
+        function findTagByName(name) {
+            var deferred = $q.defer();
+
+            $http.get('/api/project/tag/name/' + name)
+                .then(function(response) {
+                    var data = response.data;
+                    if (data && data.error) {
                         deferred.reject(data.error);
                     } else {
                         deferred.resolve(data);
