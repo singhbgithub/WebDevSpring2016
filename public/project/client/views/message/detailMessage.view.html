@@ -17,7 +17,9 @@
                     <span class="light-text big-text">
                         {{detailMessageVm.message.text}}
                     </span>
-                    <a ng-click="detailMessageVm.navCreateMessage()" class="btn pull-right">
+                    <!-- FIXME(bobby): The logic to support replying does not exist yet -->
+                    <a ng-click="detailMessageVm.navCreateMessage()" ng-show="false"
+                       class="btn pull-right">
                         <span class="glyphicon glyphicon-envelope"></span> Reply?
                     </a>
                 </li>
