@@ -18,38 +18,56 @@
                             </li>
 
                             <!-- REVIEW LOGIC -->
-                            <li ng-if="!detailContentVm.ownsContent() && user.loggedIn">
-                                <!-- FIXME(bobby): prettier UI to add ratings -->
-                                <select ng-model="detailContentVm.newRating">
-                                    <option ng-repeat="i in detailContentVm.range(10) track by $index"
-                                            value="{{$index + 1}}">
-                                        {{$index + 1}}
-                                    </option>
-                                </select>
-                                <a class="btn btn-default"
-                                   ng-model="detailContentVm.newRating"
-                                   ng-click="detailContentVm.review(detailContentVm.newRating)"
-                                   ng-if="!detailContentVm.userReview"> Add Review
-                                </a>
-                                <a class="btn btn-default"
-                                   ng-model="detailContentVm.newRating"
-                                   ng-click="detailContentVm.updateReview(detailContentVm.newRating)"
-                                   ng-if="detailContentVm.userReview"> Update Review
-                                </a>
-                                <a class="btn btn-default"
-                                   ng-click="detailContentVm.removeReview()"
-                                   ng-if="detailContentVm.userReview"> Remove Review
-                                </a>
-                            </li>
-                            <li ng-if="detailContentVm.rating">
-                                <span ng-repeat="i in detailContentVm.range(detailContentVm.rating) track by $index"
-                                      class="glyphicon glyphicon-heart full-heart"></span>
-                                <span ng-repeat="i in detailContentVm.range(10 - detailContentVm.rating) track by $index"
-                                      class="glyphicon glyphicon-heart empty-heart"></span>
-                                ({{detailContentVm.numRatings}})
-                            </li>
-                            <li ng-if="!detailContentVm.rating">
-                            No ratings yet.
+                            <li>
+                                <ul class="thot-list thot-list-inline">
+                                    <li ng-if="!detailContentVm.rating">
+                                        No ratings yet.
+                                    </li>
+                                    <li ng-if="!detailContentVm.ownsContent() && user.loggedIn">
+                                        <select ng-model="detailContentVm.newRating">
+                                            <option ng-repeat="i in detailContentVm.range(10) track by $index"
+                                                    value="{{$index + 1}}">
+                                                {{$index + 1}}
+                                            </option>
+                                        </select>
+                                    </li>
+                                    <li ng-if="!detailContentVm.ownsContent() && user.loggedIn">
+                                        <a class="btn" ng-model="detailContentVm.newRating"
+                                           ng-click="detailContentVm.review(detailContentVm.newRating)"
+                                           ng-if="!detailContentVm.userReview">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
+                                        <a class="btn" ng-model="detailContentVm.newRating"
+                                           ng-click="detailContentVm.updateReview(detailContentVm.newRating)"
+                                           ng-if="detailContentVm.userReview">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a class="btn" ng-click="detailContentVm.removeReview()"
+                                           ng-if="detailContentVm.userReview">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="detailContentVm.rating">
+                                    <span ng-repeat="i in detailContentVm.range(detailContentVm.rating) track by $index"
+                                          class="glyphicon glyphicon-heart"></span>
+                                    <span ng-repeat="i in detailContentVm.range(10 - detailContentVm.rating) track by $index"
+                                          class="glyphicon glyphicon-heart-empty"></span>
+                                        ({{detailContentVm.numRatings || 1}})
+                                    </li>
+                                    <li ng-if="!detailContentVm.ownsContent() && user.loggedIn"
+                                        class="border-left">
+                                        <a ng-click="detailContentVm.message()"
+                                           class="btn">
+                                            <span class="glyphicon glyphicon-envelope"></span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="detailContentVm.ownsContent()" class="border-left">
+                                        <a class="btn"
+                                           ng-click="detailContentVm.deleteContent()">
+                                            <span class="glyphicon glyphicon-erase"></span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <!-- /REVIEW LOGIC -->
 
@@ -73,24 +91,6 @@
                                 </ul>
                             </li>
                             <!-- /TAG LOGIC -->
-
-                            <li>
-                                <ul><li class="comment-list"
-                                        ng-repeat="comment in currentContent.comments track by $index">
-                                    {{comment}}</li></ul>
-                                <input type="text" class="form-control content-text"
-                                       id="inputComment" placeholder="Enter New Comment"
-                                       ng-model="newComment">
-                                <a class="btn btn-default"
-                                   ng-click="detailContentVm.comment(newComment)">Comment</a>
-                            </li>
-                            <li>
-                                <a class="btn btn-default"
-                                   ng-if="detailContentVm.ownsContent()"
-                                   ng-click="detailContentVm.deleteContent()">
-                                    <span class="account-name">Delete</span>
-                                </a>
-                            </li>
                         </ul>
                     </form>
                 </div>

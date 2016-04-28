@@ -15,7 +15,7 @@
         detailContentVm.removeTag = removeTag;
         detailContentVm.ownsTag = ownsTag;
         // Scope Event Handlers
-        detailContentVm.comment = comment;
+        detailContentVm.message = message;
         detailContentVm.deleteContent = deleteContent;
         detailContentVm.ownsContent = ownsContent;
         detailContentVm.range = range;
@@ -99,31 +99,27 @@
             return $rootScope.user.obj && tag.userId === $rootScope.user.obj._id;
         }
 
-        function comment(newComment) {
-            var updatedContent = angular.copy($rootScope.currentContent);
-            updatedContent.comments.push(newComment);
-            ContentService.updateContentById($rootScope.currentContent._id, updatedContent)
-                .then(function (content) {
-                    $rootScope.currentContent = content;
-                    console.log('Commented', $rootScope.currentContent);
-                }, function (err) {
-                    detailContentVm.error = 'An error occurred trying to comment.';
-                    console.log(err);
-                });
+        function message() {
+            detailContentVm.$location = $location.path(
+                '/message/create/' + $rootScope.currentContent._id);
         }
 
         function deleteContent() {
-            ContentService.deleteContentById($rootScope.currentContent._id)
-                .then(function (deletedContent) {
-                    console.log('Deleted: ', deletedContent);
-                    $rootScope.currentContent = undefined;
-                    detailContentVm.$location = $location.path('/my_content');
-                }, function (err) {
-                    console.log(err);
-                }, function (err) {
-                    detailContentVm.error = 'An error occurred trying to delete.';
-                    console.log(err);
-                });
+            var isSure = window.confirm('Are you sure you want to delete this content? ' +
+                'This cannot be undone.');
+            if (isSure) {
+                ContentService.deleteContentById($rootScope.currentContent._id)
+                    .then(function (deletedContent) {
+                        console.log('Deleted: ', deletedContent);
+                        $rootScope.currentContent = undefined;
+                        detailContentVm.$location = $location.path('/my_content');
+                    }, function (err) {
+                        console.log(err);
+                    }, function (err) {
+                        detailContentVm.error = 'An error occurred trying to delete.';
+                        console.log(err);
+                    });
+            }
         }
 
         function ownsContent() {
@@ -155,7 +151,7 @@
                         detailContentVm.error = 'Could not load all reviews for this content.';
                         console.log(err);
                     });
-            } else if ($rootScope.loggedIn) {
+            } else if ($rootScope.user.loggedIn) {
                 ReviewService.findReviewForUserAndContentId(
                     $rootScope.user.obj._id, $rootScope.currentContent._id)
                     .then(function (review) {
