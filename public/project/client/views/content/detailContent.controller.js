@@ -128,7 +128,7 @@
         }
 
         function range(i) {
-            return new Array(i);
+            return new Array(Math.round(i));
         }
 
         function populateReviews() {
@@ -144,7 +144,7 @@
                             reviewsForContent.forEach(function (review) {
                                 detailContentVm.rating += review.rating;
                             });
-                            detailContentVm.rating /= numRatings;
+                            detailContentVm.rating /= Math.round(numRatings);
                             detailContentVm.numRatings = numRatings;
                         }
                     }, function (err) {
