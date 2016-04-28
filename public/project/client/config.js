@@ -51,7 +51,7 @@
                 resolve: {setLoggedInUser: setLoggedInUser, isContentSet: isContentSet}
             })
             .when('/message/to', {
-                templateUrl: 'views/message/ToMessage.view.html',
+                templateUrl: 'views/message/toMessage.view.html',
                 controller: 'ToMessageController',
                 controllerAs: 'toMessageVm',
                 resolve: {loggedIn: isLoggedIn}
